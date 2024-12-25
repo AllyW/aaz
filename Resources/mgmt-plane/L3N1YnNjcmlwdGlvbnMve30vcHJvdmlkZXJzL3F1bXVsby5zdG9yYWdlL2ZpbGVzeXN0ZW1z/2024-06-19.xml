@@ -102,6 +102,7 @@
                             <item value="&quot;Deleted&quot;"/>
                             <item value="&quot;Deleting&quot;"/>
                             <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;NotSpecified&quot;"/>
                             <item value="&quot;Succeeded&quot;"/>
                             <item value="&quot;Updating&quot;"/>
                           </enum>
@@ -235,6 +236,7 @@
                             <item value="&quot;Deleted&quot;"/>
                             <item value="&quot;Deleting&quot;"/>
                             <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;NotSpecified&quot;"/>
                             <item value="&quot;Succeeded&quot;"/>
                             <item value="&quot;Updating&quot;"/>
                           </enum>

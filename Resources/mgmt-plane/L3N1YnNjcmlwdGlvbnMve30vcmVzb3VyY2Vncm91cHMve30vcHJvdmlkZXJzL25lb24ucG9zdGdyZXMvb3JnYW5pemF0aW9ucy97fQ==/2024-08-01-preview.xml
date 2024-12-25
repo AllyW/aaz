@@ -9,12 +9,8 @@
           <help short="Name of the Neon resource"/>
           <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_\-.: ]*$" maxLength="50" minLength="1"/>
         </arg>
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
-          <help short="Name of the Resource Group"/>
-        </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription s" required="True" group="" idPart="subscription">
-          <help short="Subscription ID"/>
-        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <argGroup name="Properties">
         <arg type="object" var="$resource.properties.companyDetails" options="company-details" group="Properties">
@@ -351,12 +347,8 @@
             <help short="Name of the Neon resource"/>
             <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_\-.: ]*$" maxLength="50" minLength="1"/>
           </arg>
-          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
-            <help short="Name of the Resource Group"/>
-          </arg>
-          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription s" required="True" group="" idPart="subscription">
-            <help short="Subscription ID"/>
-          </arg>
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         </argGroup>
         <operation operationId="Organizations_Get">
           <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Neon.Postgres/organizations/{organizationName}">
@@ -501,12 +493,8 @@
             <help short="Name of the Neon resource"/>
             <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_\-.: ]*$" maxLength="50" minLength="1"/>
           </arg>
-          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
-            <help short="Name of the Resource Group"/>
-          </arg>
-          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription s" required="True" group="" idPart="subscription">
-            <help short="Subscription ID"/>
-          </arg>
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         </argGroup>
         <operation operationId="Organizations_Delete">
           <longRunning finalStateVia="location"/>
@@ -553,12 +541,8 @@
             <help short="Name of the Neon resource"/>
             <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_\-.: ]*$" maxLength="50" minLength="1"/>
           </arg>
-          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
-            <help short="Name of the Resource Group"/>
-          </arg>
-          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription s" required="True" group="" idPart="subscription">
-            <help short="Subscription ID"/>
-          </arg>
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         </argGroup>
         <argGroup name="Properties">
           <arg type="object" var="$resource.properties.companyDetails" options="company-details" group="Properties">

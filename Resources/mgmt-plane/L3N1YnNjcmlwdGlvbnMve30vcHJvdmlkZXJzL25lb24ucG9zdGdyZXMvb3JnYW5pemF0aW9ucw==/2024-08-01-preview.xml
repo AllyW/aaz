@@ -7,19 +7,9 @@
       <resource id="/subscriptions/{}/providers/neon.postgres/organizations" version="2024-08-01-preview" swagger="mgmt-plane/liftrneon/ResourceProviders/Neon.Postgres/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTmVvbi5Qb3N0Z3Jlcy9vcmdhbml6YXRpb25z/V/MjAyNC0wOC0wMS1wcmV2aWV3"/>
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/neon.postgres/organizations" version="2024-08-01-preview" swagger="mgmt-plane/liftrneon/ResourceProviders/Neon.Postgres/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9OZW9uLlBvc3RncmVzL29yZ2FuaXphdGlvbnM=/V/MjAyNC0wOC0wMS1wcmV2aWV3"/>
       <argGroup name="">
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" group="" idPart="resource_group">
-          <help short="Name of the Resource Group"/>
-        </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription s" required="True" group="" idPart="subscription">
-          <help short="Subscription ID"/>
-        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <condition var="$Condition_Organizations_ListByResourceGroup">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
       <condition var="$Condition_Organizations_ListBySubscription">
         <operator type="and">
           <operator type="hasValue" arg="$Path.subscriptionId"/>
@@ -28,13 +18,16 @@
           </operator>
         </operator>
       </condition>
-      <operation when="$Condition_Organizations_ListByResourceGroup" operationId="Organizations_ListByResourceGroup">
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Neon.Postgres/organizations">
+      <condition var="$Condition_Organizations_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_Organizations_ListBySubscription" operationId="Organizations_ListBySubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/Neon.Postgres/organizations">
           <request method="get">
             <path>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
@@ -164,10 +157,13 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_Organizations_ListBySubscription" operationId="Organizations_ListBySubscription">
-        <http path="/subscriptions/{subscriptionId}/providers/Neon.Postgres/organizations">
+      <operation when="$Condition_Organizations_ListByResourceGroup" operationId="Organizations_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Neon.Postgres/organizations">
           <request method="get">
             <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
