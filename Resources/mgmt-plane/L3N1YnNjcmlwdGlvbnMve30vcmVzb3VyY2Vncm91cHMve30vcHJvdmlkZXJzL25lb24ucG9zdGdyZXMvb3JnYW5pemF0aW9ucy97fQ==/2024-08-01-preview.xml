@@ -9,12 +9,8 @@
           <help short="Name of the Neon resource"/>
           <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_\-.: ]*$" maxLength="50" minLength="1"/>
         </arg>
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
-          <help short="Name of the Resource Group"/>
-        </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription s" required="True" group="" idPart="subscription">
-          <help short="Subscription ID"/>
-        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <argGroup name="Properties">
         <arg type="object" var="$resource.properties.companyDetails" options="company-details" group="Properties">
@@ -126,7 +122,7 @@
         </arg>
       </argGroup>
       <argGroup name="Resource">
-        <arg type="ResourceLocation" var="$resource.location" options="location l" required="True" group="Resource">
+        <arg type="string" var="$resource.location" options="location l" required="True" group="Resource">
           <help short="The geo-location where the resource lives"/>
         </arg>
         <arg type="object" var="$resource.tags" options="tags" group="Resource">
@@ -145,7 +141,7 @@
                 <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_\-.: ]*$" maxLength="50" minLength="1"/>
               </param>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
@@ -158,7 +154,7 @@
             <body>
               <json>
                 <schema type="object" name="resource" required="True" clientFlatten="True">
-                  <prop type="ResourceLocation" name="location" arg="$resource.location" required="True"/>
+                  <prop type="string" name="location" arg="$resource.location" required="True"/>
                   <prop type="object" name="properties">
                     <prop type="object" name="companyDetails" arg="$resource.properties.companyDetails" required="True">
                       <prop type="string" name="businessPhone" arg="$resource.properties.companyDetails.businessPhone"/>
@@ -230,10 +226,8 @@
             <body>
               <json var="$Instance">
                 <schema type="object">
-                  <prop readOnly="True" type="ResourceId" name="id">
-                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Neon.Postgres/organizations/{}"/>
-                  </prop>
-                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="ResourceId" name="id"/>
+                  <prop type="string" name="location" required="True"/>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties">
                     <prop type="object" name="companyDetails" required="True">
@@ -335,7 +329,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>
@@ -351,12 +345,8 @@
             <help short="Name of the Neon resource"/>
             <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_\-.: ]*$" maxLength="50" minLength="1"/>
           </arg>
-          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
-            <help short="Name of the Resource Group"/>
-          </arg>
-          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription s" required="True" group="" idPart="subscription">
-            <help short="Subscription ID"/>
-          </arg>
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         </argGroup>
         <operation operationId="Organizations_Get">
           <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Neon.Postgres/organizations/{organizationName}">
@@ -366,7 +356,7 @@
                   <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_\-.: ]*$" maxLength="50" minLength="1"/>
                 </param>
                 <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                  <format maxLength="90" minLength="1"/>
+                  <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
                 </param>
                 <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
               </path>
@@ -381,10 +371,8 @@
               <body>
                 <json var="$Instance">
                   <schema type="object">
-                    <prop readOnly="True" type="ResourceId" name="id">
-                      <format template="/subscriptions/{}/resourceGroups/{}/providers/Neon.Postgres/organizations/{}"/>
-                    </prop>
-                    <prop type="ResourceLocation" name="location" required="True"/>
+                    <prop readOnly="True" type="ResourceId" name="id"/>
+                    <prop type="string" name="location" required="True"/>
                     <prop readOnly="True" type="string" name="name"/>
                     <prop type="object" name="properties">
                       <prop type="object" name="companyDetails" required="True">
@@ -486,7 +474,7 @@
             <response isError="True">
               <body>
                 <json>
-                  <schema type="@MgmtErrorFormat"/>
+                  <schema readOnly="True" type="@MgmtErrorFormat"/>
                 </json>
               </body>
             </response>
@@ -501,12 +489,8 @@
             <help short="Name of the Neon resource"/>
             <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_\-.: ]*$" maxLength="50" minLength="1"/>
           </arg>
-          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
-            <help short="Name of the Resource Group"/>
-          </arg>
-          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription s" required="True" group="" idPart="subscription">
-            <help short="Subscription ID"/>
-          </arg>
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         </argGroup>
         <operation operationId="Organizations_Delete">
           <longRunning finalStateVia="location"/>
@@ -517,7 +501,7 @@
                   <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_\-.: ]*$" maxLength="50" minLength="1"/>
                 </param>
                 <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                  <format maxLength="90" minLength="1"/>
+                  <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
                 </param>
                 <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
               </path>
@@ -535,11 +519,10 @@
               </header>
             </response>
             <response statusCode="204"/>
-            <response statusCode="200 201"/>
             <response isError="True">
               <body>
                 <json>
-                  <schema type="@MgmtErrorFormat"/>
+                  <schema readOnly="True" type="@MgmtErrorFormat"/>
                 </json>
               </body>
             </response>
@@ -553,12 +536,8 @@
             <help short="Name of the Neon resource"/>
             <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_\-.: ]*$" maxLength="50" minLength="1"/>
           </arg>
-          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
-            <help short="Name of the Resource Group"/>
-          </arg>
-          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription s" required="True" group="" idPart="subscription">
-            <help short="Subscription ID"/>
-          </arg>
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         </argGroup>
         <argGroup name="Properties">
           <arg type="object" var="$resource.properties.companyDetails" options="company-details" group="Properties">
@@ -649,7 +628,7 @@
                   <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_\-.: ]*$" maxLength="50" minLength="1"/>
                 </param>
                 <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                  <format maxLength="90" minLength="1"/>
+                  <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
                 </param>
                 <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
               </path>
@@ -663,11 +642,9 @@
             <response statusCode="200">
               <body>
                 <json var="$Instance">
-                  <schema type="object" cls="OrganizationResource_read">
-                    <prop readOnly="True" type="ResourceId" name="id">
-                      <format template="/subscriptions/{}/resourceGroups/{}/providers/Neon.Postgres/organizations/{}"/>
-                    </prop>
-                    <prop type="ResourceLocation" name="location" required="True"/>
+                  <schema type="object">
+                    <prop readOnly="True" type="ResourceId" name="id"/>
+                    <prop type="string" name="location" required="True"/>
                     <prop readOnly="True" type="string" name="name"/>
                     <prop type="object" name="properties">
                       <prop type="object" name="companyDetails" required="True">
@@ -769,7 +746,7 @@
             <response isError="True">
               <body>
                 <json>
-                  <schema type="@MgmtErrorFormat"/>
+                  <schema readOnly="True" type="@MgmtErrorFormat"/>
                 </json>
               </body>
             </response>
@@ -836,7 +813,7 @@
                   <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_\-.: ]*$" maxLength="50" minLength="1"/>
                 </param>
                 <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                  <format maxLength="90" minLength="1"/>
+                  <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
                 </param>
                 <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
               </path>
@@ -853,14 +830,111 @@
             <response statusCode="200 201">
               <body>
                 <json var="$Instance">
-                  <schema type="@OrganizationResource_read"/>
+                  <schema type="object">
+                    <prop readOnly="True" type="ResourceId" name="id"/>
+                    <prop type="string" name="location" required="True"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties">
+                      <prop type="object" name="companyDetails" required="True">
+                        <prop type="string" name="businessPhone"/>
+                        <prop type="string" name="companyName"/>
+                        <prop type="string" name="country"/>
+                        <prop type="string" name="domain"/>
+                        <prop type="integer64" name="numberOfEmployees"/>
+                        <prop type="string" name="officeAddress"/>
+                      </prop>
+                      <prop type="object" name="marketplaceDetails" required="True">
+                        <prop type="object" name="offerDetails" required="True">
+                          <prop type="string" name="offerId" required="True"/>
+                          <prop type="string" name="planId" required="True"/>
+                          <prop type="string" name="planName"/>
+                          <prop type="string" name="publisherId" required="True"/>
+                          <prop type="string" name="termId"/>
+                          <prop type="string" name="termUnit"/>
+                        </prop>
+                        <prop type="string" name="subscriptionId"/>
+                        <prop type="string" name="subscriptionStatus">
+                          <enum>
+                            <item value="&quot;PendingFulfillmentStart&quot;"/>
+                            <item value="&quot;Subscribed&quot;"/>
+                            <item value="&quot;Suspended&quot;"/>
+                            <item value="&quot;Unsubscribed&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="partnerOrganizationProperties">
+                        <prop type="string" name="organizationId"/>
+                        <prop type="string" name="organizationName" required="True">
+                          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_\-.: ]*$" maxLength="50" minLength="1"/>
+                        </prop>
+                        <prop type="object" name="singleSignOnProperties">
+                          <prop type="array<string>" name="aadDomains">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="string" name="enterpriseAppId"/>
+                          <prop type="string" name="singleSignOnState">
+                            <enum>
+                              <item value="&quot;Disable&quot;"/>
+                              <item value="&quot;Enable&quot;"/>
+                              <item value="&quot;Initial&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="singleSignOnUrl"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userDetails" required="True">
+                        <prop type="string" name="emailAddress">
+                          <format pattern="^[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}$"/>
+                        </prop>
+                        <prop type="string" name="firstName"/>
+                        <prop type="string" name="lastName"/>
+                        <prop type="string" name="phoneNumber"/>
+                        <prop type="string" name="upn"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="object" name="systemData">
+                      <prop type="dateTime" name="createdAt"/>
+                      <prop type="string" name="createdBy"/>
+                      <prop type="string" name="createdByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="dateTime" name="lastModifiedAt"/>
+                      <prop type="string" name="lastModifiedBy"/>
+                      <prop type="string" name="lastModifiedByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
                 </json>
               </body>
             </response>
             <response isError="True">
               <body>
                 <json>
-                  <schema type="@MgmtErrorFormat"/>
+                  <schema readOnly="True" type="@MgmtErrorFormat"/>
                 </json>
               </body>
             </response>
