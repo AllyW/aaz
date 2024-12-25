@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/{resourceuri}/providers/microsoft.scvmm/virtualmachineinstances/default/restart" version="2024-06-01" swagger="mgmt-plane/scvmm/ResourceProviders/Microsoft.ScVmm/Paths/L3tyZXNvdXJjZVVyaX0vcHJvdmlkZXJzL01pY3Jvc29mdC5TY1ZtbS92aXJ0dWFsTWFjaGluZUluc3RhbmNlcy9kZWZhdWx0L3Jlc3RhcnQ=/V/MjAyNC0wNi0wMQ=="/>
+  <commandGroup name="sc-vmm virtual-machine-instance default">
+    <command name="restart" version="2024-06-01">
+      <resource id="/{resourceuri}/providers/microsoft.scvmm/virtualmachineinstances/default/restart" version="2024-06-01" swagger="mgmt-plane/scvmm/ResourceProviders/Microsoft.ScVmm/Paths/L3tyZXNvdXJjZVVyaX0vcHJvdmlkZXJzL01pY3Jvc29mdC5TY1ZtbS92aXJ0dWFsTWFjaGluZUluc3RhbmNlcy9kZWZhdWx0L3Jlc3RhcnQ=/V/MjAyNC0wNi0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.resourceUri" options="resource-uri" required="True">
+          <help short="The fully qualified Azure Resource manager identifier of the resource."/>
+        </arg>
+      </argGroup>
+      <operation operationId="VirtualMachineInstances_Restart">
+        <longRunning finalStateVia="location"/>
+        <http path="/{resourceUri}/providers/Microsoft.ScVmm/virtualMachineInstances/default/restart">
+          <request method="post">
+            <path>
+              <param type="string" name="resourceUri" arg="$Path.resourceUri" required="True" skipUrlEncoding="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+  </commandGroup>
+</CodeGen>

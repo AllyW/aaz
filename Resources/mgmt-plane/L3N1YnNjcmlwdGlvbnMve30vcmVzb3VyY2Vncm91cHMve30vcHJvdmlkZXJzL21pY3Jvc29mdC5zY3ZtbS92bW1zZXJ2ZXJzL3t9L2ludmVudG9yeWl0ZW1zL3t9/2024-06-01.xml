@@ -1,0 +1,646 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.scvmm/vmmservers/{}/inventoryitems/{}" version="2024-06-01" swagger="mgmt-plane/scvmm/ResourceProviders/Microsoft.ScVmm/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU2NWbW0vdm1tU2VydmVycy97dm1tU2VydmVyTmFtZX0vaW52ZW50b3J5SXRlbXMve2ludmVudG9yeUl0ZW1SZXNvdXJjZU5hbWV9/V/MjAyNC0wNi0wMQ=="/>
+  <commandGroup name="sc-vmm vmm-server inventory-item">
+    <command name="show" version="2024-06-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.scvmm/vmmservers/{}/inventoryitems/{}" version="2024-06-01" swagger="mgmt-plane/scvmm/ResourceProviders/Microsoft.ScVmm/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU2NWbW0vdm1tU2VydmVycy97dm1tU2VydmVyTmFtZX0vaW52ZW50b3J5SXRlbXMve2ludmVudG9yeUl0ZW1SZXNvdXJjZU5hbWV9/V/MjAyNC0wNi0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.inventoryItemResourceName" options="inventory-item-resource-name name n" required="True" idPart="child_name_1">
+          <help short="Name of the inventoryItem."/>
+          <format pattern="^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.vmmServerName" options="vmm-server-name" required="True" idPart="name">
+          <help short="Name of the VmmServer."/>
+          <format pattern="[a-zA-Z0-9-_\.]" maxLength="54" minLength="1"/>
+        </arg>
+      </argGroup>
+      <operation operationId="InventoryItems_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/vmmServers/{vmmServerName}/inventoryItems/{inventoryItemResourceName}">
+          <request method="get">
+            <path>
+              <param type="string" name="inventoryItemResourceName" arg="$Path.inventoryItemResourceName" required="True">
+                <format pattern="^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="vmmServerName" arg="$Path.vmmServerName" required="True">
+                <format pattern="[a-zA-Z0-9-_\.]" maxLength="54" minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.ScVmm/vmmServers/{}/inventoryItems/{}"/>
+                  </prop>
+                  <prop type="string" name="kind"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop readOnly="True" type="string" name="inventoryItemName"/>
+                    <prop type="string" name="inventoryType" required="True">
+                      <enum>
+                        <item value="&quot;Cloud&quot;"/>
+                        <item value="&quot;VirtualMachine&quot;"/>
+                        <item value="&quot;VirtualMachineTemplate&quot;"/>
+                        <item value="&quot;VirtualNetwork&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="string" name="managedResourceId"/>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Created&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Provisioning&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="string" name="uuid"/>
+                    <discriminator property="inventoryType" value="Cloud"/>
+                    <discriminator property="inventoryType" value="VirtualMachine">
+                      <prop readOnly="True" type="string" name="biosGuid"/>
+                      <prop type="object" name="cloud">
+                        <prop type="string" name="inventoryItemId"/>
+                        <prop type="string" name="inventoryItemName"/>
+                      </prop>
+                      <prop type="array<string>" name="ipAddresses">
+                        <item type="string"/>
+                      </prop>
+                      <prop readOnly="True" type="ResourceId" name="managedMachineResourceId"/>
+                      <prop readOnly="True" type="string" name="osName"/>
+                      <prop readOnly="True" type="string" name="osType">
+                        <enum>
+                          <item value="&quot;Linux&quot;"/>
+                          <item value="&quot;Other&quot;"/>
+                          <item value="&quot;Windows&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="string" name="osVersion"/>
+                      <prop readOnly="True" type="string" name="powerState"/>
+                    </discriminator>
+                    <discriminator property="inventoryType" value="VirtualMachineTemplate">
+                      <prop readOnly="True" type="integer32" name="cpuCount"/>
+                      <prop readOnly="True" type="integer32" name="memoryMB"/>
+                      <prop readOnly="True" type="string" name="osName"/>
+                      <prop readOnly="True" type="string" name="osType">
+                        <enum>
+                          <item value="&quot;Linux&quot;"/>
+                          <item value="&quot;Other&quot;"/>
+                          <item value="&quot;Windows&quot;"/>
+                        </enum>
+                      </prop>
+                    </discriminator>
+                    <discriminator property="inventoryType" value="VirtualNetwork"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="delete" version="2024-06-01" confirmation="Are you sure you want to perform this operation?">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.scvmm/vmmservers/{}/inventoryitems/{}" version="2024-06-01" swagger="mgmt-plane/scvmm/ResourceProviders/Microsoft.ScVmm/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU2NWbW0vdm1tU2VydmVycy97dm1tU2VydmVyTmFtZX0vaW52ZW50b3J5SXRlbXMve2ludmVudG9yeUl0ZW1SZXNvdXJjZU5hbWV9/V/MjAyNC0wNi0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.inventoryItemResourceName" options="inventory-item-resource-name name n" required="True" idPart="child_name_1">
+          <help short="Name of the inventoryItem."/>
+          <format pattern="^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.vmmServerName" options="vmm-server-name" required="True" idPart="name">
+          <help short="Name of the VmmServer."/>
+          <format pattern="[a-zA-Z0-9-_\.]" maxLength="54" minLength="1"/>
+        </arg>
+      </argGroup>
+      <operation operationId="InventoryItems_Delete">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/vmmServers/{vmmServerName}/inventoryItems/{inventoryItemResourceName}">
+          <request method="delete">
+            <path>
+              <param type="string" name="inventoryItemResourceName" arg="$Path.inventoryItemResourceName" required="True">
+                <format pattern="^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="vmmServerName" arg="$Path.vmmServerName" required="True">
+                <format pattern="[a-zA-Z0-9-_\.]" maxLength="54" minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200"/>
+          <response statusCode="204"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+    <command name="create" version="2024-06-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.scvmm/vmmservers/{}/inventoryitems/{}" version="2024-06-01" swagger="mgmt-plane/scvmm/ResourceProviders/Microsoft.ScVmm/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU2NWbW0vdm1tU2VydmVycy97dm1tU2VydmVyTmFtZX0vaW52ZW50b3J5SXRlbXMve2ludmVudG9yeUl0ZW1SZXNvdXJjZU5hbWV9/V/MjAyNC0wNi0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.inventoryItemResourceName" options="inventory-item-resource-name name n" required="True" idPart="child_name_1">
+          <help short="Name of the inventoryItem."/>
+          <format pattern="^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.vmmServerName" options="vmm-server-name" required="True" idPart="name">
+          <help short="Name of the VmmServer."/>
+          <format pattern="[a-zA-Z0-9-_\.]" maxLength="54" minLength="1"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="object" var="$resource.properties.Cloud" options="cloud" group="Properties">
+          <blank value="{}"/>
+        </arg>
+        <arg type="object" var="$resource.properties.VirtualMachine" options="virtual-machine" group="Properties">
+          <arg type="object" var="$resource.properties.VirtualMachine.cloud" options="cloud">
+            <help short="Cloud inventory resource details where the VM is present."/>
+            <arg type="string" var="$resource.properties.VirtualMachine.cloud.inventoryItemId" options="inventory-item-id">
+              <help short="Gets or sets the inventory Item ID for the resource."/>
+            </arg>
+            <arg type="string" var="$resource.properties.VirtualMachine.cloud.inventoryItemName" options="inventory-item-name">
+              <help short="Gets or sets the Managed Object name in Vmm for the resource."/>
+            </arg>
+          </arg>
+          <arg type="array<string>" var="$resource.properties.VirtualMachine.ipAddresses" options="ip-addresses">
+            <help short="Gets or sets the nic ip addresses."/>
+            <item type="string"/>
+          </arg>
+        </arg>
+        <arg type="object" var="$resource.properties.VirtualMachineTemplate" options="virtual-machine-template" group="Properties">
+          <blank value="{}"/>
+        </arg>
+        <arg type="object" var="$resource.properties.VirtualNetwork" options="virtual-network" group="Properties">
+          <blank value="{}"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Resource">
+        <arg type="string" var="$resource.kind" options="kind" group="Resource">
+          <help short="Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type.  If supported, the resource provider must validate and persist this value."/>
+        </arg>
+      </argGroup>
+      <operation operationId="InventoryItems_Create">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/vmmServers/{vmmServerName}/inventoryItems/{inventoryItemResourceName}">
+          <request method="put">
+            <path>
+              <param type="string" name="inventoryItemResourceName" arg="$Path.inventoryItemResourceName" required="True">
+                <format pattern="^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="vmmServerName" arg="$Path.vmmServerName" required="True">
+                <format pattern="[a-zA-Z0-9-_\.]" maxLength="54" minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="resource" required="True" clientFlatten="True">
+                  <prop type="string" name="kind" arg="$resource.kind"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="string" name="inventoryType" required="True">
+                      <enum>
+                        <item arg="$resource.properties.Cloud" value="&quot;Cloud&quot;"/>
+                        <item arg="$resource.properties.VirtualMachine" value="&quot;VirtualMachine&quot;"/>
+                        <item arg="$resource.properties.VirtualMachineTemplate" value="&quot;VirtualMachineTemplate&quot;"/>
+                        <item arg="$resource.properties.VirtualNetwork" value="&quot;VirtualNetwork&quot;"/>
+                      </enum>
+                    </prop>
+                    <discriminator property="inventoryType" value="Cloud"/>
+                    <discriminator property="inventoryType" value="VirtualMachine">
+                      <prop type="object" name="cloud" arg="$resource.properties.VirtualMachine.cloud">
+                        <prop type="string" name="inventoryItemId" arg="$resource.properties.VirtualMachine.cloud.inventoryItemId"/>
+                        <prop type="string" name="inventoryItemName" arg="$resource.properties.VirtualMachine.cloud.inventoryItemName"/>
+                      </prop>
+                      <prop type="array<string>" name="ipAddresses" arg="$resource.properties.VirtualMachine.ipAddresses">
+                        <item type="string"/>
+                      </prop>
+                    </discriminator>
+                    <discriminator property="inventoryType" value="VirtualMachineTemplate"/>
+                    <discriminator property="inventoryType" value="VirtualNetwork"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.ScVmm/vmmServers/{}/inventoryItems/{}"/>
+                  </prop>
+                  <prop type="string" name="kind"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop readOnly="True" type="string" name="inventoryItemName"/>
+                    <prop type="string" name="inventoryType" required="True">
+                      <enum>
+                        <item value="&quot;Cloud&quot;"/>
+                        <item value="&quot;VirtualMachine&quot;"/>
+                        <item value="&quot;VirtualMachineTemplate&quot;"/>
+                        <item value="&quot;VirtualNetwork&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="string" name="managedResourceId"/>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Created&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Provisioning&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="string" name="uuid"/>
+                    <discriminator property="inventoryType" value="Cloud"/>
+                    <discriminator property="inventoryType" value="VirtualMachine">
+                      <prop readOnly="True" type="string" name="biosGuid"/>
+                      <prop type="object" name="cloud">
+                        <prop type="string" name="inventoryItemId"/>
+                        <prop type="string" name="inventoryItemName"/>
+                      </prop>
+                      <prop type="array<string>" name="ipAddresses">
+                        <item type="string"/>
+                      </prop>
+                      <prop readOnly="True" type="ResourceId" name="managedMachineResourceId"/>
+                      <prop readOnly="True" type="string" name="osName"/>
+                      <prop readOnly="True" type="string" name="osType">
+                        <enum>
+                          <item value="&quot;Linux&quot;"/>
+                          <item value="&quot;Other&quot;"/>
+                          <item value="&quot;Windows&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="string" name="osVersion"/>
+                      <prop readOnly="True" type="string" name="powerState"/>
+                    </discriminator>
+                    <discriminator property="inventoryType" value="VirtualMachineTemplate">
+                      <prop readOnly="True" type="integer32" name="cpuCount"/>
+                      <prop readOnly="True" type="integer32" name="memoryMB"/>
+                      <prop readOnly="True" type="string" name="osName"/>
+                      <prop readOnly="True" type="string" name="osType">
+                        <enum>
+                          <item value="&quot;Linux&quot;"/>
+                          <item value="&quot;Other&quot;"/>
+                          <item value="&quot;Windows&quot;"/>
+                        </enum>
+                      </prop>
+                    </discriminator>
+                    <discriminator property="inventoryType" value="VirtualNetwork"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="update" version="2024-06-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.scvmm/vmmservers/{}/inventoryitems/{}" version="2024-06-01" swagger="mgmt-plane/scvmm/ResourceProviders/Microsoft.ScVmm/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU2NWbW0vdm1tU2VydmVycy97dm1tU2VydmVyTmFtZX0vaW52ZW50b3J5SXRlbXMve2ludmVudG9yeUl0ZW1SZXNvdXJjZU5hbWV9/V/MjAyNC0wNi0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.inventoryItemResourceName" options="inventory-item-resource-name name n" required="True" idPart="child_name_1">
+          <help short="Name of the inventoryItem."/>
+          <format pattern="^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.vmmServerName" options="vmm-server-name" required="True" idPart="name">
+          <help short="Name of the VmmServer."/>
+          <format pattern="[a-zA-Z0-9-_\.]" maxLength="54" minLength="1"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="object" var="$resource.properties.Cloud" options="cloud" group="Properties">
+          <blank value="{}"/>
+        </arg>
+        <arg type="object" var="$resource.properties.VirtualMachine" options="virtual-machine" group="Properties">
+          <arg nullable="True" type="object" var="$resource.properties.VirtualMachine.cloud" options="cloud">
+            <help short="Cloud inventory resource details where the VM is present."/>
+            <arg nullable="True" type="string" var="$resource.properties.VirtualMachine.cloud.inventoryItemId" options="inventory-item-id">
+              <help short="Gets or sets the inventory Item ID for the resource."/>
+            </arg>
+            <arg nullable="True" type="string" var="$resource.properties.VirtualMachine.cloud.inventoryItemName" options="inventory-item-name">
+              <help short="Gets or sets the Managed Object name in Vmm for the resource."/>
+            </arg>
+          </arg>
+          <arg nullable="True" type="array<string>" var="$resource.properties.VirtualMachine.ipAddresses" options="ip-addresses">
+            <help short="Gets or sets the nic ip addresses."/>
+            <item nullable="True" type="string"/>
+          </arg>
+        </arg>
+        <arg type="object" var="$resource.properties.VirtualMachineTemplate" options="virtual-machine-template" group="Properties">
+          <blank value="{}"/>
+        </arg>
+        <arg type="object" var="$resource.properties.VirtualNetwork" options="virtual-network" group="Properties">
+          <blank value="{}"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Resource">
+        <arg nullable="True" type="string" var="$resource.kind" options="kind" group="Resource">
+          <help short="Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type.  If supported, the resource provider must validate and persist this value."/>
+        </arg>
+      </argGroup>
+      <operation operationId="InventoryItems_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/vmmServers/{vmmServerName}/inventoryItems/{inventoryItemResourceName}">
+          <request method="get">
+            <path>
+              <param type="string" name="inventoryItemResourceName" arg="$Path.inventoryItemResourceName" required="True">
+                <format pattern="^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="vmmServerName" arg="$Path.vmmServerName" required="True">
+                <format pattern="[a-zA-Z0-9-_\.]" maxLength="54" minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object" cls="InventoryItem_read">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.ScVmm/vmmServers/{}/inventoryItems/{}"/>
+                  </prop>
+                  <prop type="string" name="kind"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop readOnly="True" type="string" name="inventoryItemName"/>
+                    <prop type="string" name="inventoryType" required="True">
+                      <enum>
+                        <item value="&quot;Cloud&quot;"/>
+                        <item value="&quot;VirtualMachine&quot;"/>
+                        <item value="&quot;VirtualMachineTemplate&quot;"/>
+                        <item value="&quot;VirtualNetwork&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="string" name="managedResourceId"/>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Created&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Provisioning&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="string" name="uuid"/>
+                    <discriminator property="inventoryType" value="Cloud"/>
+                    <discriminator property="inventoryType" value="VirtualMachine">
+                      <prop readOnly="True" type="string" name="biosGuid"/>
+                      <prop type="object" name="cloud">
+                        <prop type="string" name="inventoryItemId"/>
+                        <prop type="string" name="inventoryItemName"/>
+                      </prop>
+                      <prop type="array<string>" name="ipAddresses">
+                        <item type="string"/>
+                      </prop>
+                      <prop readOnly="True" type="ResourceId" name="managedMachineResourceId"/>
+                      <prop readOnly="True" type="string" name="osName"/>
+                      <prop readOnly="True" type="string" name="osType">
+                        <enum>
+                          <item value="&quot;Linux&quot;"/>
+                          <item value="&quot;Other&quot;"/>
+                          <item value="&quot;Windows&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="string" name="osVersion"/>
+                      <prop readOnly="True" type="string" name="powerState"/>
+                    </discriminator>
+                    <discriminator property="inventoryType" value="VirtualMachineTemplate">
+                      <prop readOnly="True" type="integer32" name="cpuCount"/>
+                      <prop readOnly="True" type="integer32" name="memoryMB"/>
+                      <prop readOnly="True" type="string" name="osName"/>
+                      <prop readOnly="True" type="string" name="osType">
+                        <enum>
+                          <item value="&quot;Linux&quot;"/>
+                          <item value="&quot;Other&quot;"/>
+                          <item value="&quot;Windows&quot;"/>
+                        </enum>
+                      </prop>
+                    </discriminator>
+                    <discriminator property="inventoryType" value="VirtualNetwork"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation>
+        <instanceUpdate ref="$Instance">
+          <json>
+            <schema type="object" name="resource" required="True" clientFlatten="True">
+              <prop type="string" name="kind" arg="$resource.kind"/>
+              <prop type="object" name="properties" clientFlatten="True">
+                <prop type="string" name="inventoryType" required="True">
+                  <enum>
+                    <item arg="$resource.properties.Cloud" value="&quot;Cloud&quot;"/>
+                    <item arg="$resource.properties.VirtualMachine" value="&quot;VirtualMachine&quot;"/>
+                    <item arg="$resource.properties.VirtualMachineTemplate" value="&quot;VirtualMachineTemplate&quot;"/>
+                    <item arg="$resource.properties.VirtualNetwork" value="&quot;VirtualNetwork&quot;"/>
+                  </enum>
+                </prop>
+                <discriminator property="inventoryType" value="Cloud"/>
+                <discriminator property="inventoryType" value="VirtualMachine">
+                  <prop type="object" name="cloud" arg="$resource.properties.VirtualMachine.cloud">
+                    <prop type="string" name="inventoryItemId" arg="$resource.properties.VirtualMachine.cloud.inventoryItemId"/>
+                    <prop type="string" name="inventoryItemName" arg="$resource.properties.VirtualMachine.cloud.inventoryItemName"/>
+                  </prop>
+                  <prop type="array<string>" name="ipAddresses" arg="$resource.properties.VirtualMachine.ipAddresses">
+                    <item type="string"/>
+                  </prop>
+                </discriminator>
+                <discriminator property="inventoryType" value="VirtualMachineTemplate"/>
+                <discriminator property="inventoryType" value="VirtualNetwork"/>
+              </prop>
+            </schema>
+          </json>
+        </instanceUpdate>
+      </operation>
+      <operation operationId="InventoryItems_Create">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/vmmServers/{vmmServerName}/inventoryItems/{inventoryItemResourceName}">
+          <request method="put">
+            <path>
+              <param type="string" name="inventoryItemResourceName" arg="$Path.inventoryItemResourceName" required="True">
+                <format pattern="^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="vmmServerName" arg="$Path.vmmServerName" required="True">
+                <format pattern="[a-zA-Z0-9-_\.]" maxLength="54" minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json ref="$Instance"/>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="@InventoryItem_read"/>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

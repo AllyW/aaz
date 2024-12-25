@@ -19,3 +19,19 @@ VM actions on DbNode of VM Cluster by the provided filter
     ```bash
         oracle-database cloud-vm-cluster database-node action --cloudvmclustername <VM Cluster Name> --resource-group <resource group> --dbnodeocid <db node ocid> --action Stop
     ```
+
+### [2024-10-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL29yYWNsZS5kYXRhYmFzZS9jbG91ZHZtY2x1c3RlcnMve30vZGJub2Rlcy97fS9hY3Rpb24=/2024-10-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/oracle.database/cloudvmclusters/{}/dbnodes/{}/action 2024-10-01-preview -->
+
+#### examples
+
+- Action on Database Node - Start
+    ```bash
+        oracle-database cloud-vm-cluster database-node action --cloudvmclustername <VM Cluster Name> --resource-group <resource group> --dbnodeocid <db node ocid> --action Start
+    ```
+
+- Action on Database Node - Stop
+    ```bash
+        oracle-database cloud-vm-cluster database-node action --cloudvmclustername <VM Cluster Name> --resource-group <resource group> --dbnodeocid <db node ocid> --action Stop
+    ```

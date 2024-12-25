@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/{resourceuri}/providers/microsoft.scvmm/virtualmachineinstances/default/createcheckpoint" version="2024-06-01" swagger="mgmt-plane/scvmm/ResourceProviders/Microsoft.ScVmm/Paths/L3tyZXNvdXJjZVVyaX0vcHJvdmlkZXJzL01pY3Jvc29mdC5TY1ZtbS92aXJ0dWFsTWFjaGluZUluc3RhbmNlcy9kZWZhdWx0L2NyZWF0ZUNoZWNrcG9pbnQ=/V/MjAyNC0wNi0wMQ=="/>
+  <commandGroup name="sc-vmm virtual-machine-instance default">
+    <command name="create-checkpoint" version="2024-06-01">
+      <resource id="/{resourceuri}/providers/microsoft.scvmm/virtualmachineinstances/default/createcheckpoint" version="2024-06-01" swagger="mgmt-plane/scvmm/ResourceProviders/Microsoft.ScVmm/Paths/L3tyZXNvdXJjZVVyaX0vcHJvdmlkZXJzL01pY3Jvc29mdC5TY1ZtbS92aXJ0dWFsTWFjaGluZUluc3RhbmNlcy9kZWZhdWx0L2NyZWF0ZUNoZWNrcG9pbnQ=/V/MjAyNC0wNi0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.resourceUri" options="resource-uri" required="True">
+          <help short="The fully qualified Azure Resource manager identifier of the resource."/>
+        </arg>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="string" var="$body.description" options="description" group="Body">
+          <help short="Description of the checkpoint."/>
+        </arg>
+        <arg type="string" var="$body.name" options="name" group="Body">
+          <help short="Name of the checkpoint."/>
+        </arg>
+      </argGroup>
+      <operation operationId="VirtualMachineInstances_CreateCheckpoint">
+        <longRunning finalStateVia="location"/>
+        <http path="/{resourceUri}/providers/Microsoft.ScVmm/virtualMachineInstances/default/createCheckpoint">
+          <request method="post">
+            <path>
+              <param type="string" name="resourceUri" arg="$Path.resourceUri" required="True" skipUrlEncoding="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="string" name="description" arg="$body.description"/>
+                  <prop type="string" name="name" arg="$body.name"/>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+  </commandGroup>
+</CodeGen>

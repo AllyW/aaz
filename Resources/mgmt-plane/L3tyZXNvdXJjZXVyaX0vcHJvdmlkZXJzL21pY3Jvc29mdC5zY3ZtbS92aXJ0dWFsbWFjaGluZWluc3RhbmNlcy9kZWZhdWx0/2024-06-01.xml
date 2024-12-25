@@ -1,0 +1,1286 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/{resourceuri}/providers/microsoft.scvmm/virtualmachineinstances/default" version="2024-06-01" swagger="mgmt-plane/scvmm/ResourceProviders/Microsoft.ScVmm/Paths/L3tyZXNvdXJjZVVyaX0vcHJvdmlkZXJzL01pY3Jvc29mdC5TY1ZtbS92aXJ0dWFsTWFjaGluZUluc3RhbmNlcy9kZWZhdWx0/V/MjAyNC0wNi0wMQ=="/>
+  <commandGroup name="sc-vmm virtual-machine-instance default">
+    <command name="show" version="2024-06-01">
+      <resource id="/{resourceuri}/providers/microsoft.scvmm/virtualmachineinstances/default" version="2024-06-01" swagger="mgmt-plane/scvmm/ResourceProviders/Microsoft.ScVmm/Paths/L3tyZXNvdXJjZVVyaX0vcHJvdmlkZXJzL01pY3Jvc29mdC5TY1ZtbS92aXJ0dWFsTWFjaGluZUluc3RhbmNlcy9kZWZhdWx0/V/MjAyNC0wNi0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.resourceUri" options="resource-uri" required="True">
+          <help short="The fully qualified Azure Resource manager identifier of the resource."/>
+        </arg>
+      </argGroup>
+      <operation operationId="VirtualMachineInstances_Get">
+        <http path="/{resourceUri}/providers/Microsoft.ScVmm/virtualMachineInstances/default">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceUri" arg="$Path.resourceUri" required="True" skipUrlEncoding="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="object" name="extendedLocation" required="True">
+                    <prop type="ResourceId" name="name"/>
+                    <prop type="string" name="type"/>
+                  </prop>
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/{resourceUri}/providers/Microsoft.ScVmm/virtualMachineInstances/default"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="array<object>" name="availabilitySets">
+                      <item type="object">
+                        <prop type="ResourceId" name="id"/>
+                        <prop type="string" name="name"/>
+                      </item>
+                    </prop>
+                    <prop type="object" name="hardwareProfile">
+                      <prop type="integer32" name="cpuCount"/>
+                      <prop type="string" name="dynamicMemoryEnabled">
+                        <enum>
+                          <item value="&quot;false&quot;"/>
+                          <item value="&quot;true&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="integer32" name="dynamicMemoryMaxMB"/>
+                      <prop type="integer32" name="dynamicMemoryMinMB"/>
+                      <prop readOnly="True" type="string" name="isHighlyAvailable">
+                        <enum>
+                          <item value="&quot;false&quot;"/>
+                          <item value="&quot;true&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="limitCpuForMigration">
+                        <enum>
+                          <item value="&quot;false&quot;"/>
+                          <item value="&quot;true&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="integer32" name="memoryMB"/>
+                    </prop>
+                    <prop type="object" name="infrastructureProfile">
+                      <prop type="string" name="biosGuid"/>
+                      <prop type="string" name="checkpointType"/>
+                      <prop readOnly="True" type="array<@Checkpoint_read>" name="checkpoints" identifiers="checkpointID">
+                        <item type="@Checkpoint_read"/>
+                      </prop>
+                      <prop type="ResourceId" name="cloudId"/>
+                      <prop type="integer32" name="generation"/>
+                      <prop type="string" name="inventoryItemId"/>
+                      <prop readOnly="True" type="object" name="lastRestoredVMCheckpoint" cls="Checkpoint_read">
+                        <prop type="string" name="checkpointID"/>
+                        <prop type="string" name="description"/>
+                        <prop type="string" name="name"/>
+                        <prop type="string" name="parentCheckpointID"/>
+                      </prop>
+                      <prop type="ResourceId" name="templateId"/>
+                      <prop type="string" name="uuid"/>
+                      <prop type="string" name="vmName">
+                        <format minLength="1"/>
+                      </prop>
+                      <prop type="ResourceId" name="vmmServerId"/>
+                    </prop>
+                    <prop type="object" name="networkProfile">
+                      <prop type="array<object>" name="networkInterfaces" identifiers="nicId name">
+                        <item type="object">
+                          <prop readOnly="True" type="string" name="displayName"/>
+                          <prop type="string" name="ipv4AddressType">
+                            <enum>
+                              <item value="&quot;Dynamic&quot;"/>
+                              <item value="&quot;Static&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="array<string>" name="ipv4Addresses">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="string" name="ipv6AddressType">
+                            <enum>
+                              <item value="&quot;Dynamic&quot;"/>
+                              <item value="&quot;Static&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="array<string>" name="ipv6Addresses">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="string" name="macAddress"/>
+                          <prop type="string" name="macAddressType">
+                            <enum>
+                              <item value="&quot;Dynamic&quot;"/>
+                              <item value="&quot;Static&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="name"/>
+                          <prop readOnly="True" type="string" name="networkName"/>
+                          <prop type="string" name="nicId"/>
+                          <prop type="ResourceId" name="virtualNetworkId"/>
+                        </item>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="osProfile">
+                      <prop type="string" name="computerName"/>
+                      <prop type="string" name="domainName"/>
+                      <prop type="string" name="domainUsername"/>
+                      <prop readOnly="True" type="string" name="osSku"/>
+                      <prop readOnly="True" type="string" name="osType">
+                        <enum>
+                          <item value="&quot;Linux&quot;"/>
+                          <item value="&quot;Other&quot;"/>
+                          <item value="&quot;Windows&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="string" name="osVersion"/>
+                      <prop type="string" name="runOnceCommands"/>
+                      <prop type="integer32" name="timezone"/>
+                      <prop type="string" name="workgroup"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="powerState"/>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Created&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Provisioning&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="storageProfile">
+                      <prop type="array<object>" name="disks" identifiers="diskId name">
+                        <item type="object">
+                          <prop type="integer32" name="bus"/>
+                          <prop type="string" name="busType"/>
+                          <prop type="string" name="createDiffDisk">
+                            <enum>
+                              <item value="&quot;false&quot;"/>
+                              <item value="&quot;true&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="diskId"/>
+                          <prop type="integer32" name="diskSizeGB"/>
+                          <prop readOnly="True" type="string" name="displayName"/>
+                          <prop type="integer32" name="lun"/>
+                          <prop readOnly="True" type="integer32" name="maxDiskSizeGB"/>
+                          <prop type="string" name="name"/>
+                          <prop type="object" name="storageQoSPolicy">
+                            <prop type="string" name="id"/>
+                            <prop type="string" name="name"/>
+                          </prop>
+                          <prop type="string" name="templateDiskId"/>
+                          <prop readOnly="True" type="string" name="vhdFormatType"/>
+                          <prop type="string" name="vhdType"/>
+                          <prop readOnly="True" type="string" name="volumeType"/>
+                        </item>
+                      </prop>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="delete" version="2024-06-01" confirmation="Are you sure you want to perform this operation?">
+      <resource id="/{resourceuri}/providers/microsoft.scvmm/virtualmachineinstances/default" version="2024-06-01" swagger="mgmt-plane/scvmm/ResourceProviders/Microsoft.ScVmm/Paths/L3tyZXNvdXJjZVVyaX0vcHJvdmlkZXJzL01pY3Jvc29mdC5TY1ZtbS92aXJ0dWFsTWFjaGluZUluc3RhbmNlcy9kZWZhdWx0/V/MjAyNC0wNi0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.resourceUri" options="resource-uri" required="True">
+          <help short="The fully qualified Azure Resource manager identifier of the resource."/>
+        </arg>
+        <arg type="string" var="$Query.deleteFromHost" options="delete-from-host">
+          <help short="Whether to disable the VM from azure and also delete it from Vmm."/>
+          <enum>
+            <item name="false" value="&quot;false&quot;"/>
+            <item name="true" value="&quot;true&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$Query.force" options="force">
+          <help short="Forces the resource to be deleted."/>
+          <enum>
+            <item name="false" value="&quot;false&quot;"/>
+            <item name="true" value="&quot;true&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <operation operationId="VirtualMachineInstances_Delete">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/{resourceUri}/providers/Microsoft.ScVmm/virtualMachineInstances/default">
+          <request method="delete">
+            <path>
+              <param type="string" name="resourceUri" arg="$Path.resourceUri" required="True" skipUrlEncoding="True"/>
+            </path>
+            <query>
+              <param type="string" name="deleteFromHost" arg="$Query.deleteFromHost">
+                <enum>
+                  <item value="&quot;false&quot;"/>
+                  <item value="&quot;true&quot;"/>
+                </enum>
+              </param>
+              <param type="string" name="force" arg="$Query.force">
+                <enum>
+                  <item value="&quot;false&quot;"/>
+                  <item value="&quot;true&quot;"/>
+                </enum>
+              </param>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response statusCode="204"/>
+          <response statusCode="200 201"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+    <command name="create" version="2024-06-01">
+      <resource id="/{resourceuri}/providers/microsoft.scvmm/virtualmachineinstances/default" version="2024-06-01" swagger="mgmt-plane/scvmm/ResourceProviders/Microsoft.ScVmm/Paths/L3tyZXNvdXJjZVVyaX0vcHJvdmlkZXJzL01pY3Jvc29mdC5TY1ZtbS92aXJ0dWFsTWFjaGluZUluc3RhbmNlcy9kZWZhdWx0/V/MjAyNC0wNi0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.resourceUri" options="resource-uri" required="True">
+          <help short="The fully qualified Azure Resource manager identifier of the resource."/>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="array<object>" var="$resource.properties.availabilitySets" options="availability-sets" group="Properties">
+          <help short="Availability Sets in vm."/>
+          <item type="object">
+            <arg type="ResourceId" var="$resource.properties.availabilitySets[].id" options="id">
+              <help short="Gets the ARM Id of the microsoft.scvmm/availabilitySets resource."/>
+            </arg>
+            <arg type="string" var="$resource.properties.availabilitySets[].name" options="name">
+              <help short="Gets or sets the name of the availability set."/>
+            </arg>
+          </item>
+        </arg>
+        <arg type="object" var="$resource.properties.hardwareProfile" options="hardware-profile" group="Properties">
+          <help short="Hardware properties."/>
+          <arg type="integer32" var="$resource.properties.hardwareProfile.cpuCount" options="cpu-count">
+            <help short="Gets or sets the number of vCPUs for the vm."/>
+          </arg>
+          <arg type="string" var="$resource.properties.hardwareProfile.dynamicMemoryEnabled" options="dynamic-memory-enabled">
+            <help short="Gets or sets a value indicating whether to enable dynamic memory or not."/>
+            <enum>
+              <item name="false" value="&quot;false&quot;"/>
+              <item name="true" value="&quot;true&quot;"/>
+            </enum>
+          </arg>
+          <arg type="integer32" var="$resource.properties.hardwareProfile.dynamicMemoryMaxMB" options="dynamic-memory-max-mb">
+            <help short="Gets or sets the max dynamic memory for the vm."/>
+          </arg>
+          <arg type="integer32" var="$resource.properties.hardwareProfile.dynamicMemoryMinMB" options="dynamic-memory-min-mb">
+            <help short="Gets or sets the min dynamic memory for the vm."/>
+          </arg>
+          <arg type="string" var="$resource.properties.hardwareProfile.limitCpuForMigration" options="limit-cpu-for-migration">
+            <help short="Gets or sets a value indicating whether to enable processor compatibility mode for live migration of VMs."/>
+            <enum>
+              <item name="false" value="&quot;false&quot;"/>
+              <item name="true" value="&quot;true&quot;"/>
+            </enum>
+          </arg>
+          <arg type="integer32" var="$resource.properties.hardwareProfile.memoryMB" options="memory-mb">
+            <help short="MemoryMB is the size of a virtual machine's memory, in MB."/>
+          </arg>
+        </arg>
+        <arg type="object" var="$resource.properties.infrastructureProfile" options="infrastructure-profile" group="Properties">
+          <help short="Gets the infrastructure profile."/>
+          <arg type="string" var="$resource.properties.infrastructureProfile.biosGuid" options="bios-guid">
+            <help short="Gets or sets the bios guid for the vm."/>
+          </arg>
+          <arg type="string" var="$resource.properties.infrastructureProfile.checkpointType" options="checkpoint-type">
+            <help short="Type of checkpoint supported for the vm."/>
+          </arg>
+          <arg type="ResourceId" var="$resource.properties.infrastructureProfile.cloudId" options="cloud-id">
+            <help short="ARM Id of the cloud resource to use for deploying the vm."/>
+          </arg>
+          <arg type="integer32" var="$resource.properties.infrastructureProfile.generation" options="generation">
+            <help short="Gets or sets the generation for the vm."/>
+          </arg>
+          <arg type="string" var="$resource.properties.infrastructureProfile.inventoryItemId" options="inventory-item-id">
+            <help short="Gets or sets the inventory Item ID for the resource."/>
+          </arg>
+          <arg type="ResourceId" var="$resource.properties.infrastructureProfile.templateId" options="template-id">
+            <help short="ARM Id of the template resource to use for deploying the vm."/>
+          </arg>
+          <arg type="string" var="$resource.properties.infrastructureProfile.uuid" options="uuid">
+            <help short="Unique ID of the virtual machine."/>
+          </arg>
+          <arg type="string" var="$resource.properties.infrastructureProfile.vmName" options="vm-name">
+            <help short="VMName is the name of VM on the SCVmm server."/>
+            <format minLength="1"/>
+          </arg>
+          <arg type="ResourceId" var="$resource.properties.infrastructureProfile.vmmServerId" options="vmm-server-id">
+            <help short="ARM Id of the vmmServer resource in which this resource resides."/>
+          </arg>
+        </arg>
+        <arg type="object" var="$resource.properties.networkProfile" options="network-profile" group="Properties">
+          <help short="Network properties."/>
+          <arg type="array<object>" var="$resource.properties.networkProfile.networkInterfaces" options="network-interfaces">
+            <help short="Gets or sets the list of network interfaces associated with the virtual machine."/>
+            <item type="object">
+              <arg type="string" var="$resource.properties.networkProfile.networkInterfaces[].ipv4AddressType" options="ipv4-address-type">
+                <help short="Gets or sets the ipv4 address type."/>
+                <enum>
+                  <item name="Dynamic" value="&quot;Dynamic&quot;"/>
+                  <item name="Static" value="&quot;Static&quot;"/>
+                </enum>
+              </arg>
+              <arg type="string" var="$resource.properties.networkProfile.networkInterfaces[].ipv6AddressType" options="ipv6-address-type">
+                <help short="Gets or sets the ipv6 address type."/>
+                <enum>
+                  <item name="Dynamic" value="&quot;Dynamic&quot;"/>
+                  <item name="Static" value="&quot;Static&quot;"/>
+                </enum>
+              </arg>
+              <arg type="string" var="$resource.properties.networkProfile.networkInterfaces[].macAddress" options="mac-address">
+                <help short="Gets or sets the nic MAC address."/>
+              </arg>
+              <arg type="string" var="$resource.properties.networkProfile.networkInterfaces[].macAddressType" options="mac-address-type">
+                <help short="Gets or sets the mac address type."/>
+                <enum>
+                  <item name="Dynamic" value="&quot;Dynamic&quot;"/>
+                  <item name="Static" value="&quot;Static&quot;"/>
+                </enum>
+              </arg>
+              <arg type="string" var="$resource.properties.networkProfile.networkInterfaces[].name" options="name">
+                <help short="Gets or sets the name of the network interface."/>
+              </arg>
+              <arg type="string" var="$resource.properties.networkProfile.networkInterfaces[].nicId" options="nic-id">
+                <help short="Gets or sets the nic id."/>
+              </arg>
+              <arg type="ResourceId" var="$resource.properties.networkProfile.networkInterfaces[].virtualNetworkId" options="virtual-network-id">
+                <help short="Gets or sets the ARM Id of the Microsoft.ScVmm/virtualNetwork resource to connect the nic."/>
+              </arg>
+            </item>
+          </arg>
+        </arg>
+        <arg type="object" var="$resource.properties.osProfile" options="os-profile" group="Properties">
+          <help short="OS properties."/>
+          <arg type="password" var="$resource.properties.osProfile.adminPassword" options="admin-password">
+            <help short="Admin password of the virtual machine."/>
+            <prompt msg="Password:"/>
+          </arg>
+          <arg type="string" var="$resource.properties.osProfile.computerName" options="computer-name">
+            <help short="Gets or sets computer name."/>
+          </arg>
+          <arg type="string" var="$resource.properties.osProfile.domainName" options="domain-name">
+            <help short="Gets or sets the domain name."/>
+          </arg>
+          <arg type="password" var="$resource.properties.osProfile.domainPassword" options="domain-password">
+            <help short="Password of the domain the VM has to join."/>
+            <prompt msg="Password:"/>
+          </arg>
+          <arg type="string" var="$resource.properties.osProfile.domainUsername" options="domain-username">
+            <help short="Gets or sets the domain username."/>
+          </arg>
+          <arg type="password" var="$resource.properties.osProfile.productKey" options="product-key">
+            <help short="Gets or sets the product key.Input format xxxxx-xxxxx-xxxxx-xxxxx-xxxxx"/>
+            <prompt msg="Password:"/>
+          </arg>
+          <arg type="string" var="$resource.properties.osProfile.runOnceCommands" options="run-once-commands">
+            <help short="Get or sets the commands to be run once at the time of creation separated by semicolons."/>
+          </arg>
+          <arg type="integer32" var="$resource.properties.osProfile.timezone" options="timezone">
+            <help short="Gets or sets the index value of the timezone."/>
+          </arg>
+          <arg type="string" var="$resource.properties.osProfile.workgroup" options="workgroup">
+            <help short="Gets or sets the workgroup."/>
+          </arg>
+        </arg>
+        <arg type="object" var="$resource.properties.storageProfile" options="storage-profile" group="Properties">
+          <help short="Storage properties."/>
+          <arg type="array<object>" var="$resource.properties.storageProfile.disks" options="disks">
+            <help short="Gets or sets the list of virtual disks associated with the virtual machine."/>
+            <item type="object">
+              <arg type="integer32" var="$resource.properties.storageProfile.disks[].bus" options="bus">
+                <help short="Gets or sets the disk bus."/>
+              </arg>
+              <arg type="string" var="$resource.properties.storageProfile.disks[].busType" options="bus-type">
+                <help short="Gets or sets the disk bus type."/>
+              </arg>
+              <arg type="string" var="$resource.properties.storageProfile.disks[].createDiffDisk" options="create-diff-disk">
+                <help short="Gets or sets a value indicating diff disk."/>
+                <enum>
+                  <item name="false" value="&quot;false&quot;"/>
+                  <item name="true" value="&quot;true&quot;"/>
+                </enum>
+              </arg>
+              <arg type="string" var="$resource.properties.storageProfile.disks[].diskId" options="disk-id">
+                <help short="Gets or sets the disk id."/>
+              </arg>
+              <arg type="integer32" var="$resource.properties.storageProfile.disks[].diskSizeGB" options="disk-size-gb">
+                <help short="Gets or sets the disk total size."/>
+              </arg>
+              <arg type="integer32" var="$resource.properties.storageProfile.disks[].lun" options="lun">
+                <help short="Gets or sets the disk lun."/>
+              </arg>
+              <arg type="string" var="$resource.properties.storageProfile.disks[].name" options="name">
+                <help short="Gets or sets the name of the disk."/>
+              </arg>
+              <arg type="object" var="$resource.properties.storageProfile.disks[].storageQoSPolicy" options="storage-qo-s-policy">
+                <help short="The QoS policy for the disk."/>
+                <arg type="string" var="$resource.properties.storageProfile.disks[].storageQoSPolicy.id" options="id">
+                  <help short="The ID of the QoS policy."/>
+                </arg>
+                <arg type="string" var="$resource.properties.storageProfile.disks[].storageQoSPolicy.name" options="name">
+                  <help short="The name of the policy."/>
+                </arg>
+              </arg>
+              <arg type="string" var="$resource.properties.storageProfile.disks[].templateDiskId" options="template-disk-id">
+                <help short="Gets or sets the disk id in the template."/>
+              </arg>
+              <arg type="string" var="$resource.properties.storageProfile.disks[].vhdType" options="vhd-type">
+                <help short="Gets or sets the disk vhd type."/>
+              </arg>
+            </item>
+          </arg>
+        </arg>
+      </argGroup>
+      <argGroup name="Resource">
+        <arg type="object" var="$resource.extendedLocation" options="extended-location" required="True" group="Resource">
+          <help short="Gets or sets the extended location."/>
+          <arg type="ResourceId" var="$resource.extendedLocation.name" options="name">
+            <help short="The extended location name."/>
+          </arg>
+          <arg type="string" var="$resource.extendedLocation.type" options="type">
+            <help short="The extended location type."/>
+          </arg>
+        </arg>
+      </argGroup>
+      <operation operationId="VirtualMachineInstances_CreateOrUpdate">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/{resourceUri}/providers/Microsoft.ScVmm/virtualMachineInstances/default">
+          <request method="put">
+            <path>
+              <param type="string" name="resourceUri" arg="$Path.resourceUri" required="True" skipUrlEncoding="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="resource" required="True" clientFlatten="True">
+                  <prop type="object" name="extendedLocation" arg="$resource.extendedLocation" required="True">
+                    <prop type="ResourceId" name="name" arg="$resource.extendedLocation.name"/>
+                    <prop type="string" name="type" arg="$resource.extendedLocation.type"/>
+                  </prop>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="array<object>" name="availabilitySets" arg="$resource.properties.availabilitySets">
+                      <item type="object">
+                        <prop type="ResourceId" name="id" arg="$resource.properties.availabilitySets[].id"/>
+                        <prop type="string" name="name" arg="$resource.properties.availabilitySets[].name"/>
+                      </item>
+                    </prop>
+                    <prop type="object" name="hardwareProfile" arg="$resource.properties.hardwareProfile">
+                      <prop type="integer32" name="cpuCount" arg="$resource.properties.hardwareProfile.cpuCount"/>
+                      <prop type="string" name="dynamicMemoryEnabled" arg="$resource.properties.hardwareProfile.dynamicMemoryEnabled">
+                        <enum>
+                          <item value="&quot;false&quot;"/>
+                          <item value="&quot;true&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="integer32" name="dynamicMemoryMaxMB" arg="$resource.properties.hardwareProfile.dynamicMemoryMaxMB"/>
+                      <prop type="integer32" name="dynamicMemoryMinMB" arg="$resource.properties.hardwareProfile.dynamicMemoryMinMB"/>
+                      <prop type="string" name="limitCpuForMigration" arg="$resource.properties.hardwareProfile.limitCpuForMigration">
+                        <enum>
+                          <item value="&quot;false&quot;"/>
+                          <item value="&quot;true&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="integer32" name="memoryMB" arg="$resource.properties.hardwareProfile.memoryMB"/>
+                    </prop>
+                    <prop type="object" name="infrastructureProfile" arg="$resource.properties.infrastructureProfile">
+                      <prop type="string" name="biosGuid" arg="$resource.properties.infrastructureProfile.biosGuid"/>
+                      <prop type="string" name="checkpointType" arg="$resource.properties.infrastructureProfile.checkpointType"/>
+                      <prop type="ResourceId" name="cloudId" arg="$resource.properties.infrastructureProfile.cloudId"/>
+                      <prop type="integer32" name="generation" arg="$resource.properties.infrastructureProfile.generation"/>
+                      <prop type="string" name="inventoryItemId" arg="$resource.properties.infrastructureProfile.inventoryItemId"/>
+                      <prop type="ResourceId" name="templateId" arg="$resource.properties.infrastructureProfile.templateId"/>
+                      <prop type="string" name="uuid" arg="$resource.properties.infrastructureProfile.uuid"/>
+                      <prop type="string" name="vmName" arg="$resource.properties.infrastructureProfile.vmName">
+                        <format minLength="1"/>
+                      </prop>
+                      <prop type="ResourceId" name="vmmServerId" arg="$resource.properties.infrastructureProfile.vmmServerId"/>
+                    </prop>
+                    <prop type="object" name="networkProfile" arg="$resource.properties.networkProfile">
+                      <prop type="array<object>" name="networkInterfaces" arg="$resource.properties.networkProfile.networkInterfaces" identifiers="nicId name">
+                        <item type="object">
+                          <prop type="string" name="ipv4AddressType" arg="$resource.properties.networkProfile.networkInterfaces[].ipv4AddressType">
+                            <enum>
+                              <item value="&quot;Dynamic&quot;"/>
+                              <item value="&quot;Static&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="ipv6AddressType" arg="$resource.properties.networkProfile.networkInterfaces[].ipv6AddressType">
+                            <enum>
+                              <item value="&quot;Dynamic&quot;"/>
+                              <item value="&quot;Static&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="macAddress" arg="$resource.properties.networkProfile.networkInterfaces[].macAddress"/>
+                          <prop type="string" name="macAddressType" arg="$resource.properties.networkProfile.networkInterfaces[].macAddressType">
+                            <enum>
+                              <item value="&quot;Dynamic&quot;"/>
+                              <item value="&quot;Static&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="name" arg="$resource.properties.networkProfile.networkInterfaces[].name"/>
+                          <prop type="string" name="nicId" arg="$resource.properties.networkProfile.networkInterfaces[].nicId"/>
+                          <prop type="ResourceId" name="virtualNetworkId" arg="$resource.properties.networkProfile.networkInterfaces[].virtualNetworkId"/>
+                        </item>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="osProfile" arg="$resource.properties.osProfile">
+                      <prop type="password" name="adminPassword" arg="$resource.properties.osProfile.adminPassword" secret="True"/>
+                      <prop type="string" name="computerName" arg="$resource.properties.osProfile.computerName"/>
+                      <prop type="string" name="domainName" arg="$resource.properties.osProfile.domainName"/>
+                      <prop type="password" name="domainPassword" arg="$resource.properties.osProfile.domainPassword" secret="True"/>
+                      <prop type="string" name="domainUsername" arg="$resource.properties.osProfile.domainUsername"/>
+                      <prop type="password" name="productKey" arg="$resource.properties.osProfile.productKey" secret="True"/>
+                      <prop type="string" name="runOnceCommands" arg="$resource.properties.osProfile.runOnceCommands"/>
+                      <prop type="integer32" name="timezone" arg="$resource.properties.osProfile.timezone"/>
+                      <prop type="string" name="workgroup" arg="$resource.properties.osProfile.workgroup"/>
+                    </prop>
+                    <prop type="object" name="storageProfile" arg="$resource.properties.storageProfile">
+                      <prop type="array<object>" name="disks" arg="$resource.properties.storageProfile.disks" identifiers="diskId name">
+                        <item type="object">
+                          <prop type="integer32" name="bus" arg="$resource.properties.storageProfile.disks[].bus"/>
+                          <prop type="string" name="busType" arg="$resource.properties.storageProfile.disks[].busType"/>
+                          <prop type="string" name="createDiffDisk" arg="$resource.properties.storageProfile.disks[].createDiffDisk">
+                            <enum>
+                              <item value="&quot;false&quot;"/>
+                              <item value="&quot;true&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="diskId" arg="$resource.properties.storageProfile.disks[].diskId"/>
+                          <prop type="integer32" name="diskSizeGB" arg="$resource.properties.storageProfile.disks[].diskSizeGB"/>
+                          <prop type="integer32" name="lun" arg="$resource.properties.storageProfile.disks[].lun"/>
+                          <prop type="string" name="name" arg="$resource.properties.storageProfile.disks[].name"/>
+                          <prop type="object" name="storageQoSPolicy" arg="$resource.properties.storageProfile.disks[].storageQoSPolicy">
+                            <prop type="string" name="id" arg="$resource.properties.storageProfile.disks[].storageQoSPolicy.id"/>
+                            <prop type="string" name="name" arg="$resource.properties.storageProfile.disks[].storageQoSPolicy.name"/>
+                          </prop>
+                          <prop type="string" name="templateDiskId" arg="$resource.properties.storageProfile.disks[].templateDiskId"/>
+                          <prop type="string" name="vhdType" arg="$resource.properties.storageProfile.disks[].vhdType"/>
+                        </item>
+                      </prop>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="object" name="extendedLocation" required="True">
+                    <prop type="ResourceId" name="name"/>
+                    <prop type="string" name="type"/>
+                  </prop>
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/{resourceUri}/providers/Microsoft.ScVmm/virtualMachineInstances/default"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="array<object>" name="availabilitySets">
+                      <item type="object">
+                        <prop type="ResourceId" name="id"/>
+                        <prop type="string" name="name"/>
+                      </item>
+                    </prop>
+                    <prop type="object" name="hardwareProfile">
+                      <prop type="integer32" name="cpuCount"/>
+                      <prop type="string" name="dynamicMemoryEnabled">
+                        <enum>
+                          <item value="&quot;false&quot;"/>
+                          <item value="&quot;true&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="integer32" name="dynamicMemoryMaxMB"/>
+                      <prop type="integer32" name="dynamicMemoryMinMB"/>
+                      <prop readOnly="True" type="string" name="isHighlyAvailable">
+                        <enum>
+                          <item value="&quot;false&quot;"/>
+                          <item value="&quot;true&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="limitCpuForMigration">
+                        <enum>
+                          <item value="&quot;false&quot;"/>
+                          <item value="&quot;true&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="integer32" name="memoryMB"/>
+                    </prop>
+                    <prop type="object" name="infrastructureProfile">
+                      <prop type="string" name="biosGuid"/>
+                      <prop type="string" name="checkpointType"/>
+                      <prop readOnly="True" type="array<@Checkpoint_read>" name="checkpoints" identifiers="checkpointID">
+                        <item type="@Checkpoint_read"/>
+                      </prop>
+                      <prop type="ResourceId" name="cloudId"/>
+                      <prop type="integer32" name="generation"/>
+                      <prop type="string" name="inventoryItemId"/>
+                      <prop readOnly="True" type="object" name="lastRestoredVMCheckpoint" cls="Checkpoint_read">
+                        <prop type="string" name="checkpointID"/>
+                        <prop type="string" name="description"/>
+                        <prop type="string" name="name"/>
+                        <prop type="string" name="parentCheckpointID"/>
+                      </prop>
+                      <prop type="ResourceId" name="templateId"/>
+                      <prop type="string" name="uuid"/>
+                      <prop type="string" name="vmName">
+                        <format minLength="1"/>
+                      </prop>
+                      <prop type="ResourceId" name="vmmServerId"/>
+                    </prop>
+                    <prop type="object" name="networkProfile">
+                      <prop type="array<object>" name="networkInterfaces" identifiers="nicId name">
+                        <item type="object">
+                          <prop readOnly="True" type="string" name="displayName"/>
+                          <prop type="string" name="ipv4AddressType">
+                            <enum>
+                              <item value="&quot;Dynamic&quot;"/>
+                              <item value="&quot;Static&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="array<string>" name="ipv4Addresses">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="string" name="ipv6AddressType">
+                            <enum>
+                              <item value="&quot;Dynamic&quot;"/>
+                              <item value="&quot;Static&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="array<string>" name="ipv6Addresses">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="string" name="macAddress"/>
+                          <prop type="string" name="macAddressType">
+                            <enum>
+                              <item value="&quot;Dynamic&quot;"/>
+                              <item value="&quot;Static&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="name"/>
+                          <prop readOnly="True" type="string" name="networkName"/>
+                          <prop type="string" name="nicId"/>
+                          <prop type="ResourceId" name="virtualNetworkId"/>
+                        </item>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="osProfile">
+                      <prop type="string" name="computerName"/>
+                      <prop type="string" name="domainName"/>
+                      <prop type="string" name="domainUsername"/>
+                      <prop readOnly="True" type="string" name="osSku"/>
+                      <prop readOnly="True" type="string" name="osType">
+                        <enum>
+                          <item value="&quot;Linux&quot;"/>
+                          <item value="&quot;Other&quot;"/>
+                          <item value="&quot;Windows&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="string" name="osVersion"/>
+                      <prop type="string" name="runOnceCommands"/>
+                      <prop type="integer32" name="timezone"/>
+                      <prop type="string" name="workgroup"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="powerState"/>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Created&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Provisioning&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="storageProfile">
+                      <prop type="array<object>" name="disks" identifiers="diskId name">
+                        <item type="object">
+                          <prop type="integer32" name="bus"/>
+                          <prop type="string" name="busType"/>
+                          <prop type="string" name="createDiffDisk">
+                            <enum>
+                              <item value="&quot;false&quot;"/>
+                              <item value="&quot;true&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="diskId"/>
+                          <prop type="integer32" name="diskSizeGB"/>
+                          <prop readOnly="True" type="string" name="displayName"/>
+                          <prop type="integer32" name="lun"/>
+                          <prop readOnly="True" type="integer32" name="maxDiskSizeGB"/>
+                          <prop type="string" name="name"/>
+                          <prop type="object" name="storageQoSPolicy">
+                            <prop type="string" name="id"/>
+                            <prop type="string" name="name"/>
+                          </prop>
+                          <prop type="string" name="templateDiskId"/>
+                          <prop readOnly="True" type="string" name="vhdFormatType"/>
+                          <prop type="string" name="vhdType"/>
+                          <prop readOnly="True" type="string" name="volumeType"/>
+                        </item>
+                      </prop>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="update" version="2024-06-01">
+      <resource id="/{resourceuri}/providers/microsoft.scvmm/virtualmachineinstances/default" version="2024-06-01" swagger="mgmt-plane/scvmm/ResourceProviders/Microsoft.ScVmm/Paths/L3tyZXNvdXJjZVVyaX0vcHJvdmlkZXJzL01pY3Jvc29mdC5TY1ZtbS92aXJ0dWFsTWFjaGluZUluc3RhbmNlcy9kZWZhdWx0/V/MjAyNC0wNi0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.resourceUri" options="resource-uri" required="True">
+          <help short="The fully qualified Azure Resource manager identifier of the resource."/>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg nullable="True" type="array<object>" var="$resource.properties.availabilitySets" options="availability-sets" group="Properties">
+          <help short="Availability Sets in vm."/>
+          <item nullable="True" type="object">
+            <arg nullable="True" type="ResourceId" var="$resource.properties.availabilitySets[].id" options="id">
+              <help short="Gets the ARM Id of the microsoft.scvmm/availabilitySets resource."/>
+            </arg>
+            <arg nullable="True" type="string" var="$resource.properties.availabilitySets[].name" options="name">
+              <help short="Gets or sets the name of the availability set."/>
+            </arg>
+          </item>
+        </arg>
+        <arg nullable="True" type="object" var="$resource.properties.hardwareProfile" options="hardware-profile" group="Properties">
+          <help short="Hardware properties."/>
+          <arg nullable="True" type="integer32" var="$resource.properties.hardwareProfile.cpuCount" options="cpu-count">
+            <help short="Gets or sets the number of vCPUs for the vm."/>
+          </arg>
+          <arg nullable="True" type="string" var="$resource.properties.hardwareProfile.dynamicMemoryEnabled" options="dynamic-memory-enabled">
+            <help short="Gets or sets a value indicating whether to enable dynamic memory or not."/>
+            <enum>
+              <item name="false" value="&quot;false&quot;"/>
+              <item name="true" value="&quot;true&quot;"/>
+            </enum>
+          </arg>
+          <arg nullable="True" type="integer32" var="$resource.properties.hardwareProfile.dynamicMemoryMaxMB" options="dynamic-memory-max-mb">
+            <help short="Gets or sets the max dynamic memory for the vm."/>
+          </arg>
+          <arg nullable="True" type="integer32" var="$resource.properties.hardwareProfile.dynamicMemoryMinMB" options="dynamic-memory-min-mb">
+            <help short="Gets or sets the min dynamic memory for the vm."/>
+          </arg>
+          <arg nullable="True" type="string" var="$resource.properties.hardwareProfile.limitCpuForMigration" options="limit-cpu-for-migration">
+            <help short="Gets or sets a value indicating whether to enable processor compatibility mode for live migration of VMs."/>
+            <enum>
+              <item name="false" value="&quot;false&quot;"/>
+              <item name="true" value="&quot;true&quot;"/>
+            </enum>
+          </arg>
+          <arg nullable="True" type="integer32" var="$resource.properties.hardwareProfile.memoryMB" options="memory-mb">
+            <help short="MemoryMB is the size of a virtual machine's memory, in MB."/>
+          </arg>
+        </arg>
+        <arg nullable="True" type="object" var="$resource.properties.infrastructureProfile" options="infrastructure-profile" group="Properties">
+          <help short="Gets the infrastructure profile."/>
+          <arg nullable="True" type="string" var="$resource.properties.infrastructureProfile.checkpointType" options="checkpoint-type">
+            <help short="Type of checkpoint supported for the vm."/>
+          </arg>
+        </arg>
+        <arg nullable="True" type="object" var="$resource.properties.networkProfile" options="network-profile" group="Properties">
+          <help short="Network properties."/>
+          <arg nullable="True" type="array<object>" var="$resource.properties.networkProfile.networkInterfaces" options="network-interfaces">
+            <help short="Gets or sets the list of network interfaces associated with the virtual machine."/>
+            <item nullable="True" type="object">
+              <arg nullable="True" type="string" var="$resource.properties.networkProfile.networkInterfaces[].ipv4AddressType" options="ipv4-address-type">
+                <help short="Gets or sets the ipv4 address type."/>
+                <enum>
+                  <item name="Dynamic" value="&quot;Dynamic&quot;"/>
+                  <item name="Static" value="&quot;Static&quot;"/>
+                </enum>
+              </arg>
+              <arg nullable="True" type="string" var="$resource.properties.networkProfile.networkInterfaces[].ipv6AddressType" options="ipv6-address-type">
+                <help short="Gets or sets the ipv6 address type."/>
+                <enum>
+                  <item name="Dynamic" value="&quot;Dynamic&quot;"/>
+                  <item name="Static" value="&quot;Static&quot;"/>
+                </enum>
+              </arg>
+              <arg nullable="True" type="string" var="$resource.properties.networkProfile.networkInterfaces[].macAddress" options="mac-address">
+                <help short="Gets or sets the nic MAC address."/>
+              </arg>
+              <arg nullable="True" type="string" var="$resource.properties.networkProfile.networkInterfaces[].macAddressType" options="mac-address-type">
+                <help short="Gets or sets the mac address type."/>
+                <enum>
+                  <item name="Dynamic" value="&quot;Dynamic&quot;"/>
+                  <item name="Static" value="&quot;Static&quot;"/>
+                </enum>
+              </arg>
+              <arg nullable="True" type="string" var="$resource.properties.networkProfile.networkInterfaces[].name" options="name">
+                <help short="Gets or sets the name of the network interface."/>
+              </arg>
+              <arg nullable="True" type="string" var="$resource.properties.networkProfile.networkInterfaces[].nicId" options="nic-id">
+                <help short="Gets or sets the nic id."/>
+              </arg>
+              <arg nullable="True" type="ResourceId" var="$resource.properties.networkProfile.networkInterfaces[].virtualNetworkId" options="virtual-network-id">
+                <help short="Gets or sets the ARM Id of the Microsoft.ScVmm/virtualNetwork resource to connect the nic."/>
+              </arg>
+            </item>
+          </arg>
+        </arg>
+        <arg nullable="True" type="object" var="$resource.properties.storageProfile" options="storage-profile" group="Properties">
+          <help short="Storage properties."/>
+          <arg nullable="True" type="array<object>" var="$resource.properties.storageProfile.disks" options="disks">
+            <help short="Gets or sets the list of virtual disks associated with the virtual machine."/>
+            <item nullable="True" type="object">
+              <arg nullable="True" type="integer32" var="$resource.properties.storageProfile.disks[].bus" options="bus">
+                <help short="Gets or sets the disk bus."/>
+              </arg>
+              <arg nullable="True" type="string" var="$resource.properties.storageProfile.disks[].busType" options="bus-type">
+                <help short="Gets or sets the disk bus type."/>
+              </arg>
+              <arg nullable="True" type="string" var="$resource.properties.storageProfile.disks[].diskId" options="disk-id">
+                <help short="Gets or sets the disk id."/>
+              </arg>
+              <arg nullable="True" type="integer32" var="$resource.properties.storageProfile.disks[].diskSizeGB" options="disk-size-gb">
+                <help short="Gets or sets the disk total size."/>
+              </arg>
+              <arg nullable="True" type="integer32" var="$resource.properties.storageProfile.disks[].lun" options="lun">
+                <help short="Gets or sets the disk lun."/>
+              </arg>
+              <arg nullable="True" type="string" var="$resource.properties.storageProfile.disks[].name" options="name">
+                <help short="Gets or sets the name of the disk."/>
+              </arg>
+              <arg nullable="True" type="object" var="$resource.properties.storageProfile.disks[].storageQoSPolicy" options="storage-qo-s-policy">
+                <help short="The QoS policy for the disk."/>
+                <arg nullable="True" type="string" var="$resource.properties.storageProfile.disks[].storageQoSPolicy.id" options="id">
+                  <help short="The ID of the QoS policy."/>
+                </arg>
+                <arg nullable="True" type="string" var="$resource.properties.storageProfile.disks[].storageQoSPolicy.name" options="name">
+                  <help short="The name of the policy."/>
+                </arg>
+              </arg>
+              <arg nullable="True" type="string" var="$resource.properties.storageProfile.disks[].vhdType" options="vhd-type">
+                <help short="Gets or sets the disk vhd type."/>
+              </arg>
+            </item>
+          </arg>
+        </arg>
+      </argGroup>
+      <operation operationId="VirtualMachineInstances_Get">
+        <http path="/{resourceUri}/providers/Microsoft.ScVmm/virtualMachineInstances/default">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceUri" arg="$Path.resourceUri" required="True" skipUrlEncoding="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object" cls="VirtualMachineInstance_read">
+                  <prop type="object" name="extendedLocation" required="True">
+                    <prop type="ResourceId" name="name"/>
+                    <prop type="string" name="type"/>
+                  </prop>
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/{resourceUri}/providers/Microsoft.ScVmm/virtualMachineInstances/default"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="array<object>" name="availabilitySets">
+                      <item type="object">
+                        <prop type="ResourceId" name="id"/>
+                        <prop type="string" name="name"/>
+                      </item>
+                    </prop>
+                    <prop type="object" name="hardwareProfile">
+                      <prop type="integer32" name="cpuCount"/>
+                      <prop type="string" name="dynamicMemoryEnabled">
+                        <enum>
+                          <item value="&quot;false&quot;"/>
+                          <item value="&quot;true&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="integer32" name="dynamicMemoryMaxMB"/>
+                      <prop type="integer32" name="dynamicMemoryMinMB"/>
+                      <prop readOnly="True" type="string" name="isHighlyAvailable">
+                        <enum>
+                          <item value="&quot;false&quot;"/>
+                          <item value="&quot;true&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="limitCpuForMigration">
+                        <enum>
+                          <item value="&quot;false&quot;"/>
+                          <item value="&quot;true&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="integer32" name="memoryMB"/>
+                    </prop>
+                    <prop type="object" name="infrastructureProfile">
+                      <prop type="string" name="biosGuid"/>
+                      <prop type="string" name="checkpointType"/>
+                      <prop readOnly="True" type="array<@Checkpoint_read>" name="checkpoints" identifiers="checkpointID">
+                        <item type="@Checkpoint_read"/>
+                      </prop>
+                      <prop type="ResourceId" name="cloudId"/>
+                      <prop type="integer32" name="generation"/>
+                      <prop type="string" name="inventoryItemId"/>
+                      <prop readOnly="True" type="object" name="lastRestoredVMCheckpoint" cls="Checkpoint_read">
+                        <prop type="string" name="checkpointID"/>
+                        <prop type="string" name="description"/>
+                        <prop type="string" name="name"/>
+                        <prop type="string" name="parentCheckpointID"/>
+                      </prop>
+                      <prop type="ResourceId" name="templateId"/>
+                      <prop type="string" name="uuid"/>
+                      <prop type="string" name="vmName">
+                        <format minLength="1"/>
+                      </prop>
+                      <prop type="ResourceId" name="vmmServerId"/>
+                    </prop>
+                    <prop type="object" name="networkProfile">
+                      <prop type="array<object>" name="networkInterfaces" identifiers="nicId name">
+                        <item type="object">
+                          <prop readOnly="True" type="string" name="displayName"/>
+                          <prop type="string" name="ipv4AddressType">
+                            <enum>
+                              <item value="&quot;Dynamic&quot;"/>
+                              <item value="&quot;Static&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="array<string>" name="ipv4Addresses">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="string" name="ipv6AddressType">
+                            <enum>
+                              <item value="&quot;Dynamic&quot;"/>
+                              <item value="&quot;Static&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="array<string>" name="ipv6Addresses">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="string" name="macAddress"/>
+                          <prop type="string" name="macAddressType">
+                            <enum>
+                              <item value="&quot;Dynamic&quot;"/>
+                              <item value="&quot;Static&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="name"/>
+                          <prop readOnly="True" type="string" name="networkName"/>
+                          <prop type="string" name="nicId"/>
+                          <prop type="ResourceId" name="virtualNetworkId"/>
+                        </item>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="osProfile">
+                      <prop type="string" name="computerName"/>
+                      <prop type="string" name="domainName"/>
+                      <prop type="string" name="domainUsername"/>
+                      <prop readOnly="True" type="string" name="osSku"/>
+                      <prop readOnly="True" type="string" name="osType">
+                        <enum>
+                          <item value="&quot;Linux&quot;"/>
+                          <item value="&quot;Other&quot;"/>
+                          <item value="&quot;Windows&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="string" name="osVersion"/>
+                      <prop type="string" name="runOnceCommands"/>
+                      <prop type="integer32" name="timezone"/>
+                      <prop type="string" name="workgroup"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="powerState"/>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Created&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Provisioning&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="storageProfile">
+                      <prop type="array<object>" name="disks" identifiers="diskId name">
+                        <item type="object">
+                          <prop type="integer32" name="bus"/>
+                          <prop type="string" name="busType"/>
+                          <prop type="string" name="createDiffDisk">
+                            <enum>
+                              <item value="&quot;false&quot;"/>
+                              <item value="&quot;true&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="diskId"/>
+                          <prop type="integer32" name="diskSizeGB"/>
+                          <prop readOnly="True" type="string" name="displayName"/>
+                          <prop type="integer32" name="lun"/>
+                          <prop readOnly="True" type="integer32" name="maxDiskSizeGB"/>
+                          <prop type="string" name="name"/>
+                          <prop type="object" name="storageQoSPolicy">
+                            <prop type="string" name="id"/>
+                            <prop type="string" name="name"/>
+                          </prop>
+                          <prop type="string" name="templateDiskId"/>
+                          <prop readOnly="True" type="string" name="vhdFormatType"/>
+                          <prop type="string" name="vhdType"/>
+                          <prop readOnly="True" type="string" name="volumeType"/>
+                        </item>
+                      </prop>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation>
+        <instanceUpdate ref="$Instance">
+          <json>
+            <schema type="object" name="resource" required="True" clientFlatten="True">
+              <prop type="object" name="properties" clientFlatten="True">
+                <prop type="array<object>" name="availabilitySets" arg="$resource.properties.availabilitySets">
+                  <item type="object">
+                    <prop type="ResourceId" name="id" arg="$resource.properties.availabilitySets[].id"/>
+                    <prop type="string" name="name" arg="$resource.properties.availabilitySets[].name"/>
+                  </item>
+                </prop>
+                <prop type="object" name="hardwareProfile" arg="$resource.properties.hardwareProfile">
+                  <prop type="integer32" name="cpuCount" arg="$resource.properties.hardwareProfile.cpuCount"/>
+                  <prop type="string" name="dynamicMemoryEnabled" arg="$resource.properties.hardwareProfile.dynamicMemoryEnabled">
+                    <enum>
+                      <item value="&quot;false&quot;"/>
+                      <item value="&quot;true&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="integer32" name="dynamicMemoryMaxMB" arg="$resource.properties.hardwareProfile.dynamicMemoryMaxMB"/>
+                  <prop type="integer32" name="dynamicMemoryMinMB" arg="$resource.properties.hardwareProfile.dynamicMemoryMinMB"/>
+                  <prop type="string" name="limitCpuForMigration" arg="$resource.properties.hardwareProfile.limitCpuForMigration">
+                    <enum>
+                      <item value="&quot;false&quot;"/>
+                      <item value="&quot;true&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="integer32" name="memoryMB" arg="$resource.properties.hardwareProfile.memoryMB"/>
+                </prop>
+                <prop type="object" name="infrastructureProfile" arg="$resource.properties.infrastructureProfile">
+                  <prop type="string" name="checkpointType" arg="$resource.properties.infrastructureProfile.checkpointType"/>
+                </prop>
+                <prop type="object" name="networkProfile" arg="$resource.properties.networkProfile">
+                  <prop type="array<object>" name="networkInterfaces" arg="$resource.properties.networkProfile.networkInterfaces" identifiers="nicId name">
+                    <item type="object">
+                      <prop type="string" name="ipv4AddressType" arg="$resource.properties.networkProfile.networkInterfaces[].ipv4AddressType">
+                        <enum>
+                          <item value="&quot;Dynamic&quot;"/>
+                          <item value="&quot;Static&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="ipv6AddressType" arg="$resource.properties.networkProfile.networkInterfaces[].ipv6AddressType">
+                        <enum>
+                          <item value="&quot;Dynamic&quot;"/>
+                          <item value="&quot;Static&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="macAddress" arg="$resource.properties.networkProfile.networkInterfaces[].macAddress"/>
+                      <prop type="string" name="macAddressType" arg="$resource.properties.networkProfile.networkInterfaces[].macAddressType">
+                        <enum>
+                          <item value="&quot;Dynamic&quot;"/>
+                          <item value="&quot;Static&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="name" arg="$resource.properties.networkProfile.networkInterfaces[].name"/>
+                      <prop type="string" name="nicId" arg="$resource.properties.networkProfile.networkInterfaces[].nicId"/>
+                      <prop type="ResourceId" name="virtualNetworkId" arg="$resource.properties.networkProfile.networkInterfaces[].virtualNetworkId"/>
+                    </item>
+                  </prop>
+                </prop>
+                <prop type="object" name="storageProfile" arg="$resource.properties.storageProfile">
+                  <prop type="array<object>" name="disks" arg="$resource.properties.storageProfile.disks" identifiers="diskId name">
+                    <item type="object">
+                      <prop type="integer32" name="bus" arg="$resource.properties.storageProfile.disks[].bus"/>
+                      <prop type="string" name="busType" arg="$resource.properties.storageProfile.disks[].busType"/>
+                      <prop type="string" name="diskId" arg="$resource.properties.storageProfile.disks[].diskId"/>
+                      <prop type="integer32" name="diskSizeGB" arg="$resource.properties.storageProfile.disks[].diskSizeGB"/>
+                      <prop type="integer32" name="lun" arg="$resource.properties.storageProfile.disks[].lun"/>
+                      <prop type="string" name="name" arg="$resource.properties.storageProfile.disks[].name"/>
+                      <prop type="object" name="storageQoSPolicy" arg="$resource.properties.storageProfile.disks[].storageQoSPolicy">
+                        <prop type="string" name="id" arg="$resource.properties.storageProfile.disks[].storageQoSPolicy.id"/>
+                        <prop type="string" name="name" arg="$resource.properties.storageProfile.disks[].storageQoSPolicy.name"/>
+                      </prop>
+                      <prop type="string" name="vhdType" arg="$resource.properties.storageProfile.disks[].vhdType"/>
+                    </item>
+                  </prop>
+                </prop>
+              </prop>
+            </schema>
+          </json>
+        </instanceUpdate>
+      </operation>
+      <operation operationId="VirtualMachineInstances_CreateOrUpdate">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/{resourceUri}/providers/Microsoft.ScVmm/virtualMachineInstances/default">
+          <request method="put">
+            <path>
+              <param type="string" name="resourceUri" arg="$Path.resourceUri" required="True" skipUrlEncoding="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json ref="$Instance"/>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="@VirtualMachineInstance_read"/>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

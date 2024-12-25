@@ -36,12 +36,12 @@
                   </prop>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties" clientFlatten="True">
-                    <prop readOnly="True" type="string" name="displayName" required="True"/>
-                    <prop readOnly="True" type="string" name="geography" required="True"/>
-                    <prop readOnly="True" type="string" name="geographyGroup" required="True"/>
-                    <prop readOnly="True" type="string" name="homeLocation" required="True"/>
-                    <prop readOnly="True" type="string" name="latitude" required="True"/>
-                    <prop readOnly="True" type="string" name="longitude" required="True"/>
+                    <prop readOnly="True" type="string" name="displayName"/>
+                    <prop readOnly="True" type="string" name="geography"/>
+                    <prop readOnly="True" type="string" name="geographyGroup"/>
+                    <prop readOnly="True" type="string" name="homeLocation"/>
+                    <prop readOnly="True" type="string" name="latitude"/>
+                    <prop readOnly="True" type="string" name="longitude"/>
                     <prop readOnly="True" type="string" name="provisioningState">
                       <enum>
                         <item value="&quot;Accepted&quot;"/>
@@ -53,10 +53,10 @@
                         <item value="&quot;Updating&quot;"/>
                       </enum>
                     </prop>
-                    <prop readOnly="True" type="string" name="regionCategory" required="True"/>
-                    <prop readOnly="True" type="string" name="regionType" required="True"/>
-                    <prop readOnly="True" type="string" name="regionalDisplayName" required="True"/>
-                    <prop type="string" name="registrationState">
+                    <prop readOnly="True" type="string" name="regionCategory"/>
+                    <prop readOnly="True" type="string" name="regionType"/>
+                    <prop readOnly="True" type="string" name="regionalDisplayName"/>
+                    <prop readOnly="True" type="string" name="registrationState">
                       <enum>
                         <item value="&quot;NotRegistered&quot;"/>
                         <item value="&quot;PendingRegister&quot;"/>

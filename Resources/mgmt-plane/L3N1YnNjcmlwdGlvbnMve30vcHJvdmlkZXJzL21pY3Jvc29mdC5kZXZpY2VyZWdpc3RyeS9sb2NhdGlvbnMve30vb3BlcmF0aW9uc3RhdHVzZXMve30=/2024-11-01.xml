@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.deviceregistry/locations/{}/operationstatuses/{}" version="2024-11-01" swagger="mgmt-plane/deviceregistry/ResourceProviders/Microsoft.DeviceRegistry/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkRldmljZVJlZ2lzdHJ5L2xvY2F0aW9ucy97bG9jYXRpb259L29wZXJhdGlvblN0YXR1c2VzL3tvcGVyYXRpb25JZH0=/V/MjAyNC0xMS0wMQ=="/>
+  <commandGroup name="device-registry operation-status">
+    <command name="show" version="2024-11-01">
+      <resource id="/subscriptions/{}/providers/microsoft.deviceregistry/locations/{}/operationstatuses/{}" version="2024-11-01" swagger="mgmt-plane/deviceregistry/ResourceProviders/Microsoft.DeviceRegistry/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkRldmljZVJlZ2lzdHJ5L2xvY2F0aW9ucy97bG9jYXRpb259L29wZXJhdGlvblN0YXR1c2VzL3tvcGVyYXRpb25JZH0=/V/MjAyNC0xMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceLocation" var="$Path.location" options="location l" required="True" idPart="name"/>
+        <arg type="string" var="$Path.operationId" options="operation-id name n" required="True" idPart="child_name_1">
+          <help short="The ID of an ongoing async operation."/>
+          <format minLength="1"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="OperationStatus_Get">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.DeviceRegistry/locations/{location}/operationStatuses/{operationId}">
+          <request method="get">
+            <path>
+              <param type="string" name="location" arg="$Path.location" required="True">
+                <format minLength="1"/>
+              </param>
+              <param type="string" name="operationId" arg="$Path.operationId" required="True">
+                <format minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object" cls="OperationStatusResult_read">
+                  <prop type="dateTime" name="endTime"/>
+                  <prop type="object" name="error" cls="ErrorDetail_read">
+                    <prop readOnly="True" type="array<object>" name="additionalInfo">
+                      <item type="object">
+                        <prop readOnly="True" type="object" name="info">
+                          <additionalProp readOnly="True" anyType="True"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="type"/>
+                      </item>
+                    </prop>
+                    <prop readOnly="True" type="string" name="code"/>
+                    <prop readOnly="True" type="array<@ErrorDetail_read>" name="details" identifiers="message target">
+                      <item type="@ErrorDetail_read"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="message"/>
+                    <prop readOnly="True" type="string" name="target"/>
+                  </prop>
+                  <prop type="ResourceId" name="id"/>
+                  <prop type="string" name="name"/>
+                  <prop type="array<@OperationStatusResult_read>" name="operations">
+                    <item type="@OperationStatusResult_read"/>
+                  </prop>
+                  <prop type="float" name="percentComplete">
+                    <format maximum="100.0" minimum="0.0"/>
+                  </prop>
+                  <prop readOnly="True" type="ResourceId" name="resourceId"/>
+                  <prop type="dateTime" name="startTime"/>
+                  <prop type="string" name="status" required="True"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

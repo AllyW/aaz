@@ -10,9 +10,7 @@
           <format pattern="^[^_\W][\w\-._]{0,79}(?<![-.])$"/>
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription s" required="True" group="" idPart="subscription">
-          <help short=""/>
-        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <operation operationId="Fleets_ListVirtualMachineScaleSets">
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureFleet/fleets/{name}/virtualMachineScaleSets">
@@ -56,7 +54,7 @@
                         <prop type="string" name="message"/>
                         <prop type="string" name="target"/>
                       </prop>
-                      <prop readOnly="True" type="string" name="id"/>
+                      <prop readOnly="True" type="ResourceId" name="id"/>
                       <prop readOnly="True" type="string" name="name"/>
                       <prop readOnly="True" type="string" name="operationStatus">
                         <enum>

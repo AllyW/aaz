@@ -1,0 +1,247 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.scvmm/clouds" version="2024-06-01" swagger="mgmt-plane/scvmm/ResourceProviders/Microsoft.ScVmm/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LlNjVm1tL2Nsb3Vkcw==/V/MjAyNC0wNi0wMQ=="/>
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.scvmm/clouds" version="2024-06-01" swagger="mgmt-plane/scvmm/ResourceProviders/Microsoft.ScVmm/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU2NWbW0vY2xvdWRz/V/MjAyNC0wNi0wMQ=="/>
+  <commandGroup name="sc-vmm cloud">
+    <command name="list" version="2024-06-01">
+      <resource id="/subscriptions/{}/providers/microsoft.scvmm/clouds" version="2024-06-01" swagger="mgmt-plane/scvmm/ResourceProviders/Microsoft.ScVmm/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LlNjVm1tL2Nsb3Vkcw==/V/MjAyNC0wNi0wMQ=="/>
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.scvmm/clouds" version="2024-06-01" swagger="mgmt-plane/scvmm/ResourceProviders/Microsoft.ScVmm/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU2NWbW0vY2xvdWRz/V/MjAyNC0wNi0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <condition var="$Condition_Clouds_ListBySubscription">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+          <operator type="not">
+            <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          </operator>
+        </operator>
+      </condition>
+      <condition var="$Condition_Clouds_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_Clouds_ListBySubscription" operationId="Clouds_ListBySubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.ScVmm/clouds">
+          <request method="get">
+            <path>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop type="object" name="extendedLocation" required="True">
+                        <prop type="ResourceId" name="name"/>
+                        <prop type="string" name="type"/>
+                      </prop>
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.ScVmm/clouds/{}"/>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop readOnly="True" type="object" name="cloudCapacity">
+                          <prop readOnly="True" type="integer64" name="cpuCount"/>
+                          <prop readOnly="True" type="integer64" name="memoryMB"/>
+                          <prop readOnly="True" type="integer64" name="vmCount"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="cloudName"/>
+                        <prop type="string" name="inventoryItemId"/>
+                        <prop readOnly="True" type="string" name="provisioningState">
+                          <enum>
+                            <item value="&quot;Accepted&quot;"/>
+                            <item value="&quot;Canceled&quot;"/>
+                            <item value="&quot;Created&quot;"/>
+                            <item value="&quot;Deleting&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;Provisioning&quot;"/>
+                            <item value="&quot;Succeeded&quot;"/>
+                            <item value="&quot;Updating&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="array<object>" name="storageQoSPolicies">
+                          <item type="object">
+                            <prop type="integer64" name="bandwidthLimit"/>
+                            <prop type="string" name="id"/>
+                            <prop type="integer64" name="iopsMaximum"/>
+                            <prop type="integer64" name="iopsMinimum"/>
+                            <prop type="string" name="name"/>
+                            <prop type="string" name="policyId"/>
+                          </item>
+                        </prop>
+                        <prop type="string" name="uuid">
+                          <format pattern="^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"/>
+                        </prop>
+                        <prop type="ResourceId" name="vmmServerId"/>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop type="dateTime" name="createdAt"/>
+                        <prop type="string" name="createdBy"/>
+                        <prop type="string" name="createdByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="dateTime" name="lastModifiedAt"/>
+                        <prop type="string" name="lastModifiedBy"/>
+                        <prop type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation when="$Condition_Clouds_ListByResourceGroup" operationId="Clouds_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/clouds">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop type="object" name="extendedLocation" required="True">
+                        <prop type="ResourceId" name="name"/>
+                        <prop type="string" name="type"/>
+                      </prop>
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.ScVmm/clouds/{}"/>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop readOnly="True" type="object" name="cloudCapacity">
+                          <prop readOnly="True" type="integer64" name="cpuCount"/>
+                          <prop readOnly="True" type="integer64" name="memoryMB"/>
+                          <prop readOnly="True" type="integer64" name="vmCount"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="cloudName"/>
+                        <prop type="string" name="inventoryItemId"/>
+                        <prop readOnly="True" type="string" name="provisioningState">
+                          <enum>
+                            <item value="&quot;Accepted&quot;"/>
+                            <item value="&quot;Canceled&quot;"/>
+                            <item value="&quot;Created&quot;"/>
+                            <item value="&quot;Deleting&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;Provisioning&quot;"/>
+                            <item value="&quot;Succeeded&quot;"/>
+                            <item value="&quot;Updating&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="array<object>" name="storageQoSPolicies">
+                          <item type="object">
+                            <prop type="integer64" name="bandwidthLimit"/>
+                            <prop type="string" name="id"/>
+                            <prop type="integer64" name="iopsMaximum"/>
+                            <prop type="integer64" name="iopsMinimum"/>
+                            <prop type="string" name="name"/>
+                            <prop type="string" name="policyId"/>
+                          </item>
+                        </prop>
+                        <prop type="string" name="uuid">
+                          <format pattern="^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"/>
+                        </prop>
+                        <prop type="ResourceId" name="vmmServerId"/>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop type="dateTime" name="createdAt"/>
+                        <prop type="string" name="createdBy"/>
+                        <prop type="string" name="createdByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="dateTime" name="lastModifiedAt"/>
+                        <prop type="string" name="lastModifiedBy"/>
+                        <prop type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

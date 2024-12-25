@@ -1,0 +1,577 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.scvmm/vmmservers/{}" version="2024-06-01" swagger="mgmt-plane/scvmm/ResourceProviders/Microsoft.ScVmm/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU2NWbW0vdm1tU2VydmVycy97dm1tU2VydmVyTmFtZX0=/V/MjAyNC0wNi0wMQ=="/>
+  <commandGroup name="sc-vmm vmm-server">
+    <command name="show" version="2024-06-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.scvmm/vmmservers/{}" version="2024-06-01" swagger="mgmt-plane/scvmm/ResourceProviders/Microsoft.ScVmm/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU2NWbW0vdm1tU2VydmVycy97dm1tU2VydmVyTmFtZX0=/V/MjAyNC0wNi0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.vmmServerName" options="vmm-server-name name n" required="True" idPart="name">
+          <help short="Name of the VmmServer."/>
+          <format pattern="[a-zA-Z0-9-_\.]" maxLength="54" minLength="1"/>
+        </arg>
+      </argGroup>
+      <operation operationId="VmmServers_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/vmmServers/{vmmServerName}">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="vmmServerName" arg="$Path.vmmServerName" required="True">
+                <format pattern="[a-zA-Z0-9-_\.]" maxLength="54" minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="object" name="extendedLocation" required="True">
+                    <prop type="ResourceId" name="name"/>
+                    <prop type="string" name="type"/>
+                  </prop>
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.ScVmm/vmmServers/{}"/>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop readOnly="True" type="string" name="connectionStatus"/>
+                    <prop type="object" name="credentials">
+                      <prop type="string" name="username"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="errorMessage"/>
+                    <prop type="string" name="fqdn" required="True">
+                      <format minLength="1"/>
+                    </prop>
+                    <prop type="integer32" name="port">
+                      <format maximum="65535" minimum="1"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Created&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Provisioning&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="string" name="uuid"/>
+                    <prop readOnly="True" type="string" name="version"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="delete" version="2024-06-01" confirmation="Are you sure you want to perform this operation?">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.scvmm/vmmservers/{}" version="2024-06-01" swagger="mgmt-plane/scvmm/ResourceProviders/Microsoft.ScVmm/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU2NWbW0vdm1tU2VydmVycy97dm1tU2VydmVyTmFtZX0=/V/MjAyNC0wNi0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.vmmServerName" options="vmm-server-name name n" required="True" idPart="name">
+          <help short="Name of the VmmServer."/>
+          <format pattern="[a-zA-Z0-9-_\.]" maxLength="54" minLength="1"/>
+        </arg>
+        <arg type="string" var="$Query.force" options="force">
+          <help short="Forces the resource to be deleted."/>
+          <enum>
+            <item name="false" value="&quot;false&quot;"/>
+            <item name="true" value="&quot;true&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <operation operationId="VmmServers_Delete">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/vmmServers/{vmmServerName}">
+          <request method="delete">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="vmmServerName" arg="$Path.vmmServerName" required="True">
+                <format pattern="[a-zA-Z0-9-_\.]" maxLength="54" minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <param type="string" name="force" arg="$Query.force">
+                <enum>
+                  <item value="&quot;false&quot;"/>
+                  <item value="&quot;true&quot;"/>
+                </enum>
+              </param>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response statusCode="204"/>
+          <response statusCode="200 201"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+    <command name="create" version="2024-06-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.scvmm/vmmservers/{}" version="2024-06-01" swagger="mgmt-plane/scvmm/ResourceProviders/Microsoft.ScVmm/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU2NWbW0vdm1tU2VydmVycy97dm1tU2VydmVyTmFtZX0=/V/MjAyNC0wNi0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.vmmServerName" options="vmm-server-name name n" required="True" idPart="name">
+          <help short="Name of the VmmServer."/>
+          <format pattern="[a-zA-Z0-9-_\.]" maxLength="54" minLength="1"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="object" var="$resource.properties.credentials" options="credentials" group="Properties">
+          <help short="Credentials to connect to VmmServer."/>
+          <arg type="password" var="$resource.properties.credentials.password" options="password">
+            <help short="Password to use to connect to VmmServer."/>
+            <prompt msg="Password:"/>
+          </arg>
+          <arg type="string" var="$resource.properties.credentials.username" options="username">
+            <help short="Username to use to connect to VmmServer."/>
+          </arg>
+        </arg>
+        <arg type="string" var="$resource.properties.fqdn" options="fqdn" group="Properties">
+          <help short="Fqdn is the hostname/ip of the vmmServer."/>
+          <format minLength="1"/>
+        </arg>
+        <arg type="integer32" var="$resource.properties.port" options="port" group="Properties">
+          <help short="Port is the port on which the vmmServer is listening."/>
+          <format maximum="65535" minimum="1"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Resource">
+        <arg type="object" var="$resource.extendedLocation" options="extended-location" required="True" group="Resource">
+          <help short="The extended location."/>
+          <arg type="ResourceId" var="$resource.extendedLocation.name" options="name">
+            <help short="The extended location name."/>
+          </arg>
+          <arg type="string" var="$resource.extendedLocation.type" options="type">
+            <help short="The extended location type."/>
+          </arg>
+        </arg>
+        <arg type="ResourceLocation" var="$resource.location" options="location l" required="True" group="Resource">
+          <help short="The geo-location where the resource lives"/>
+        </arg>
+        <arg type="object" var="$resource.tags" options="tags" group="Resource">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <operation operationId="VmmServers_CreateOrUpdate">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/vmmServers/{vmmServerName}">
+          <request method="put">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="vmmServerName" arg="$Path.vmmServerName" required="True">
+                <format pattern="[a-zA-Z0-9-_\.]" maxLength="54" minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="resource" required="True" clientFlatten="True">
+                  <prop type="object" name="extendedLocation" arg="$resource.extendedLocation" required="True">
+                    <prop type="ResourceId" name="name" arg="$resource.extendedLocation.name"/>
+                    <prop type="string" name="type" arg="$resource.extendedLocation.type"/>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" arg="$resource.location" required="True"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="object" name="credentials" arg="$resource.properties.credentials">
+                      <prop type="password" name="password" arg="$resource.properties.credentials.password" secret="True"/>
+                      <prop type="string" name="username" arg="$resource.properties.credentials.username"/>
+                    </prop>
+                    <prop type="string" name="fqdn" arg="$resource.properties.fqdn" required="True">
+                      <format minLength="1"/>
+                    </prop>
+                    <prop type="integer32" name="port" arg="$resource.properties.port">
+                      <format maximum="65535" minimum="1"/>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags" arg="$resource.tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="object" name="extendedLocation" required="True">
+                    <prop type="ResourceId" name="name"/>
+                    <prop type="string" name="type"/>
+                  </prop>
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.ScVmm/vmmServers/{}"/>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop readOnly="True" type="string" name="connectionStatus"/>
+                    <prop type="object" name="credentials">
+                      <prop type="string" name="username"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="errorMessage"/>
+                    <prop type="string" name="fqdn" required="True">
+                      <format minLength="1"/>
+                    </prop>
+                    <prop type="integer32" name="port">
+                      <format maximum="65535" minimum="1"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Created&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Provisioning&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="string" name="uuid"/>
+                    <prop readOnly="True" type="string" name="version"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="update" version="2024-06-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.scvmm/vmmservers/{}" version="2024-06-01" swagger="mgmt-plane/scvmm/ResourceProviders/Microsoft.ScVmm/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU2NWbW0vdm1tU2VydmVycy97dm1tU2VydmVyTmFtZX0=/V/MjAyNC0wNi0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.vmmServerName" options="vmm-server-name name n" required="True" idPart="name">
+          <help short="Name of the VmmServer."/>
+          <format pattern="[a-zA-Z0-9-_\.]" maxLength="54" minLength="1"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg nullable="True" type="object" var="$resource.properties.credentials" options="credentials" group="Properties">
+          <help short="Credentials to connect to VmmServer."/>
+          <arg nullable="True" type="password" var="$resource.properties.credentials.password" options="password">
+            <help short="Password to use to connect to VmmServer."/>
+            <prompt msg="Password:"/>
+          </arg>
+          <arg nullable="True" type="string" var="$resource.properties.credentials.username" options="username">
+            <help short="Username to use to connect to VmmServer."/>
+          </arg>
+        </arg>
+        <arg type="string" var="$resource.properties.fqdn" options="fqdn" group="Properties">
+          <help short="Fqdn is the hostname/ip of the vmmServer."/>
+          <format minLength="1"/>
+        </arg>
+        <arg nullable="True" type="integer32" var="$resource.properties.port" options="port" group="Properties">
+          <help short="Port is the port on which the vmmServer is listening."/>
+          <format maximum="65535" minimum="1"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Resource">
+        <arg type="object" var="$resource.extendedLocation" options="extended-location" group="Resource">
+          <help short="The extended location."/>
+          <arg nullable="True" type="ResourceId" var="$resource.extendedLocation.name" options="name">
+            <help short="The extended location name."/>
+          </arg>
+          <arg nullable="True" type="string" var="$resource.extendedLocation.type" options="type">
+            <help short="The extended location type."/>
+          </arg>
+        </arg>
+        <arg nullable="True" type="object" var="$resource.tags" options="tags" group="Resource">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item nullable="True" type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <operation operationId="VmmServers_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/vmmServers/{vmmServerName}">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="vmmServerName" arg="$Path.vmmServerName" required="True">
+                <format pattern="[a-zA-Z0-9-_\.]" maxLength="54" minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object" cls="VmmServer_read">
+                  <prop type="object" name="extendedLocation" required="True">
+                    <prop type="ResourceId" name="name"/>
+                    <prop type="string" name="type"/>
+                  </prop>
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.ScVmm/vmmServers/{}"/>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop readOnly="True" type="string" name="connectionStatus"/>
+                    <prop type="object" name="credentials">
+                      <prop type="string" name="username"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="errorMessage"/>
+                    <prop type="string" name="fqdn" required="True">
+                      <format minLength="1"/>
+                    </prop>
+                    <prop type="integer32" name="port">
+                      <format maximum="65535" minimum="1"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Created&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Provisioning&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="string" name="uuid"/>
+                    <prop readOnly="True" type="string" name="version"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation>
+        <instanceUpdate ref="$Instance">
+          <json>
+            <schema type="object" name="resource" required="True" clientFlatten="True">
+              <prop type="object" name="extendedLocation" arg="$resource.extendedLocation" required="True">
+                <prop type="ResourceId" name="name" arg="$resource.extendedLocation.name"/>
+                <prop type="string" name="type" arg="$resource.extendedLocation.type"/>
+              </prop>
+              <prop type="object" name="properties" clientFlatten="True">
+                <prop type="object" name="credentials" arg="$resource.properties.credentials">
+                  <prop type="password" name="password" arg="$resource.properties.credentials.password" secret="True"/>
+                  <prop type="string" name="username" arg="$resource.properties.credentials.username"/>
+                </prop>
+                <prop type="string" name="fqdn" arg="$resource.properties.fqdn" required="True">
+                  <format minLength="1"/>
+                </prop>
+                <prop type="integer32" name="port" arg="$resource.properties.port">
+                  <format maximum="65535" minimum="1"/>
+                </prop>
+              </prop>
+              <prop type="object" name="tags" arg="$resource.tags">
+                <additionalProp>
+                  <item type="string"/>
+                </additionalProp>
+              </prop>
+            </schema>
+          </json>
+        </instanceUpdate>
+      </operation>
+      <operation operationId="VmmServers_CreateOrUpdate">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/vmmServers/{vmmServerName}">
+          <request method="put">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="vmmServerName" arg="$Path.vmmServerName" required="True">
+                <format pattern="[a-zA-Z0-9-_\.]" maxLength="54" minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json ref="$Instance"/>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="@VmmServer_read"/>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

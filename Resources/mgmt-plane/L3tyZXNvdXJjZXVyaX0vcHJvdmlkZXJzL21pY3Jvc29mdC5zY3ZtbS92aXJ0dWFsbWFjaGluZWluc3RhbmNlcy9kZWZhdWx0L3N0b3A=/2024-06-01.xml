@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/{resourceuri}/providers/microsoft.scvmm/virtualmachineinstances/default/stop" version="2024-06-01" swagger="mgmt-plane/scvmm/ResourceProviders/Microsoft.ScVmm/Paths/L3tyZXNvdXJjZVVyaX0vcHJvdmlkZXJzL01pY3Jvc29mdC5TY1ZtbS92aXJ0dWFsTWFjaGluZUluc3RhbmNlcy9kZWZhdWx0L3N0b3A=/V/MjAyNC0wNi0wMQ=="/>
+  <commandGroup name="sc-vmm virtual-machine-instance default">
+    <command name="stop" version="2024-06-01">
+      <resource id="/{resourceuri}/providers/microsoft.scvmm/virtualmachineinstances/default/stop" version="2024-06-01" swagger="mgmt-plane/scvmm/ResourceProviders/Microsoft.ScVmm/Paths/L3tyZXNvdXJjZVVyaX0vcHJvdmlkZXJzL01pY3Jvc29mdC5TY1ZtbS92aXJ0dWFsTWFjaGluZUluc3RhbmNlcy9kZWZhdWx0L3N0b3A=/V/MjAyNC0wNi0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.resourceUri" options="resource-uri" required="True">
+          <help short="The fully qualified Azure Resource manager identifier of the resource."/>
+        </arg>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="string" var="$body.skipShutdown" options="skip-shutdown" group="Body">
+          <help short="Gets or sets a value indicating whether to request non-graceful VM shutdown. True value for this flag indicates non-graceful shutdown whereas false indicates otherwise. Defaults to false."/>
+          <default value="&quot;false&quot;"/>
+          <enum>
+            <item name="false" value="&quot;false&quot;"/>
+            <item name="true" value="&quot;true&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <operation operationId="VirtualMachineInstances_Stop">
+        <longRunning finalStateVia="location"/>
+        <http path="/{resourceUri}/providers/Microsoft.ScVmm/virtualMachineInstances/default/stop">
+          <request method="post">
+            <path>
+              <param type="string" name="resourceUri" arg="$Path.resourceUri" required="True" skipUrlEncoding="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" clientFlatten="True">
+                  <prop type="string" name="skipShutdown" arg="$body.skipShutdown">
+                    <default value="&quot;false&quot;"/>
+                    <enum>
+                      <item value="&quot;false&quot;"/>
+                      <item value="&quot;true&quot;"/>
+                    </enum>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+  </commandGroup>
+</CodeGen>
