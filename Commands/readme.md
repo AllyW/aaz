@@ -32,6 +32,9 @@
 - [arcgateway](/Commands/arcgateway/readme.md)
 : Manage gateway connection on Arc machine
 
+- [arize-ai](/Commands/arize-ai/readme.md)
+: arize-ai
+
 - [astronomer](/Commands/astronomer/readme.md)
 : Manage Azure Astronomer resources.
 
@@ -43,6 +46,9 @@
 
 - [automation](/Commands/automation/readme.md)
 : Manage Automation Account.
+
+- [azure-playwright-service](/Commands/azure-playwright-service/readme.md)
+: azure-playwright-service
 
 - [baremetalinstance](/Commands/baremetalinstance/readme.md)
 : Handle Operations for Compute Azure Bare Instances.
@@ -86,6 +92,9 @@
 - [compute-recommender](/Commands/compute-recommender/readme.md)
 : Manage sku/zone/region recommender info for compute resources
 
+- [compute-schedule](/Commands/compute-schedule/readme.md)
+: compute-schedule
+
 - [confidentialledger](/Commands/confidentialledger/readme.md)
 : Deploy and manage Azure confidential ledgers.
 
@@ -119,11 +128,20 @@
 - [dataprotection](/Commands/dataprotection/readme.md)
 : Manage dataprotection.
 
+- [deidservice](/Commands/deidservice/readme.md)
+: deidservice
+
 - [desktopvirtualization](/Commands/desktopvirtualization/readme.md)
 : Manage desktop virtualization.
 
+- [dev-ops-infrastructure](/Commands/dev-ops-infrastructure/readme.md)
+: dev-ops-infrastructure
+
 - [devcenter](/Commands/devcenter/readme.md)
 : Manage resources with devcenter.
+
+- [device-registry](/Commands/device-registry/readme.md)
+: device-registry
 
 - [disk](/Commands/disk/readme.md)
 : Manage Azure Managed Disks.
@@ -139,6 +157,9 @@
 
 - [dns-resolver](/Commands/dns-resolver/readme.md)
 : Manage Dns Resolver
+
+- [document-db](/Commands/document-db/readme.md)
+: document-db
 
 - [durabletask](/Commands/durabletask/readme.md)
 : Commands to manage Durabletasks.
@@ -173,6 +194,9 @@
 - [graph-services](/Commands/graph-services/readme.md)
 : Make operations on Microsoft.GraphServices resource types
 
+- [health-data-ai-services](/Commands/health-data-ai-services/readme.md)
+: health-data-ai-services
+
 - [healthcareapis](/Commands/healthcareapis/readme.md)
 : Azure Healthcare APIs is a secure cloud platform for managing health data, supporting analytics, machine learning, and scalable solutions.
 
@@ -188,11 +212,20 @@
 - [lab](/Commands/lab/readme.md)
 : Manage azure devtest labs.
 
+- [lambda-test](/Commands/lambda-test/readme.md)
+: lambda-test
+
 - [large-instance](/Commands/large-instance/readme.md)
 : Handle Operations for Compute Azure Large Instances.
 
 - [large-storage-instance](/Commands/large-storage-instance/readme.md)
 : Handle Operations for Storage Azure Large Instances.
+
+- [liftr-pilot](/Commands/liftr-pilot/readme.md)
+: liftr-pilot
+
+- [liftrbasic](/Commands/liftrbasic/readme.md)
+: liftrbasic
 
 - [load](/Commands/load/readme.md)
 : Manage Azure Load Testing resources.
@@ -220,6 +253,9 @@
 
 - [mobile-network](/Commands/mobile-network/readme.md)
 : Manage mobile network
+
+- [mongo-db](/Commands/mongo-db/readme.md)
+: mongo-db
 
 - [monitor](/Commands/monitor/readme.md)
 : Manage the Azure Monitor Service.
@@ -262,6 +298,9 @@
 
 - [palo-alto](/Commands/palo-alto/readme.md)
 : Manage palo-alto networks resource
+
+- [pinecone](/Commands/pinecone/readme.md)
+: pinecone
 
 - [powerbi](/Commands/powerbi/readme.md)
 : Manage PowerBI resources.
@@ -361,6 +400,9 @@
 
 - [voice-service](/Commands/voice-service/readme.md)
 : Manage voice services
+
+- [weights-and-biases](/Commands/weights-and-biases/readme.md)
+: weights-and-biases
 
 - [workloads](/Commands/workloads/readme.md)
 : Manage workloads

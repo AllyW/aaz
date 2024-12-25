@@ -2,6 +2,11 @@
 
 Handle Operations for Storage Azure Large Instances.
 
+## Subgroups
+
+- [identity](/Commands/large-storage-instance/identity/readme.md)
+: large-storage-instance identity
+
 ## Commands
 
 - [create](/Commands/large-storage-instance/_create.md)

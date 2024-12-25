@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <CodeGen plane="mgmt-plane">
   <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.devopsinfrastructure/pools/{}" version="2024-10-19" swagger="mgmt-plane/devopsinfrastructure/ResourceProviders/Microsoft.DevOpsInfrastructure/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGV2T3BzSW5mcmFzdHJ1Y3R1cmUvcG9vbHMve3Bvb2xOYW1lfQ==/V/MjAyNC0xMC0xOQ=="/>
-  <commandGroup name="mdp pool">
-    <command name="show" version="2024-10-19" confirmation="">
+  <commandGroup name="dev-ops-infrastructure pool">
+    <command name="show" version="2024-10-19">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.devopsinfrastructure/pools/{}" version="2024-10-19" swagger="mgmt-plane/devopsinfrastructure/ResourceProviders/Microsoft.DevOpsInfrastructure/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGV2T3BzSW5mcmFzdHJ1Y3R1cmUvcG9vbHMve3Bvb2xOYW1lfQ==/V/MjAyNC0xMC0xOQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.poolName" options="pool-name name n" required="True" idPart="name">
@@ -20,7 +20,7 @@
                 <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-.]*$"/>
               </param>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
@@ -35,9 +35,7 @@
             <body>
               <json var="$Instance">
                 <schema type="object">
-                  <prop readOnly="True" type="ResourceId" name="id">
-                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.DevOpsInfrastructure/pools/{}"/>
-                  </prop>
+                  <prop readOnly="True" type="ResourceId" name="id"/>
                   <prop type="IdentityObject" name="identity">
                     <prop readOnly="True" type="uuid" name="principalId"/>
                     <prop readOnly="True" type="uuid" name="tenantId"/>
@@ -45,7 +43,6 @@
                       <enum>
                         <item value="&quot;None&quot;"/>
                         <item value="&quot;SystemAssigned&quot;"/>
-                        <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
                         <item value="&quot;UserAssigned&quot;"/>
                       </enum>
                     </prop>
@@ -58,9 +55,9 @@
                       </additionalProp>
                     </prop>
                   </prop>
-                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop type="string" name="location" required="True"/>
                   <prop readOnly="True" type="string" name="name"/>
-                  <prop type="object" name="properties" clientFlatten="True">
+                  <prop type="object" name="properties">
                     <prop type="object" name="agentProfile" required="True">
                       <prop type="string" name="kind" required="True">
                         <enum>
@@ -68,11 +65,12 @@
                           <item value="&quot;Stateless&quot;"/>
                         </enum>
                       </prop>
-                      <prop type="object" name="resourcePredictions"/>
                       <prop type="object" name="resourcePredictionsProfile">
                         <prop type="string" name="kind" required="True">
                           <enum>
                             <item value="&quot;Automatic&quot;"/>
+                            <item value="&quot;Automatic&quot;"/>
+                            <item value="&quot;Manual&quot;"/>
                             <item value="&quot;Manual&quot;"/>
                           </enum>
                         </prop>
@@ -263,7 +261,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>
@@ -290,7 +288,7 @@
                 <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-.]*$"/>
               </param>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
@@ -308,18 +306,17 @@
             </header>
           </response>
           <response statusCode="204"/>
-          <response statusCode="200 201"/>
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>
         </http>
       </operation>
     </command>
-    <command name="create" version="2024-10-19" confirmation="">
+    <command name="create" version="2024-10-19">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.devopsinfrastructure/pools/{}" version="2024-10-19" swagger="mgmt-plane/devopsinfrastructure/ResourceProviders/Microsoft.DevOpsInfrastructure/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGV2T3BzSW5mcmFzdHJ1Y3R1cmUvcG9vbHMve3Bvb2xOYW1lfQ==/V/MjAyNC0xMC0xOQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.poolName" options="pool-name name n" required="True" idPart="name">
@@ -328,6 +325,33 @@
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Identity">
+        <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
+          <blank value="&quot;True&quot;"/>
+          <help short="Set the system managed identity."/>
+        </arg>
+        <arg type="string" var="$resource.identity.type" options="type" hide="True" group="Identity">
+          <help short="The type of managed identity assigned to this resource."/>
+          <enum>
+            <item name="None" value="&quot;None&quot;"/>
+            <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
+            <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
+          </enum>
+        </arg>
+        <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
+          <blank value="[]"/>
+          <help short="Set the user managed identities."/>
+          <item type="string"/>
+        </arg>
+        <arg type="object" var="$resource.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
+          <help short="The identities assigned to this resource by the user."/>
+          <additionalProp>
+            <item nullable="True" type="object">
+              <blank value="{}"/>
+            </item>
+          </additionalProp>
+        </arg>
       </argGroup>
       <argGroup name="Properties">
         <arg type="object" var="$resource.properties.agentProfile" options="agent-profile" group="Properties">
@@ -342,10 +366,6 @@
           </arg>
           <arg type="object" var="$resource.properties.agentProfile.Stateless" options="stateless">
             <blank value="{}"/>
-          </arg>
-          <arg type="object" var="$resource.properties.agentProfile.resourcePredictions" options="resource-predictions">
-            <blank value="{}"/>
-            <help short="Defines pool buffer."/>
           </arg>
           <arg type="object" var="$resource.properties.agentProfile.resourcePredictionsProfile" options="resource-predictions-profile">
             <help short="Defines how the pool buffer/stand-by agents is provided."/>
@@ -366,7 +386,7 @@
             </arg>
           </arg>
         </arg>
-        <arg type="string" var="$resource.properties.devCenterProjectResourceId" options="devcenter-project-resource-id devcenter-project-id" group="Properties">
+        <arg type="string" var="$resource.properties.devCenterProjectResourceId" options="dev-center-project-resource-id" group="Properties">
           <help short="The resource id of the DevCenter Project the pool belongs to."/>
         </arg>
         <arg type="object" var="$resource.properties.fabricProfile" options="fabric-profile" group="Properties">
@@ -510,8 +530,7 @@
               </arg>
             </arg>
           </arg>
-          <arg type="object" var="$resource.properties.organizationProfile.GitHub" options="git-hub" hide="True" group="">
-            <help short="This supports github organization profile"/>
+          <arg type="object" var="$resource.properties.organizationProfile.GitHub" options="git-hub">
             <arg type="array<object>" var="$resource.properties.organizationProfile.GitHub.organizations" options="organizations" required="True">
               <help short="The list of GitHub organizations/repositories the pool should be present in."/>
               <item type="object">
@@ -526,7 +545,7 @@
             </arg>
           </arg>
         </arg>
-        <arg type="string" var="$resource.properties.provisioningState" options="provisioning-state" hide="True" group="Properties">
+        <arg type="string" var="$resource.properties.provisioningState" options="provisioning-state" group="Properties">
           <help short="The status of the current operation."/>
           <enum>
             <item name="Accepted" value="&quot;Accepted&quot;"/>
@@ -540,27 +559,7 @@
         </arg>
       </argGroup>
       <argGroup name="Resource">
-        <arg type="object" var="$resource.identity" options="identity" group="Resource">
-          <help short="The managed service identities assigned to this resource."/>
-          <arg type="string" var="$resource.identity.type" options="type" required="True">
-            <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
-            <enum>
-              <item name="None" value="&quot;None&quot;"/>
-              <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
-              <item name="SystemAssigned,UserAssigned" value="&quot;SystemAssigned,UserAssigned&quot;"/>
-              <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
-            </enum>
-          </arg>
-          <arg type="object" var="$resource.identity.userAssignedIdentities" options="user-assigned-identities">
-            <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
-            <additionalProp>
-              <item nullable="True" type="object">
-                <blank value="{}"/>
-              </item>
-            </additionalProp>
-          </arg>
-        </arg>
-        <arg type="ResourceLocation" var="$resource.location" options="location l" required="True" group="Resource">
+        <arg type="string" var="$resource.location" options="location" required="True" group="Resource">
           <help short="The geo-location where the resource lives"/>
         </arg>
         <arg type="object" var="$resource.tags" options="tags" group="Resource">
@@ -579,7 +578,7 @@
                 <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-.]*$"/>
               </param>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
@@ -592,12 +591,11 @@
             <body>
               <json>
                 <schema type="object" name="resource" required="True" clientFlatten="True">
-                  <prop type="IdentityObject" name="identity" arg="$resource.identity">
+                  <prop type="IdentityObject" name="identity">
                     <prop type="string" name="type" arg="$resource.identity.type" required="True">
                       <enum>
                         <item value="&quot;None&quot;"/>
                         <item value="&quot;SystemAssigned&quot;"/>
-                        <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
                         <item value="&quot;UserAssigned&quot;"/>
                       </enum>
                     </prop>
@@ -606,9 +604,13 @@
                         <item nullable="True" type="object"/>
                       </additionalProp>
                     </prop>
+                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+                      <item action="create" type="string"/>
+                    </userAssigned>
+                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
                   </prop>
-                  <prop type="ResourceLocation" name="location" arg="$resource.location" required="True"/>
-                  <prop type="object" name="properties" clientFlatten="True">
+                  <prop type="string" name="location" arg="$resource.location" required="True"/>
+                  <prop type="object" name="properties">
                     <prop type="object" name="agentProfile" arg="$resource.properties.agentProfile" required="True">
                       <prop type="string" name="kind" required="True">
                         <enum>
@@ -616,11 +618,12 @@
                           <item arg="$resource.properties.agentProfile.Stateless" value="&quot;Stateless&quot;"/>
                         </enum>
                       </prop>
-                      <prop type="object" name="resourcePredictions" arg="$resource.properties.agentProfile.resourcePredictions"/>
                       <prop type="object" name="resourcePredictionsProfile" arg="$resource.properties.agentProfile.resourcePredictionsProfile">
                         <prop type="string" name="kind" required="True">
                           <enum>
                             <item arg="$resource.properties.agentProfile.resourcePredictionsProfile.Automatic" value="&quot;Automatic&quot;"/>
+                            <item arg="$resource.properties.agentProfile.resourcePredictionsProfile.Automatic" value="&quot;Automatic&quot;"/>
+                            <item arg="$resource.properties.agentProfile.resourcePredictionsProfile.Manual" value="&quot;Manual&quot;"/>
                             <item arg="$resource.properties.agentProfile.resourcePredictionsProfile.Manual" value="&quot;Manual&quot;"/>
                           </enum>
                         </prop>
@@ -789,9 +792,7 @@
             <body>
               <json var="$Instance">
                 <schema type="object">
-                  <prop readOnly="True" type="ResourceId" name="id">
-                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.DevOpsInfrastructure/pools/{}"/>
-                  </prop>
+                  <prop readOnly="True" type="ResourceId" name="id"/>
                   <prop type="IdentityObject" name="identity">
                     <prop readOnly="True" type="uuid" name="principalId"/>
                     <prop readOnly="True" type="uuid" name="tenantId"/>
@@ -799,7 +800,6 @@
                       <enum>
                         <item value="&quot;None&quot;"/>
                         <item value="&quot;SystemAssigned&quot;"/>
-                        <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
                         <item value="&quot;UserAssigned&quot;"/>
                       </enum>
                     </prop>
@@ -812,9 +812,9 @@
                       </additionalProp>
                     </prop>
                   </prop>
-                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop type="string" name="location" required="True"/>
                   <prop readOnly="True" type="string" name="name"/>
-                  <prop type="object" name="properties" clientFlatten="True">
+                  <prop type="object" name="properties">
                     <prop type="object" name="agentProfile" required="True">
                       <prop type="string" name="kind" required="True">
                         <enum>
@@ -822,11 +822,12 @@
                           <item value="&quot;Stateless&quot;"/>
                         </enum>
                       </prop>
-                      <prop type="object" name="resourcePredictions"/>
                       <prop type="object" name="resourcePredictionsProfile">
                         <prop type="string" name="kind" required="True">
                           <enum>
                             <item value="&quot;Automatic&quot;"/>
+                            <item value="&quot;Automatic&quot;"/>
+                            <item value="&quot;Manual&quot;"/>
                             <item value="&quot;Manual&quot;"/>
                           </enum>
                         </prop>
@@ -1017,7 +1018,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>
@@ -1025,7 +1026,7 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
-    <command name="update" version="2024-10-19" confirmation="">
+    <command name="update" version="2024-10-19">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.devopsinfrastructure/pools/{}" version="2024-10-19" swagger="mgmt-plane/devopsinfrastructure/ResourceProviders/Microsoft.DevOpsInfrastructure/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGV2T3BzSW5mcmFzdHJ1Y3R1cmUvcG9vbHMve3Bvb2xOYW1lfQ==/V/MjAyNC0xMC0xOQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.poolName" options="pool-name name n" required="True" idPart="name">
@@ -1034,6 +1035,24 @@
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Identity">
+        <arg type="string" var="$resource.identity.type" options="type" hide="True" group="Identity">
+          <help short="The type of managed identity assigned to this resource."/>
+          <enum>
+            <item name="None" value="&quot;None&quot;"/>
+            <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
+            <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
+          </enum>
+        </arg>
+        <arg nullable="True" type="object" var="$resource.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
+          <help short="The identities assigned to this resource by the user."/>
+          <additionalProp>
+            <item nullable="True" type="object">
+              <blank value="{}"/>
+            </item>
+          </additionalProp>
+        </arg>
       </argGroup>
       <argGroup name="Properties">
         <arg type="object" var="$resource.properties.agentProfile" options="agent-profile" group="Properties">
@@ -1048,10 +1067,6 @@
           </arg>
           <arg type="object" var="$resource.properties.agentProfile.Stateless" options="stateless">
             <blank value="{}"/>
-          </arg>
-          <arg nullable="True" type="object" var="$resource.properties.agentProfile.resourcePredictions" options="resource-predictions">
-            <blank value="{}"/>
-            <help short="Defines pool buffer/stand-by agents."/>
           </arg>
           <arg nullable="True" type="object" var="$resource.properties.agentProfile.resourcePredictionsProfile" options="resource-predictions-profile">
             <help short="Defines how the pool buffer/stand-by agents is provided."/>
@@ -1072,7 +1087,7 @@
             </arg>
           </arg>
         </arg>
-        <arg type="string" var="$resource.properties.devCenterProjectResourceId" options="devcenter-project-resource-id devcenter-project-id" group="Properties">
+        <arg type="string" var="$resource.properties.devCenterProjectResourceId" options="dev-center-project-resource-id" group="Properties">
           <help short="The resource id of the DevCenter Project the pool belongs to."/>
         </arg>
         <arg type="object" var="$resource.properties.fabricProfile" options="fabric-profile" group="Properties">
@@ -1230,7 +1245,7 @@
             </arg>
           </arg>
         </arg>
-        <arg nullable="True" type="string" var="$resource.properties.provisioningState" options="provisioning-state" hide="True" group="Properties">
+        <arg nullable="True" type="string" var="$resource.properties.provisioningState" options="provisioning-state" group="Properties">
           <help short="The status of the current operation."/>
           <enum>
             <item name="Accepted" value="&quot;Accepted&quot;"/>
@@ -1244,26 +1259,6 @@
         </arg>
       </argGroup>
       <argGroup name="Resource">
-        <arg nullable="True" type="object" var="$resource.identity" options="identity" group="Resource">
-          <help short="The managed service identities assigned to this resource."/>
-          <arg type="string" var="$resource.identity.type" options="type">
-            <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
-            <enum>
-              <item name="None" value="&quot;None&quot;"/>
-              <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
-              <item name="SystemAssigned,UserAssigned" value="&quot;SystemAssigned,UserAssigned&quot;"/>
-              <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
-            </enum>
-          </arg>
-          <arg nullable="True" type="object" var="$resource.identity.userAssignedIdentities" options="user-assigned-identities">
-            <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
-            <additionalProp>
-              <item nullable="True" type="object">
-                <blank value="{}"/>
-              </item>
-            </additionalProp>
-          </arg>
-        </arg>
         <arg nullable="True" type="object" var="$resource.tags" options="tags" group="Resource">
           <help short="Resource tags."/>
           <additionalProp>
@@ -1279,7 +1274,7 @@
                 <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-.]*$"/>
               </param>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
@@ -1293,10 +1288,8 @@
           <response statusCode="200">
             <body>
               <json var="$Instance">
-                <schema type="object" cls="Pool_read">
-                  <prop readOnly="True" type="ResourceId" name="id">
-                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.DevOpsInfrastructure/pools/{}"/>
-                  </prop>
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id"/>
                   <prop type="IdentityObject" name="identity">
                     <prop readOnly="True" type="uuid" name="principalId"/>
                     <prop readOnly="True" type="uuid" name="tenantId"/>
@@ -1304,7 +1297,6 @@
                       <enum>
                         <item value="&quot;None&quot;"/>
                         <item value="&quot;SystemAssigned&quot;"/>
-                        <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
                         <item value="&quot;UserAssigned&quot;"/>
                       </enum>
                     </prop>
@@ -1317,9 +1309,9 @@
                       </additionalProp>
                     </prop>
                   </prop>
-                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop type="string" name="location" required="True"/>
                   <prop readOnly="True" type="string" name="name"/>
-                  <prop type="object" name="properties" clientFlatten="True">
+                  <prop type="object" name="properties">
                     <prop type="object" name="agentProfile" required="True">
                       <prop type="string" name="kind" required="True">
                         <enum>
@@ -1327,11 +1319,12 @@
                           <item value="&quot;Stateless&quot;"/>
                         </enum>
                       </prop>
-                      <prop type="object" name="resourcePredictions"/>
                       <prop type="object" name="resourcePredictionsProfile">
                         <prop type="string" name="kind" required="True">
                           <enum>
                             <item value="&quot;Automatic&quot;"/>
+                            <item value="&quot;Automatic&quot;"/>
+                            <item value="&quot;Manual&quot;"/>
                             <item value="&quot;Manual&quot;"/>
                           </enum>
                         </prop>
@@ -1522,7 +1515,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>
@@ -1532,12 +1525,11 @@
         <instanceUpdate ref="$Instance">
           <json>
             <schema type="object" name="resource" required="True" clientFlatten="True">
-              <prop type="IdentityObject" name="identity" arg="$resource.identity">
+              <prop type="IdentityObject" name="identity">
                 <prop type="string" name="type" arg="$resource.identity.type" required="True">
                   <enum>
                     <item value="&quot;None&quot;"/>
                     <item value="&quot;SystemAssigned&quot;"/>
-                    <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
                     <item value="&quot;UserAssigned&quot;"/>
                   </enum>
                 </prop>
@@ -1547,7 +1539,7 @@
                   </additionalProp>
                 </prop>
               </prop>
-              <prop type="object" name="properties" clientFlatten="True">
+              <prop type="object" name="properties">
                 <prop type="object" name="agentProfile" arg="$resource.properties.agentProfile" required="True">
                   <prop type="string" name="kind" required="True">
                     <enum>
@@ -1555,11 +1547,12 @@
                       <item arg="$resource.properties.agentProfile.Stateless" value="&quot;Stateless&quot;"/>
                     </enum>
                   </prop>
-                  <prop type="object" name="resourcePredictions" arg="$resource.properties.agentProfile.resourcePredictions"/>
                   <prop type="object" name="resourcePredictionsProfile" arg="$resource.properties.agentProfile.resourcePredictionsProfile">
                     <prop type="string" name="kind" required="True">
                       <enum>
                         <item arg="$resource.properties.agentProfile.resourcePredictionsProfile.Automatic" value="&quot;Automatic&quot;"/>
+                        <item arg="$resource.properties.agentProfile.resourcePredictionsProfile.Automatic" value="&quot;Automatic&quot;"/>
+                        <item arg="$resource.properties.agentProfile.resourcePredictionsProfile.Manual" value="&quot;Manual&quot;"/>
                         <item arg="$resource.properties.agentProfile.resourcePredictionsProfile.Manual" value="&quot;Manual&quot;"/>
                       </enum>
                     </prop>
@@ -1733,7 +1726,7 @@
                 <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-.]*$"/>
               </param>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
@@ -1750,14 +1743,234 @@
           <response statusCode="200 201">
             <body>
               <json var="$Instance">
-                <schema type="@Pool_read"/>
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id"/>
+                  <prop type="IdentityObject" name="identity">
+                    <prop readOnly="True" type="uuid" name="principalId"/>
+                    <prop readOnly="True" type="uuid" name="tenantId"/>
+                    <prop type="string" name="type" required="True">
+                      <enum>
+                        <item value="&quot;None&quot;"/>
+                        <item value="&quot;SystemAssigned&quot;"/>
+                        <item value="&quot;UserAssigned&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="userAssignedIdentities">
+                      <additionalProp>
+                        <item nullable="True" type="object">
+                          <prop readOnly="True" type="uuid" name="clientId"/>
+                          <prop readOnly="True" type="uuid" name="principalId"/>
+                        </item>
+                      </additionalProp>
+                    </prop>
+                  </prop>
+                  <prop type="string" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="object" name="agentProfile" required="True">
+                      <prop type="string" name="kind" required="True">
+                        <enum>
+                          <item value="&quot;Stateful&quot;"/>
+                          <item value="&quot;Stateless&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="resourcePredictionsProfile">
+                        <prop type="string" name="kind" required="True">
+                          <enum>
+                            <item value="&quot;Automatic&quot;"/>
+                            <item value="&quot;Automatic&quot;"/>
+                            <item value="&quot;Manual&quot;"/>
+                            <item value="&quot;Manual&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="kind" value="Automatic">
+                          <prop type="string" name="predictionPreference">
+                            <enum>
+                              <item value="&quot;Balanced&quot;"/>
+                              <item value="&quot;BestPerformance&quot;"/>
+                              <item value="&quot;MoreCostEffective&quot;"/>
+                              <item value="&quot;MorePerformance&quot;"/>
+                              <item value="&quot;MostCostEffective&quot;"/>
+                            </enum>
+                          </prop>
+                        </discriminator>
+                        <discriminator property="kind" value="Manual"/>
+                      </prop>
+                      <discriminator property="kind" value="Stateful">
+                        <prop type="string" name="gracePeriodTimeSpan"/>
+                        <prop type="string" name="maxAgentLifetime"/>
+                      </discriminator>
+                      <discriminator property="kind" value="Stateless"/>
+                    </prop>
+                    <prop type="string" name="devCenterProjectResourceId" required="True"/>
+                    <prop type="object" name="fabricProfile" required="True">
+                      <prop type="string" name="kind" required="True">
+                        <enum>
+                          <item value="&quot;Vmss&quot;"/>
+                        </enum>
+                      </prop>
+                      <discriminator property="kind" value="Vmss">
+                        <prop type="array<object>" name="images" required="True">
+                          <item type="object">
+                            <prop type="array<string>" name="aliases">
+                              <item type="string"/>
+                            </prop>
+                            <prop type="string" name="buffer">
+                              <default value="&quot;*&quot;"/>
+                            </prop>
+                            <prop type="string" name="resourceId"/>
+                            <prop type="string" name="wellKnownImageName"/>
+                          </item>
+                        </prop>
+                        <prop type="object" name="networkProfile">
+                          <prop type="string" name="subnetId" required="True"/>
+                        </prop>
+                        <prop type="object" name="osProfile">
+                          <prop type="string" name="logonType">
+                            <enum>
+                              <item value="&quot;Interactive&quot;"/>
+                              <item value="&quot;Service&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="object" name="secretsManagementSettings">
+                            <prop type="string" name="certificateStoreLocation"/>
+                            <prop type="boolean" name="keyExportable" required="True"/>
+                            <prop type="array<string>" name="observedCertificates" required="True">
+                              <item type="string"/>
+                            </prop>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="sku" required="True">
+                          <prop type="string" name="name" required="True"/>
+                        </prop>
+                        <prop type="object" name="storageProfile">
+                          <prop type="array<object>" name="dataDisks">
+                            <item type="object">
+                              <prop type="string" name="caching">
+                                <enum>
+                                  <item value="&quot;None&quot;"/>
+                                  <item value="&quot;ReadOnly&quot;"/>
+                                  <item value="&quot;ReadWrite&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="integer32" name="diskSizeGiB"/>
+                              <prop type="string" name="driveLetter"/>
+                              <prop type="string" name="storageAccountType">
+                                <enum>
+                                  <item value="&quot;Premium_LRS&quot;"/>
+                                  <item value="&quot;Premium_ZRS&quot;"/>
+                                  <item value="&quot;StandardSSD_LRS&quot;"/>
+                                  <item value="&quot;StandardSSD_ZRS&quot;"/>
+                                  <item value="&quot;Standard_LRS&quot;"/>
+                                </enum>
+                              </prop>
+                            </item>
+                          </prop>
+                          <prop type="string" name="osDiskStorageAccountType">
+                            <enum>
+                              <item value="&quot;Premium&quot;"/>
+                              <item value="&quot;Standard&quot;"/>
+                              <item value="&quot;StandardSSD&quot;"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                      </discriminator>
+                    </prop>
+                    <prop type="integer32" name="maximumConcurrency" required="True">
+                      <format maximum="10000" minimum="1"/>
+                    </prop>
+                    <prop type="object" name="organizationProfile" required="True">
+                      <prop type="string" name="kind" required="True">
+                        <enum>
+                          <item value="&quot;AzureDevOps&quot;"/>
+                          <item value="&quot;GitHub&quot;"/>
+                        </enum>
+                      </prop>
+                      <discriminator property="kind" value="AzureDevOps">
+                        <prop type="array<object>" name="organizations" required="True">
+                          <item type="object">
+                            <prop type="integer32" name="parallelism"/>
+                            <prop type="array<string>" name="projects">
+                              <item type="string"/>
+                            </prop>
+                            <prop type="string" name="url" required="True"/>
+                          </item>
+                        </prop>
+                        <prop type="object" name="permissionProfile">
+                          <prop type="array<string>" name="groups">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="string" name="kind" required="True">
+                            <enum>
+                              <item value="&quot;CreatorOnly&quot;"/>
+                              <item value="&quot;Inherit&quot;"/>
+                              <item value="&quot;SpecificAccounts&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="array<string>" name="users">
+                            <item type="string"/>
+                          </prop>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="kind" value="GitHub">
+                        <prop type="array<object>" name="organizations" required="True">
+                          <item type="object">
+                            <prop type="array<string>" name="repositories">
+                              <item type="string"/>
+                            </prop>
+                            <prop type="string" name="url" required="True"/>
+                          </item>
+                        </prop>
+                      </discriminator>
+                    </prop>
+                    <prop type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Provisioning&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
               </json>
             </body>
           </response>
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>
@@ -1765,5 +1978,1387 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
+    <commandGroup name="identity">
+      <command name="assign" version="2024-10-19">
+        <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.devopsinfrastructure/pools/{}" version="2024-10-19" subresource="identity" swagger="mgmt-plane/devopsinfrastructure/ResourceProviders/Microsoft.DevOpsInfrastructure/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGV2T3BzSW5mcmFzdHJ1Y3R1cmUvcG9vbHMve3Bvb2xOYW1lfQ==/V/MjAyNC0xMC0xOQ=="/>
+        <argGroup name="">
+          <arg type="string" var="$Path.poolName" options="pool-name name n" required="True" idPart="name">
+            <help short="Name of the pool. It needs to be globally unique."/>
+            <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-.]*$"/>
+          </arg>
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        </argGroup>
+        <argGroup name="Resource.identity">
+          <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Resource.identity">
+            <blank value="&quot;True&quot;"/>
+            <help short="Set the system managed identity."/>
+          </arg>
+          <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Resource.identity">
+            <blank value="[]"/>
+            <help short="Set the user managed identities."/>
+            <item type="string"/>
+          </arg>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="resource">
+            <prop type="object" name="identity"/>
+          </json>
+        </subresourceSelector>
+        <operation operationId="Pools_Get">
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevOpsInfrastructure/pools/{poolName}">
+            <request method="get">
+              <path>
+                <param type="string" name="poolName" arg="$Path.poolName" required="True">
+                  <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-.]*$"/>
+                </param>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+                </param>
+                <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2024-10-19&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object">
+                    <prop readOnly="True" type="ResourceId" name="id"/>
+                    <prop type="IdentityObject" name="identity">
+                      <prop readOnly="True" type="uuid" name="principalId"/>
+                      <prop readOnly="True" type="uuid" name="tenantId"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item nullable="True" type="object">
+                            <prop readOnly="True" type="uuid" name="clientId"/>
+                            <prop readOnly="True" type="uuid" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="string" name="location" required="True"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties">
+                      <prop type="object" name="agentProfile" required="True">
+                        <prop type="string" name="kind" required="True">
+                          <enum>
+                            <item value="&quot;Stateful&quot;"/>
+                            <item value="&quot;Stateless&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="resourcePredictionsProfile">
+                          <prop type="string" name="kind" required="True">
+                            <enum>
+                              <item value="&quot;Automatic&quot;"/>
+                              <item value="&quot;Automatic&quot;"/>
+                              <item value="&quot;Manual&quot;"/>
+                              <item value="&quot;Manual&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="kind" value="Automatic">
+                            <prop type="string" name="predictionPreference">
+                              <enum>
+                                <item value="&quot;Balanced&quot;"/>
+                                <item value="&quot;BestPerformance&quot;"/>
+                                <item value="&quot;MoreCostEffective&quot;"/>
+                                <item value="&quot;MorePerformance&quot;"/>
+                                <item value="&quot;MostCostEffective&quot;"/>
+                              </enum>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="kind" value="Manual"/>
+                        </prop>
+                        <discriminator property="kind" value="Stateful">
+                          <prop type="string" name="gracePeriodTimeSpan"/>
+                          <prop type="string" name="maxAgentLifetime"/>
+                        </discriminator>
+                        <discriminator property="kind" value="Stateless"/>
+                      </prop>
+                      <prop type="string" name="devCenterProjectResourceId" required="True"/>
+                      <prop type="object" name="fabricProfile" required="True">
+                        <prop type="string" name="kind" required="True">
+                          <enum>
+                            <item value="&quot;Vmss&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="kind" value="Vmss">
+                          <prop type="array<object>" name="images" required="True">
+                            <item type="object">
+                              <prop type="array<string>" name="aliases">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="buffer">
+                                <default value="&quot;*&quot;"/>
+                              </prop>
+                              <prop type="string" name="resourceId"/>
+                              <prop type="string" name="wellKnownImageName"/>
+                            </item>
+                          </prop>
+                          <prop type="object" name="networkProfile">
+                            <prop type="string" name="subnetId" required="True"/>
+                          </prop>
+                          <prop type="object" name="osProfile">
+                            <prop type="string" name="logonType">
+                              <enum>
+                                <item value="&quot;Interactive&quot;"/>
+                                <item value="&quot;Service&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="object" name="secretsManagementSettings">
+                              <prop type="string" name="certificateStoreLocation"/>
+                              <prop type="boolean" name="keyExportable" required="True"/>
+                              <prop type="array<string>" name="observedCertificates" required="True">
+                                <item type="string"/>
+                              </prop>
+                            </prop>
+                          </prop>
+                          <prop type="object" name="sku" required="True">
+                            <prop type="string" name="name" required="True"/>
+                          </prop>
+                          <prop type="object" name="storageProfile">
+                            <prop type="array<object>" name="dataDisks">
+                              <item type="object">
+                                <prop type="string" name="caching">
+                                  <enum>
+                                    <item value="&quot;None&quot;"/>
+                                    <item value="&quot;ReadOnly&quot;"/>
+                                    <item value="&quot;ReadWrite&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="integer32" name="diskSizeGiB"/>
+                                <prop type="string" name="driveLetter"/>
+                                <prop type="string" name="storageAccountType">
+                                  <enum>
+                                    <item value="&quot;Premium_LRS&quot;"/>
+                                    <item value="&quot;Premium_ZRS&quot;"/>
+                                    <item value="&quot;StandardSSD_LRS&quot;"/>
+                                    <item value="&quot;StandardSSD_ZRS&quot;"/>
+                                    <item value="&quot;Standard_LRS&quot;"/>
+                                  </enum>
+                                </prop>
+                              </item>
+                            </prop>
+                            <prop type="string" name="osDiskStorageAccountType">
+                              <enum>
+                                <item value="&quot;Premium&quot;"/>
+                                <item value="&quot;Standard&quot;"/>
+                                <item value="&quot;StandardSSD&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                        </discriminator>
+                      </prop>
+                      <prop type="integer32" name="maximumConcurrency" required="True">
+                        <format maximum="10000" minimum="1"/>
+                      </prop>
+                      <prop type="object" name="organizationProfile" required="True">
+                        <prop type="string" name="kind" required="True">
+                          <enum>
+                            <item value="&quot;AzureDevOps&quot;"/>
+                            <item value="&quot;GitHub&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="kind" value="AzureDevOps">
+                          <prop type="array<object>" name="organizations" required="True">
+                            <item type="object">
+                              <prop type="integer32" name="parallelism"/>
+                              <prop type="array<string>" name="projects">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="url" required="True"/>
+                            </item>
+                          </prop>
+                          <prop type="object" name="permissionProfile">
+                            <prop type="array<string>" name="groups">
+                              <item type="string"/>
+                            </prop>
+                            <prop type="string" name="kind" required="True">
+                              <enum>
+                                <item value="&quot;CreatorOnly&quot;"/>
+                                <item value="&quot;Inherit&quot;"/>
+                                <item value="&quot;SpecificAccounts&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="array<string>" name="users">
+                              <item type="string"/>
+                            </prop>
+                          </prop>
+                        </discriminator>
+                        <discriminator property="kind" value="GitHub">
+                          <prop type="array<object>" name="organizations" required="True">
+                            <item type="object">
+                              <prop type="array<string>" name="repositories">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="url" required="True"/>
+                            </item>
+                          </prop>
+                        </discriminator>
+                      </prop>
+                      <prop type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Accepted&quot;"/>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;Provisioning&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;Updating&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="object" name="systemData">
+                      <prop type="dateTime" name="createdAt"/>
+                      <prop type="string" name="createdBy"/>
+                      <prop type="string" name="createdByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="dateTime" name="lastModifiedAt"/>
+                      <prop type="string" name="lastModifiedBy"/>
+                      <prop type="string" name="lastModifiedByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema readOnly="True" type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <operation>
+          <instanceUpdate ref="$Subresource">
+            <json>
+              <schema action="assign" type="IdentityObject" name="resource.identity" required="True">
+                <userAssigned action="assign" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+                  <item action="assign" type="string"/>
+                </userAssigned>
+                <systemAssigned action="assign" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+              </schema>
+            </json>
+          </instanceUpdate>
+        </operation>
+        <operation operationId="Pools_CreateOrUpdate">
+          <longRunning finalStateVia="azure-async-operation"/>
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevOpsInfrastructure/pools/{poolName}">
+            <request method="put">
+              <path>
+                <param type="string" name="poolName" arg="$Path.poolName" required="True">
+                  <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-.]*$"/>
+                </param>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+                </param>
+                <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2024-10-19&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+              <body>
+                <json ref="$Instance"/>
+              </body>
+            </request>
+            <response statusCode="200 201">
+              <body>
+                <json var="$Instance">
+                  <schema type="object">
+                    <prop readOnly="True" type="ResourceId" name="id"/>
+                    <prop type="IdentityObject" name="identity">
+                      <prop readOnly="True" type="uuid" name="principalId"/>
+                      <prop readOnly="True" type="uuid" name="tenantId"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item nullable="True" type="object">
+                            <prop readOnly="True" type="uuid" name="clientId"/>
+                            <prop readOnly="True" type="uuid" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="string" name="location" required="True"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties">
+                      <prop type="object" name="agentProfile" required="True">
+                        <prop type="string" name="kind" required="True">
+                          <enum>
+                            <item value="&quot;Stateful&quot;"/>
+                            <item value="&quot;Stateless&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="resourcePredictionsProfile">
+                          <prop type="string" name="kind" required="True">
+                            <enum>
+                              <item value="&quot;Automatic&quot;"/>
+                              <item value="&quot;Automatic&quot;"/>
+                              <item value="&quot;Manual&quot;"/>
+                              <item value="&quot;Manual&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="kind" value="Automatic">
+                            <prop type="string" name="predictionPreference">
+                              <enum>
+                                <item value="&quot;Balanced&quot;"/>
+                                <item value="&quot;BestPerformance&quot;"/>
+                                <item value="&quot;MoreCostEffective&quot;"/>
+                                <item value="&quot;MorePerformance&quot;"/>
+                                <item value="&quot;MostCostEffective&quot;"/>
+                              </enum>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="kind" value="Manual"/>
+                        </prop>
+                        <discriminator property="kind" value="Stateful">
+                          <prop type="string" name="gracePeriodTimeSpan"/>
+                          <prop type="string" name="maxAgentLifetime"/>
+                        </discriminator>
+                        <discriminator property="kind" value="Stateless"/>
+                      </prop>
+                      <prop type="string" name="devCenterProjectResourceId" required="True"/>
+                      <prop type="object" name="fabricProfile" required="True">
+                        <prop type="string" name="kind" required="True">
+                          <enum>
+                            <item value="&quot;Vmss&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="kind" value="Vmss">
+                          <prop type="array<object>" name="images" required="True">
+                            <item type="object">
+                              <prop type="array<string>" name="aliases">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="buffer">
+                                <default value="&quot;*&quot;"/>
+                              </prop>
+                              <prop type="string" name="resourceId"/>
+                              <prop type="string" name="wellKnownImageName"/>
+                            </item>
+                          </prop>
+                          <prop type="object" name="networkProfile">
+                            <prop type="string" name="subnetId" required="True"/>
+                          </prop>
+                          <prop type="object" name="osProfile">
+                            <prop type="string" name="logonType">
+                              <enum>
+                                <item value="&quot;Interactive&quot;"/>
+                                <item value="&quot;Service&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="object" name="secretsManagementSettings">
+                              <prop type="string" name="certificateStoreLocation"/>
+                              <prop type="boolean" name="keyExportable" required="True"/>
+                              <prop type="array<string>" name="observedCertificates" required="True">
+                                <item type="string"/>
+                              </prop>
+                            </prop>
+                          </prop>
+                          <prop type="object" name="sku" required="True">
+                            <prop type="string" name="name" required="True"/>
+                          </prop>
+                          <prop type="object" name="storageProfile">
+                            <prop type="array<object>" name="dataDisks">
+                              <item type="object">
+                                <prop type="string" name="caching">
+                                  <enum>
+                                    <item value="&quot;None&quot;"/>
+                                    <item value="&quot;ReadOnly&quot;"/>
+                                    <item value="&quot;ReadWrite&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="integer32" name="diskSizeGiB"/>
+                                <prop type="string" name="driveLetter"/>
+                                <prop type="string" name="storageAccountType">
+                                  <enum>
+                                    <item value="&quot;Premium_LRS&quot;"/>
+                                    <item value="&quot;Premium_ZRS&quot;"/>
+                                    <item value="&quot;StandardSSD_LRS&quot;"/>
+                                    <item value="&quot;StandardSSD_ZRS&quot;"/>
+                                    <item value="&quot;Standard_LRS&quot;"/>
+                                  </enum>
+                                </prop>
+                              </item>
+                            </prop>
+                            <prop type="string" name="osDiskStorageAccountType">
+                              <enum>
+                                <item value="&quot;Premium&quot;"/>
+                                <item value="&quot;Standard&quot;"/>
+                                <item value="&quot;StandardSSD&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                        </discriminator>
+                      </prop>
+                      <prop type="integer32" name="maximumConcurrency" required="True">
+                        <format maximum="10000" minimum="1"/>
+                      </prop>
+                      <prop type="object" name="organizationProfile" required="True">
+                        <prop type="string" name="kind" required="True">
+                          <enum>
+                            <item value="&quot;AzureDevOps&quot;"/>
+                            <item value="&quot;GitHub&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="kind" value="AzureDevOps">
+                          <prop type="array<object>" name="organizations" required="True">
+                            <item type="object">
+                              <prop type="integer32" name="parallelism"/>
+                              <prop type="array<string>" name="projects">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="url" required="True"/>
+                            </item>
+                          </prop>
+                          <prop type="object" name="permissionProfile">
+                            <prop type="array<string>" name="groups">
+                              <item type="string"/>
+                            </prop>
+                            <prop type="string" name="kind" required="True">
+                              <enum>
+                                <item value="&quot;CreatorOnly&quot;"/>
+                                <item value="&quot;Inherit&quot;"/>
+                                <item value="&quot;SpecificAccounts&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="array<string>" name="users">
+                              <item type="string"/>
+                            </prop>
+                          </prop>
+                        </discriminator>
+                        <discriminator property="kind" value="GitHub">
+                          <prop type="array<object>" name="organizations" required="True">
+                            <item type="object">
+                              <prop type="array<string>" name="repositories">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="url" required="True"/>
+                            </item>
+                          </prop>
+                        </discriminator>
+                      </prop>
+                      <prop type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Accepted&quot;"/>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;Provisioning&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;Updating&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="object" name="systemData">
+                      <prop type="dateTime" name="createdAt"/>
+                      <prop type="string" name="createdBy"/>
+                      <prop type="string" name="createdByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="dateTime" name="lastModifiedAt"/>
+                      <prop type="string" name="lastModifiedBy"/>
+                      <prop type="string" name="lastModifiedByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema readOnly="True" type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <output type="object" ref="$Subresource" clientFlatten="True"/>
+      </command>
+      <command name="remove" version="2024-10-19">
+        <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.devopsinfrastructure/pools/{}" version="2024-10-19" subresource="identity" swagger="mgmt-plane/devopsinfrastructure/ResourceProviders/Microsoft.DevOpsInfrastructure/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGV2T3BzSW5mcmFzdHJ1Y3R1cmUvcG9vbHMve3Bvb2xOYW1lfQ==/V/MjAyNC0xMC0xOQ=="/>
+        <argGroup name="">
+          <arg type="string" var="$Path.poolName" options="pool-name name n" required="True" idPart="name">
+            <help short="Name of the pool. It needs to be globally unique."/>
+            <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-.]*$"/>
+          </arg>
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        </argGroup>
+        <argGroup name="Resource.identity">
+          <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Resource.identity">
+            <blank value="&quot;True&quot;"/>
+            <help short="Set the system managed identity."/>
+          </arg>
+          <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Resource.identity">
+            <blank value="[]"/>
+            <help short="Set the user managed identities."/>
+            <item type="string"/>
+          </arg>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="resource">
+            <prop type="object" name="identity"/>
+          </json>
+        </subresourceSelector>
+        <operation operationId="Pools_Get">
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevOpsInfrastructure/pools/{poolName}">
+            <request method="get">
+              <path>
+                <param type="string" name="poolName" arg="$Path.poolName" required="True">
+                  <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-.]*$"/>
+                </param>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+                </param>
+                <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2024-10-19&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object">
+                    <prop readOnly="True" type="ResourceId" name="id"/>
+                    <prop type="IdentityObject" name="identity">
+                      <prop readOnly="True" type="uuid" name="principalId"/>
+                      <prop readOnly="True" type="uuid" name="tenantId"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item nullable="True" type="object">
+                            <prop readOnly="True" type="uuid" name="clientId"/>
+                            <prop readOnly="True" type="uuid" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="string" name="location" required="True"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties">
+                      <prop type="object" name="agentProfile" required="True">
+                        <prop type="string" name="kind" required="True">
+                          <enum>
+                            <item value="&quot;Stateful&quot;"/>
+                            <item value="&quot;Stateless&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="resourcePredictionsProfile">
+                          <prop type="string" name="kind" required="True">
+                            <enum>
+                              <item value="&quot;Automatic&quot;"/>
+                              <item value="&quot;Automatic&quot;"/>
+                              <item value="&quot;Manual&quot;"/>
+                              <item value="&quot;Manual&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="kind" value="Automatic">
+                            <prop type="string" name="predictionPreference">
+                              <enum>
+                                <item value="&quot;Balanced&quot;"/>
+                                <item value="&quot;BestPerformance&quot;"/>
+                                <item value="&quot;MoreCostEffective&quot;"/>
+                                <item value="&quot;MorePerformance&quot;"/>
+                                <item value="&quot;MostCostEffective&quot;"/>
+                              </enum>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="kind" value="Manual"/>
+                        </prop>
+                        <discriminator property="kind" value="Stateful">
+                          <prop type="string" name="gracePeriodTimeSpan"/>
+                          <prop type="string" name="maxAgentLifetime"/>
+                        </discriminator>
+                        <discriminator property="kind" value="Stateless"/>
+                      </prop>
+                      <prop type="string" name="devCenterProjectResourceId" required="True"/>
+                      <prop type="object" name="fabricProfile" required="True">
+                        <prop type="string" name="kind" required="True">
+                          <enum>
+                            <item value="&quot;Vmss&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="kind" value="Vmss">
+                          <prop type="array<object>" name="images" required="True">
+                            <item type="object">
+                              <prop type="array<string>" name="aliases">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="buffer">
+                                <default value="&quot;*&quot;"/>
+                              </prop>
+                              <prop type="string" name="resourceId"/>
+                              <prop type="string" name="wellKnownImageName"/>
+                            </item>
+                          </prop>
+                          <prop type="object" name="networkProfile">
+                            <prop type="string" name="subnetId" required="True"/>
+                          </prop>
+                          <prop type="object" name="osProfile">
+                            <prop type="string" name="logonType">
+                              <enum>
+                                <item value="&quot;Interactive&quot;"/>
+                                <item value="&quot;Service&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="object" name="secretsManagementSettings">
+                              <prop type="string" name="certificateStoreLocation"/>
+                              <prop type="boolean" name="keyExportable" required="True"/>
+                              <prop type="array<string>" name="observedCertificates" required="True">
+                                <item type="string"/>
+                              </prop>
+                            </prop>
+                          </prop>
+                          <prop type="object" name="sku" required="True">
+                            <prop type="string" name="name" required="True"/>
+                          </prop>
+                          <prop type="object" name="storageProfile">
+                            <prop type="array<object>" name="dataDisks">
+                              <item type="object">
+                                <prop type="string" name="caching">
+                                  <enum>
+                                    <item value="&quot;None&quot;"/>
+                                    <item value="&quot;ReadOnly&quot;"/>
+                                    <item value="&quot;ReadWrite&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="integer32" name="diskSizeGiB"/>
+                                <prop type="string" name="driveLetter"/>
+                                <prop type="string" name="storageAccountType">
+                                  <enum>
+                                    <item value="&quot;Premium_LRS&quot;"/>
+                                    <item value="&quot;Premium_ZRS&quot;"/>
+                                    <item value="&quot;StandardSSD_LRS&quot;"/>
+                                    <item value="&quot;StandardSSD_ZRS&quot;"/>
+                                    <item value="&quot;Standard_LRS&quot;"/>
+                                  </enum>
+                                </prop>
+                              </item>
+                            </prop>
+                            <prop type="string" name="osDiskStorageAccountType">
+                              <enum>
+                                <item value="&quot;Premium&quot;"/>
+                                <item value="&quot;Standard&quot;"/>
+                                <item value="&quot;StandardSSD&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                        </discriminator>
+                      </prop>
+                      <prop type="integer32" name="maximumConcurrency" required="True">
+                        <format maximum="10000" minimum="1"/>
+                      </prop>
+                      <prop type="object" name="organizationProfile" required="True">
+                        <prop type="string" name="kind" required="True">
+                          <enum>
+                            <item value="&quot;AzureDevOps&quot;"/>
+                            <item value="&quot;GitHub&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="kind" value="AzureDevOps">
+                          <prop type="array<object>" name="organizations" required="True">
+                            <item type="object">
+                              <prop type="integer32" name="parallelism"/>
+                              <prop type="array<string>" name="projects">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="url" required="True"/>
+                            </item>
+                          </prop>
+                          <prop type="object" name="permissionProfile">
+                            <prop type="array<string>" name="groups">
+                              <item type="string"/>
+                            </prop>
+                            <prop type="string" name="kind" required="True">
+                              <enum>
+                                <item value="&quot;CreatorOnly&quot;"/>
+                                <item value="&quot;Inherit&quot;"/>
+                                <item value="&quot;SpecificAccounts&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="array<string>" name="users">
+                              <item type="string"/>
+                            </prop>
+                          </prop>
+                        </discriminator>
+                        <discriminator property="kind" value="GitHub">
+                          <prop type="array<object>" name="organizations" required="True">
+                            <item type="object">
+                              <prop type="array<string>" name="repositories">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="url" required="True"/>
+                            </item>
+                          </prop>
+                        </discriminator>
+                      </prop>
+                      <prop type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Accepted&quot;"/>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;Provisioning&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;Updating&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="object" name="systemData">
+                      <prop type="dateTime" name="createdAt"/>
+                      <prop type="string" name="createdBy"/>
+                      <prop type="string" name="createdByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="dateTime" name="lastModifiedAt"/>
+                      <prop type="string" name="lastModifiedBy"/>
+                      <prop type="string" name="lastModifiedByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema readOnly="True" type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <operation>
+          <instanceUpdate ref="$Subresource">
+            <json>
+              <schema action="remove" type="IdentityObject" name="resource.identity" required="True">
+                <userAssigned action="remove" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+                  <item action="remove" type="string"/>
+                </userAssigned>
+                <systemAssigned action="remove" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+              </schema>
+            </json>
+          </instanceUpdate>
+        </operation>
+        <operation operationId="Pools_CreateOrUpdate">
+          <longRunning finalStateVia="azure-async-operation"/>
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevOpsInfrastructure/pools/{poolName}">
+            <request method="put">
+              <path>
+                <param type="string" name="poolName" arg="$Path.poolName" required="True">
+                  <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-.]*$"/>
+                </param>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+                </param>
+                <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2024-10-19&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+              <body>
+                <json ref="$Instance"/>
+              </body>
+            </request>
+            <response statusCode="200 201">
+              <body>
+                <json var="$Instance">
+                  <schema type="object">
+                    <prop readOnly="True" type="ResourceId" name="id"/>
+                    <prop type="IdentityObject" name="identity">
+                      <prop readOnly="True" type="uuid" name="principalId"/>
+                      <prop readOnly="True" type="uuid" name="tenantId"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item nullable="True" type="object">
+                            <prop readOnly="True" type="uuid" name="clientId"/>
+                            <prop readOnly="True" type="uuid" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="string" name="location" required="True"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties">
+                      <prop type="object" name="agentProfile" required="True">
+                        <prop type="string" name="kind" required="True">
+                          <enum>
+                            <item value="&quot;Stateful&quot;"/>
+                            <item value="&quot;Stateless&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="resourcePredictionsProfile">
+                          <prop type="string" name="kind" required="True">
+                            <enum>
+                              <item value="&quot;Automatic&quot;"/>
+                              <item value="&quot;Automatic&quot;"/>
+                              <item value="&quot;Manual&quot;"/>
+                              <item value="&quot;Manual&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="kind" value="Automatic">
+                            <prop type="string" name="predictionPreference">
+                              <enum>
+                                <item value="&quot;Balanced&quot;"/>
+                                <item value="&quot;BestPerformance&quot;"/>
+                                <item value="&quot;MoreCostEffective&quot;"/>
+                                <item value="&quot;MorePerformance&quot;"/>
+                                <item value="&quot;MostCostEffective&quot;"/>
+                              </enum>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="kind" value="Manual"/>
+                        </prop>
+                        <discriminator property="kind" value="Stateful">
+                          <prop type="string" name="gracePeriodTimeSpan"/>
+                          <prop type="string" name="maxAgentLifetime"/>
+                        </discriminator>
+                        <discriminator property="kind" value="Stateless"/>
+                      </prop>
+                      <prop type="string" name="devCenterProjectResourceId" required="True"/>
+                      <prop type="object" name="fabricProfile" required="True">
+                        <prop type="string" name="kind" required="True">
+                          <enum>
+                            <item value="&quot;Vmss&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="kind" value="Vmss">
+                          <prop type="array<object>" name="images" required="True">
+                            <item type="object">
+                              <prop type="array<string>" name="aliases">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="buffer">
+                                <default value="&quot;*&quot;"/>
+                              </prop>
+                              <prop type="string" name="resourceId"/>
+                              <prop type="string" name="wellKnownImageName"/>
+                            </item>
+                          </prop>
+                          <prop type="object" name="networkProfile">
+                            <prop type="string" name="subnetId" required="True"/>
+                          </prop>
+                          <prop type="object" name="osProfile">
+                            <prop type="string" name="logonType">
+                              <enum>
+                                <item value="&quot;Interactive&quot;"/>
+                                <item value="&quot;Service&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="object" name="secretsManagementSettings">
+                              <prop type="string" name="certificateStoreLocation"/>
+                              <prop type="boolean" name="keyExportable" required="True"/>
+                              <prop type="array<string>" name="observedCertificates" required="True">
+                                <item type="string"/>
+                              </prop>
+                            </prop>
+                          </prop>
+                          <prop type="object" name="sku" required="True">
+                            <prop type="string" name="name" required="True"/>
+                          </prop>
+                          <prop type="object" name="storageProfile">
+                            <prop type="array<object>" name="dataDisks">
+                              <item type="object">
+                                <prop type="string" name="caching">
+                                  <enum>
+                                    <item value="&quot;None&quot;"/>
+                                    <item value="&quot;ReadOnly&quot;"/>
+                                    <item value="&quot;ReadWrite&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="integer32" name="diskSizeGiB"/>
+                                <prop type="string" name="driveLetter"/>
+                                <prop type="string" name="storageAccountType">
+                                  <enum>
+                                    <item value="&quot;Premium_LRS&quot;"/>
+                                    <item value="&quot;Premium_ZRS&quot;"/>
+                                    <item value="&quot;StandardSSD_LRS&quot;"/>
+                                    <item value="&quot;StandardSSD_ZRS&quot;"/>
+                                    <item value="&quot;Standard_LRS&quot;"/>
+                                  </enum>
+                                </prop>
+                              </item>
+                            </prop>
+                            <prop type="string" name="osDiskStorageAccountType">
+                              <enum>
+                                <item value="&quot;Premium&quot;"/>
+                                <item value="&quot;Standard&quot;"/>
+                                <item value="&quot;StandardSSD&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                        </discriminator>
+                      </prop>
+                      <prop type="integer32" name="maximumConcurrency" required="True">
+                        <format maximum="10000" minimum="1"/>
+                      </prop>
+                      <prop type="object" name="organizationProfile" required="True">
+                        <prop type="string" name="kind" required="True">
+                          <enum>
+                            <item value="&quot;AzureDevOps&quot;"/>
+                            <item value="&quot;GitHub&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="kind" value="AzureDevOps">
+                          <prop type="array<object>" name="organizations" required="True">
+                            <item type="object">
+                              <prop type="integer32" name="parallelism"/>
+                              <prop type="array<string>" name="projects">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="url" required="True"/>
+                            </item>
+                          </prop>
+                          <prop type="object" name="permissionProfile">
+                            <prop type="array<string>" name="groups">
+                              <item type="string"/>
+                            </prop>
+                            <prop type="string" name="kind" required="True">
+                              <enum>
+                                <item value="&quot;CreatorOnly&quot;"/>
+                                <item value="&quot;Inherit&quot;"/>
+                                <item value="&quot;SpecificAccounts&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="array<string>" name="users">
+                              <item type="string"/>
+                            </prop>
+                          </prop>
+                        </discriminator>
+                        <discriminator property="kind" value="GitHub">
+                          <prop type="array<object>" name="organizations" required="True">
+                            <item type="object">
+                              <prop type="array<string>" name="repositories">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="url" required="True"/>
+                            </item>
+                          </prop>
+                        </discriminator>
+                      </prop>
+                      <prop type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Accepted&quot;"/>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;Provisioning&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;Updating&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="object" name="systemData">
+                      <prop type="dateTime" name="createdAt"/>
+                      <prop type="string" name="createdBy"/>
+                      <prop type="string" name="createdByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="dateTime" name="lastModifiedAt"/>
+                      <prop type="string" name="lastModifiedBy"/>
+                      <prop type="string" name="lastModifiedByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema readOnly="True" type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <output type="object" ref="$Subresource" clientFlatten="True"/>
+      </command>
+      <command name="show" version="2024-10-19">
+        <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.devopsinfrastructure/pools/{}" version="2024-10-19" subresource="identity" swagger="mgmt-plane/devopsinfrastructure/ResourceProviders/Microsoft.DevOpsInfrastructure/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGV2T3BzSW5mcmFzdHJ1Y3R1cmUvcG9vbHMve3Bvb2xOYW1lfQ==/V/MjAyNC0xMC0xOQ=="/>
+        <argGroup name="">
+          <arg type="string" var="$Path.poolName" options="pool-name name n" required="True" idPart="name">
+            <help short="Name of the pool. It needs to be globally unique."/>
+            <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-.]*$"/>
+          </arg>
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="resource">
+            <prop type="object" name="identity"/>
+          </json>
+        </subresourceSelector>
+        <operation operationId="Pools_Get">
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevOpsInfrastructure/pools/{poolName}">
+            <request method="get">
+              <path>
+                <param type="string" name="poolName" arg="$Path.poolName" required="True">
+                  <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-.]*$"/>
+                </param>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+                </param>
+                <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2024-10-19&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object">
+                    <prop readOnly="True" type="ResourceId" name="id"/>
+                    <prop type="IdentityObject" name="identity">
+                      <prop readOnly="True" type="uuid" name="principalId"/>
+                      <prop readOnly="True" type="uuid" name="tenantId"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item nullable="True" type="object">
+                            <prop readOnly="True" type="uuid" name="clientId"/>
+                            <prop readOnly="True" type="uuid" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="string" name="location" required="True"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties">
+                      <prop type="object" name="agentProfile" required="True">
+                        <prop type="string" name="kind" required="True">
+                          <enum>
+                            <item value="&quot;Stateful&quot;"/>
+                            <item value="&quot;Stateless&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="resourcePredictionsProfile">
+                          <prop type="string" name="kind" required="True">
+                            <enum>
+                              <item value="&quot;Automatic&quot;"/>
+                              <item value="&quot;Automatic&quot;"/>
+                              <item value="&quot;Manual&quot;"/>
+                              <item value="&quot;Manual&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="kind" value="Automatic">
+                            <prop type="string" name="predictionPreference">
+                              <enum>
+                                <item value="&quot;Balanced&quot;"/>
+                                <item value="&quot;BestPerformance&quot;"/>
+                                <item value="&quot;MoreCostEffective&quot;"/>
+                                <item value="&quot;MorePerformance&quot;"/>
+                                <item value="&quot;MostCostEffective&quot;"/>
+                              </enum>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="kind" value="Manual"/>
+                        </prop>
+                        <discriminator property="kind" value="Stateful">
+                          <prop type="string" name="gracePeriodTimeSpan"/>
+                          <prop type="string" name="maxAgentLifetime"/>
+                        </discriminator>
+                        <discriminator property="kind" value="Stateless"/>
+                      </prop>
+                      <prop type="string" name="devCenterProjectResourceId" required="True"/>
+                      <prop type="object" name="fabricProfile" required="True">
+                        <prop type="string" name="kind" required="True">
+                          <enum>
+                            <item value="&quot;Vmss&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="kind" value="Vmss">
+                          <prop type="array<object>" name="images" required="True">
+                            <item type="object">
+                              <prop type="array<string>" name="aliases">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="buffer">
+                                <default value="&quot;*&quot;"/>
+                              </prop>
+                              <prop type="string" name="resourceId"/>
+                              <prop type="string" name="wellKnownImageName"/>
+                            </item>
+                          </prop>
+                          <prop type="object" name="networkProfile">
+                            <prop type="string" name="subnetId" required="True"/>
+                          </prop>
+                          <prop type="object" name="osProfile">
+                            <prop type="string" name="logonType">
+                              <enum>
+                                <item value="&quot;Interactive&quot;"/>
+                                <item value="&quot;Service&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="object" name="secretsManagementSettings">
+                              <prop type="string" name="certificateStoreLocation"/>
+                              <prop type="boolean" name="keyExportable" required="True"/>
+                              <prop type="array<string>" name="observedCertificates" required="True">
+                                <item type="string"/>
+                              </prop>
+                            </prop>
+                          </prop>
+                          <prop type="object" name="sku" required="True">
+                            <prop type="string" name="name" required="True"/>
+                          </prop>
+                          <prop type="object" name="storageProfile">
+                            <prop type="array<object>" name="dataDisks">
+                              <item type="object">
+                                <prop type="string" name="caching">
+                                  <enum>
+                                    <item value="&quot;None&quot;"/>
+                                    <item value="&quot;ReadOnly&quot;"/>
+                                    <item value="&quot;ReadWrite&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="integer32" name="diskSizeGiB"/>
+                                <prop type="string" name="driveLetter"/>
+                                <prop type="string" name="storageAccountType">
+                                  <enum>
+                                    <item value="&quot;Premium_LRS&quot;"/>
+                                    <item value="&quot;Premium_ZRS&quot;"/>
+                                    <item value="&quot;StandardSSD_LRS&quot;"/>
+                                    <item value="&quot;StandardSSD_ZRS&quot;"/>
+                                    <item value="&quot;Standard_LRS&quot;"/>
+                                  </enum>
+                                </prop>
+                              </item>
+                            </prop>
+                            <prop type="string" name="osDiskStorageAccountType">
+                              <enum>
+                                <item value="&quot;Premium&quot;"/>
+                                <item value="&quot;Standard&quot;"/>
+                                <item value="&quot;StandardSSD&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                        </discriminator>
+                      </prop>
+                      <prop type="integer32" name="maximumConcurrency" required="True">
+                        <format maximum="10000" minimum="1"/>
+                      </prop>
+                      <prop type="object" name="organizationProfile" required="True">
+                        <prop type="string" name="kind" required="True">
+                          <enum>
+                            <item value="&quot;AzureDevOps&quot;"/>
+                            <item value="&quot;GitHub&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="kind" value="AzureDevOps">
+                          <prop type="array<object>" name="organizations" required="True">
+                            <item type="object">
+                              <prop type="integer32" name="parallelism"/>
+                              <prop type="array<string>" name="projects">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="url" required="True"/>
+                            </item>
+                          </prop>
+                          <prop type="object" name="permissionProfile">
+                            <prop type="array<string>" name="groups">
+                              <item type="string"/>
+                            </prop>
+                            <prop type="string" name="kind" required="True">
+                              <enum>
+                                <item value="&quot;CreatorOnly&quot;"/>
+                                <item value="&quot;Inherit&quot;"/>
+                                <item value="&quot;SpecificAccounts&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="array<string>" name="users">
+                              <item type="string"/>
+                            </prop>
+                          </prop>
+                        </discriminator>
+                        <discriminator property="kind" value="GitHub">
+                          <prop type="array<object>" name="organizations" required="True">
+                            <item type="object">
+                              <prop type="array<string>" name="repositories">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="url" required="True"/>
+                            </item>
+                          </prop>
+                        </discriminator>
+                      </prop>
+                      <prop type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Accepted&quot;"/>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;Provisioning&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;Updating&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="object" name="systemData">
+                      <prop type="dateTime" name="createdAt"/>
+                      <prop type="string" name="createdBy"/>
+                      <prop type="string" name="createdByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="dateTime" name="lastModifiedAt"/>
+                      <prop type="string" name="lastModifiedBy"/>
+                      <prop type="string" name="lastModifiedByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema readOnly="True" type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <output type="object" ref="$Subresource" clientFlatten="True"/>
+      </command>
+    </commandGroup>
   </commandGroup>
 </CodeGen>
