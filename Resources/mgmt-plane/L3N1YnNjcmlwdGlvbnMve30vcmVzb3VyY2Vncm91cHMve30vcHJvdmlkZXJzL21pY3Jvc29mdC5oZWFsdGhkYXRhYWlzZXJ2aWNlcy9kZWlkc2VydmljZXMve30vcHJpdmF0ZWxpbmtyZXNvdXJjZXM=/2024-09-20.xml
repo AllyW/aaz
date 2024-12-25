@@ -20,7 +20,7 @@
                 <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
               </param>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
@@ -36,7 +36,7 @@
               <json var="$Instance">
                 <schema type="object">
                   <prop type="string" name="nextLink"/>
-                  <prop type="array<object>" name="value" required="True">
+                  <prop type="array<object>" name="value" required="True" identifiers="name">
                     <item type="object">
                       <prop readOnly="True" type="ResourceId" name="id"/>
                       <prop readOnly="True" type="string" name="name"/>
@@ -81,7 +81,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>

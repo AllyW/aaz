@@ -1,0 +1,1232 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.deviceregistry/assets/{}" version="2024-11-01" swagger="mgmt-plane/deviceregistry/ResourceProviders/Microsoft.DeviceRegistry/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGV2aWNlUmVnaXN0cnkvYXNzZXRzL3thc3NldE5hbWV9/V/MjAyNC0xMS0wMQ=="/>
+  <commandGroup name="device-registry asset">
+    <command name="show" version="2024-11-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.deviceregistry/assets/{}" version="2024-11-01" swagger="mgmt-plane/deviceregistry/ResourceProviders/Microsoft.DeviceRegistry/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGV2aWNlUmVnaXN0cnkvYXNzZXRzL3thc3NldE5hbWV9/V/MjAyNC0xMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.assetName" options="asset-name name n" required="True" idPart="name">
+          <help short="Asset name parameter."/>
+          <format pattern="^[a-z0-9][a-z0-9-]*[a-z0-9]$" maxLength="63" minLength="3"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="Assets_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/assets/{assetName}">
+          <request method="get">
+            <path>
+              <param type="string" name="assetName" arg="$Path.assetName" required="True">
+                <format pattern="^[a-z0-9][a-z0-9-]*[a-z0-9]$" maxLength="63" minLength="3"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="object" name="extendedLocation" required="True">
+                    <prop type="string" name="name" required="True"/>
+                    <prop type="string" name="type" required="True"/>
+                  </prop>
+                  <prop readOnly="True" type="ResourceId" name="id"/>
+                  <prop type="string" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="string" name="assetEndpointProfileRef" required="True"/>
+                    <prop type="object" name="attributes"/>
+                    <prop type="array<object>" name="datasets">
+                      <item type="object">
+                        <prop type="array<object>" name="dataPoints">
+                          <item type="object">
+                            <prop type="string" name="dataPointConfiguration"/>
+                            <prop type="string" name="dataSource" required="True"/>
+                            <prop type="string" name="name" required="True"/>
+                            <prop type="string" name="observabilityMode">
+                              <default value="&quot;None&quot;"/>
+                              <enum>
+                                <item value="&quot;Counter&quot;"/>
+                                <item value="&quot;Gauge&quot;"/>
+                                <item value="&quot;Histogram&quot;"/>
+                                <item value="&quot;Log&quot;"/>
+                                <item value="&quot;None&quot;"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="string" name="datasetConfiguration"/>
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="@Topic_read" name="topic"/>
+                      </item>
+                    </prop>
+                    <prop type="string" name="defaultDatasetsConfiguration"/>
+                    <prop type="string" name="defaultEventsConfiguration"/>
+                    <prop type="object" name="defaultTopic" cls="Topic_read">
+                      <prop type="string" name="path" required="True"/>
+                      <prop type="string" name="retain">
+                        <default value="&quot;Never&quot;"/>
+                        <enum>
+                          <item value="&quot;Keep&quot;"/>
+                          <item value="&quot;Never&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="string" name="description"/>
+                    <prop type="array<string>" name="discoveredAssetRefs">
+                      <item type="string"/>
+                    </prop>
+                    <prop type="string" name="displayName"/>
+                    <prop type="string" name="documentationUri"/>
+                    <prop type="boolean" name="enabled"/>
+                    <prop type="array<object>" name="events">
+                      <item type="object">
+                        <prop type="string" name="eventConfiguration"/>
+                        <prop type="string" name="eventNotifier" required="True"/>
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="string" name="observabilityMode">
+                          <default value="&quot;None&quot;"/>
+                          <enum>
+                            <item value="&quot;Log&quot;"/>
+                            <item value="&quot;None&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="@Topic_read" name="topic"/>
+                      </item>
+                    </prop>
+                    <prop type="string" name="externalAssetId"/>
+                    <prop type="string" name="hardwareRevision"/>
+                    <prop type="string" name="manufacturer"/>
+                    <prop type="string" name="manufacturerUri"/>
+                    <prop type="string" name="model"/>
+                    <prop type="string" name="productCode"/>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="serialNumber"/>
+                    <prop type="string" name="softwareRevision"/>
+                    <prop readOnly="True" type="object" name="status">
+                      <prop readOnly="True" type="array<object>" name="datasets">
+                        <item type="object">
+                          <prop readOnly="True" type="object" name="messageSchemaReference" cls="MessageSchemaReference_read">
+                            <prop readOnly="True" type="string" name="schemaName" required="True"/>
+                            <prop readOnly="True" type="string" name="schemaRegistryNamespace" required="True"/>
+                            <prop readOnly="True" type="string" name="schemaVersion" required="True"/>
+                          </prop>
+                          <prop readOnly="True" type="string" name="name" required="True"/>
+                        </item>
+                      </prop>
+                      <prop readOnly="True" type="array<object>" name="errors">
+                        <item type="object">
+                          <prop readOnly="True" type="integer32" name="code"/>
+                          <prop readOnly="True" type="string" name="message"/>
+                        </item>
+                      </prop>
+                      <prop readOnly="True" type="array<object>" name="events">
+                        <item type="object">
+                          <prop readOnly="True" type="@MessageSchemaReference_read" name="messageSchemaReference"/>
+                          <prop readOnly="True" type="string" name="name" required="True"/>
+                        </item>
+                      </prop>
+                      <prop readOnly="True" type="integer64" name="version"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="uuid"/>
+                    <prop readOnly="True" type="integer64" name="version"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="delete" version="2024-11-01" confirmation="Are you sure you want to perform this operation?">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.deviceregistry/assets/{}" version="2024-11-01" swagger="mgmt-plane/deviceregistry/ResourceProviders/Microsoft.DeviceRegistry/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGV2aWNlUmVnaXN0cnkvYXNzZXRzL3thc3NldE5hbWV9/V/MjAyNC0xMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.assetName" options="asset-name name n" required="True" idPart="name">
+          <help short="Asset name parameter."/>
+          <format pattern="^[a-z0-9][a-z0-9-]*[a-z0-9]$" maxLength="63" minLength="3"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="Assets_Delete">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/assets/{assetName}">
+          <request method="delete">
+            <path>
+              <param type="string" name="assetName" arg="$Path.assetName" required="True">
+                <format pattern="^[a-z0-9][a-z0-9-]*[a-z0-9]$" maxLength="63" minLength="3"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response statusCode="204"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+    <command name="create" version="2024-11-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.deviceregistry/assets/{}" version="2024-11-01" swagger="mgmt-plane/deviceregistry/ResourceProviders/Microsoft.DeviceRegistry/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGV2aWNlUmVnaXN0cnkvYXNzZXRzL3thc3NldE5hbWV9/V/MjAyNC0xMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.assetName" options="asset-name name n" required="True" idPart="name">
+          <help short="Asset name parameter."/>
+          <format pattern="^[a-z0-9][a-z0-9-]*[a-z0-9]$" maxLength="63" minLength="3"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="string" var="$resource.properties.assetEndpointProfileRef" options="asset-endpoint-profile-ref" group="Properties">
+          <help short="A reference to the asset endpoint profile (connection information) used by brokers to connect to an endpoint that provides data points for this asset. Must provide asset endpoint profile name."/>
+        </arg>
+        <arg type="object" var="$resource.properties.attributes" options="attributes" group="Properties">
+          <help short="A set of key-value pairs that contain custom attributes set by the customer."/>
+        </arg>
+        <arg type="array<object>" var="$resource.properties.datasets" options="datasets" group="Properties">
+          <help short="Array of datasets that are part of the asset. Each dataset describes the data points that make up the set."/>
+          <item type="object">
+            <arg type="array<object>" var="$resource.properties.datasets[].dataPoints" options="data-points">
+              <help short="Array of data points that are part of the dataset. Each data point can have per-data point configuration."/>
+              <item type="object">
+                <arg type="string" var="$resource.properties.datasets[].dataPoints[].dataPointConfiguration" options="data-point-configuration">
+                  <help short="Stringified JSON that contains connector-specific configuration for the data point. For OPC UA, this could include configuration like, publishingInterval, samplingInterval, and queueSize."/>
+                </arg>
+                <arg type="string" var="$resource.properties.datasets[].dataPoints[].dataSource" options="data-source" required="True">
+                  <help short="The address of the source of the data in the asset (e.g. URL) so that a client can access the data source on the asset."/>
+                </arg>
+                <arg type="string" var="$resource.properties.datasets[].dataPoints[].name" options="name" required="True">
+                  <help short="The name of the data point."/>
+                </arg>
+                <arg type="string" var="$resource.properties.datasets[].dataPoints[].observabilityMode" options="observability-mode">
+                  <help short="An indication of how the data point should be mapped to OpenTelemetry."/>
+                  <default value="&quot;None&quot;"/>
+                  <enum>
+                    <item name="Counter" value="&quot;Counter&quot;"/>
+                    <item name="Gauge" value="&quot;Gauge&quot;"/>
+                    <item name="Histogram" value="&quot;Histogram&quot;"/>
+                    <item name="Log" value="&quot;Log&quot;"/>
+                    <item name="None" value="&quot;None&quot;"/>
+                  </enum>
+                </arg>
+              </item>
+            </arg>
+            <arg type="string" var="$resource.properties.datasets[].datasetConfiguration" options="dataset-configuration">
+              <help short="Stringified JSON that contains connector-specific JSON string that describes configuration for the specific dataset."/>
+            </arg>
+            <arg type="string" var="$resource.properties.datasets[].name" options="name" required="True">
+              <help short="Name of the dataset."/>
+            </arg>
+            <arg type="@TopicCreateOrUpdate_create" var="$resource.properties.datasets[].topic" options="topic">
+              <help short="Object that describes the topic information for the specific dataset."/>
+            </arg>
+          </item>
+        </arg>
+        <arg type="string" var="$resource.properties.defaultDatasetsConfiguration" options="default-datasets-configuration" group="Properties">
+          <help short="Stringified JSON that contains connector-specific default configuration for all datasets. Each dataset can have its own configuration that overrides the default settings here."/>
+        </arg>
+        <arg type="string" var="$resource.properties.defaultEventsConfiguration" options="default-events-configuration" group="Properties">
+          <help short="Stringified JSON that contains connector-specific default configuration for all events. Each event can have its own configuration that overrides the default settings here."/>
+        </arg>
+        <arg type="object" var="$resource.properties.defaultTopic" options="default-topic" group="Properties" cls="TopicCreateOrUpdate_create">
+          <help short="Object that describes the default topic information for the asset."/>
+          <arg type="string" var="@TopicCreateOrUpdate_create.path" options="path" required="True">
+            <help short="The topic path for messages published to an MQTT broker."/>
+          </arg>
+          <arg type="string" var="@TopicCreateOrUpdate_create.retain" options="retain">
+            <help short="When set to 'Keep', messages published to an MQTT broker will have the retain flag set. Default: 'Never'."/>
+            <default value="&quot;Never&quot;"/>
+            <enum>
+              <item name="Keep" value="&quot;Keep&quot;"/>
+              <item name="Never" value="&quot;Never&quot;"/>
+            </enum>
+          </arg>
+        </arg>
+        <arg type="string" var="$resource.properties.description" options="description" group="Properties">
+          <help short="Human-readable description of the asset."/>
+        </arg>
+        <arg type="array<string>" var="$resource.properties.discoveredAssetRefs" options="discovered-asset-refs" group="Properties">
+          <help short="Reference to a list of discovered assets. Populated only if the asset has been created from discovery flow. Discovered asset names must be provided."/>
+          <item type="string"/>
+        </arg>
+        <arg type="string" var="$resource.properties.displayName" options="display-name" group="Properties">
+          <help short="Human-readable display name."/>
+        </arg>
+        <arg type="string" var="$resource.properties.documentationUri" options="documentation-uri" group="Properties">
+          <help short="Reference to the documentation."/>
+        </arg>
+        <arg type="boolean" var="$resource.properties.enabled" options="enabled" group="Properties">
+          <help short="Enabled/Disabled status of the asset."/>
+        </arg>
+        <arg type="array<object>" var="$resource.properties.events" options="events" group="Properties">
+          <help short="Array of events that are part of the asset. Each event can have per-event configuration."/>
+          <item type="object">
+            <arg type="string" var="$resource.properties.events[].eventConfiguration" options="event-configuration">
+              <help short="Stringified JSON that contains connector-specific configuration for the event. For OPC UA, this could include configuration like, publishingInterval, samplingInterval, and queueSize."/>
+            </arg>
+            <arg type="string" var="$resource.properties.events[].eventNotifier" options="event-notifier" required="True">
+              <help short="The address of the notifier of the event in the asset (e.g. URL) so that a client can access the event on the asset."/>
+            </arg>
+            <arg type="string" var="$resource.properties.events[].name" options="name" required="True">
+              <help short="The name of the event."/>
+            </arg>
+            <arg type="string" var="$resource.properties.events[].observabilityMode" options="observability-mode">
+              <help short="An indication of how the event should be mapped to OpenTelemetry."/>
+              <default value="&quot;None&quot;"/>
+              <enum>
+                <item name="Log" value="&quot;Log&quot;"/>
+                <item name="None" value="&quot;None&quot;"/>
+              </enum>
+            </arg>
+            <arg type="@TopicCreateOrUpdate_create" var="$resource.properties.events[].topic" options="topic">
+              <help short="Object that describes the topic information for the specific event."/>
+            </arg>
+          </item>
+        </arg>
+        <arg type="string" var="$resource.properties.externalAssetId" options="external-asset-id" group="Properties">
+          <help short="Asset id provided by the customer."/>
+        </arg>
+        <arg type="string" var="$resource.properties.hardwareRevision" options="hardware-revision" group="Properties">
+          <help short="Revision number of the hardware."/>
+        </arg>
+        <arg type="string" var="$resource.properties.manufacturer" options="manufacturer" group="Properties">
+          <help short="Asset manufacturer name."/>
+        </arg>
+        <arg type="string" var="$resource.properties.manufacturerUri" options="manufacturer-uri" group="Properties">
+          <help short="Asset manufacturer URI."/>
+        </arg>
+        <arg type="string" var="$resource.properties.model" options="model" group="Properties">
+          <help short="Asset model name."/>
+        </arg>
+        <arg type="string" var="$resource.properties.productCode" options="product-code" group="Properties">
+          <help short="Asset product code."/>
+        </arg>
+        <arg type="string" var="$resource.properties.serialNumber" options="serial-number" group="Properties">
+          <help short="Asset serial number."/>
+        </arg>
+        <arg type="string" var="$resource.properties.softwareRevision" options="software-revision" group="Properties">
+          <help short="Revision number of the software."/>
+        </arg>
+      </argGroup>
+      <argGroup name="Resource">
+        <arg type="object" var="$resource.extendedLocation" options="extended-location" required="True" group="Resource">
+          <help short="The extended location."/>
+          <arg type="string" var="$resource.extendedLocation.name" options="name" required="True">
+            <help short="The extended location name."/>
+          </arg>
+          <arg type="string" var="$resource.extendedLocation.type" options="type" required="True">
+            <help short="The extended location type."/>
+          </arg>
+        </arg>
+        <arg type="string" var="$resource.location" options="location" required="True" group="Resource">
+          <help short="The geo-location where the resource lives"/>
+        </arg>
+        <arg type="object" var="$resource.tags" options="tags" group="Resource">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <operation operationId="Assets_CreateOrReplace">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/assets/{assetName}">
+          <request method="put">
+            <path>
+              <param type="string" name="assetName" arg="$Path.assetName" required="True">
+                <format pattern="^[a-z0-9][a-z0-9-]*[a-z0-9]$" maxLength="63" minLength="3"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="resource" required="True" clientFlatten="True">
+                  <prop type="object" name="extendedLocation" arg="$resource.extendedLocation" required="True">
+                    <prop type="string" name="name" arg="$resource.extendedLocation.name" required="True"/>
+                    <prop type="string" name="type" arg="$resource.extendedLocation.type" required="True"/>
+                  </prop>
+                  <prop type="string" name="location" arg="$resource.location" required="True"/>
+                  <prop type="object" name="properties">
+                    <prop type="string" name="assetEndpointProfileRef" arg="$resource.properties.assetEndpointProfileRef" required="True"/>
+                    <prop type="object" name="attributes" arg="$resource.properties.attributes"/>
+                    <prop type="array<object>" name="datasets" arg="$resource.properties.datasets">
+                      <item type="object">
+                        <prop type="array<object>" name="dataPoints" arg="$resource.properties.datasets[].dataPoints">
+                          <item type="object">
+                            <prop type="string" name="dataPointConfiguration" arg="$resource.properties.datasets[].dataPoints[].dataPointConfiguration"/>
+                            <prop type="string" name="dataSource" arg="$resource.properties.datasets[].dataPoints[].dataSource" required="True"/>
+                            <prop type="string" name="name" arg="$resource.properties.datasets[].dataPoints[].name" required="True"/>
+                            <prop type="string" name="observabilityMode" arg="$resource.properties.datasets[].dataPoints[].observabilityMode">
+                              <default value="&quot;None&quot;"/>
+                              <enum>
+                                <item value="&quot;Counter&quot;"/>
+                                <item value="&quot;Gauge&quot;"/>
+                                <item value="&quot;Histogram&quot;"/>
+                                <item value="&quot;Log&quot;"/>
+                                <item value="&quot;None&quot;"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="string" name="datasetConfiguration" arg="$resource.properties.datasets[].datasetConfiguration"/>
+                        <prop type="string" name="name" arg="$resource.properties.datasets[].name" required="True"/>
+                        <prop type="@TopicCreateOrUpdate_create" name="topic" arg="$resource.properties.datasets[].topic"/>
+                      </item>
+                    </prop>
+                    <prop type="string" name="defaultDatasetsConfiguration" arg="$resource.properties.defaultDatasetsConfiguration"/>
+                    <prop type="string" name="defaultEventsConfiguration" arg="$resource.properties.defaultEventsConfiguration"/>
+                    <prop type="object" name="defaultTopic" arg="$resource.properties.defaultTopic" cls="TopicCreateOrUpdate_create">
+                      <prop type="string" name="path" arg="@TopicCreateOrUpdate_create.path" required="True"/>
+                      <prop type="string" name="retain" arg="@TopicCreateOrUpdate_create.retain">
+                        <default value="&quot;Never&quot;"/>
+                        <enum>
+                          <item value="&quot;Keep&quot;"/>
+                          <item value="&quot;Never&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="string" name="description" arg="$resource.properties.description"/>
+                    <prop type="array<string>" name="discoveredAssetRefs" arg="$resource.properties.discoveredAssetRefs">
+                      <item type="string"/>
+                    </prop>
+                    <prop type="string" name="displayName" arg="$resource.properties.displayName"/>
+                    <prop type="string" name="documentationUri" arg="$resource.properties.documentationUri"/>
+                    <prop type="boolean" name="enabled" arg="$resource.properties.enabled"/>
+                    <prop type="array<object>" name="events" arg="$resource.properties.events">
+                      <item type="object">
+                        <prop type="string" name="eventConfiguration" arg="$resource.properties.events[].eventConfiguration"/>
+                        <prop type="string" name="eventNotifier" arg="$resource.properties.events[].eventNotifier" required="True"/>
+                        <prop type="string" name="name" arg="$resource.properties.events[].name" required="True"/>
+                        <prop type="string" name="observabilityMode" arg="$resource.properties.events[].observabilityMode">
+                          <default value="&quot;None&quot;"/>
+                          <enum>
+                            <item value="&quot;Log&quot;"/>
+                            <item value="&quot;None&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="@TopicCreateOrUpdate_create" name="topic" arg="$resource.properties.events[].topic"/>
+                      </item>
+                    </prop>
+                    <prop type="string" name="externalAssetId" arg="$resource.properties.externalAssetId"/>
+                    <prop type="string" name="hardwareRevision" arg="$resource.properties.hardwareRevision"/>
+                    <prop type="string" name="manufacturer" arg="$resource.properties.manufacturer"/>
+                    <prop type="string" name="manufacturerUri" arg="$resource.properties.manufacturerUri"/>
+                    <prop type="string" name="model" arg="$resource.properties.model"/>
+                    <prop type="string" name="productCode" arg="$resource.properties.productCode"/>
+                    <prop type="string" name="serialNumber" arg="$resource.properties.serialNumber"/>
+                    <prop type="string" name="softwareRevision" arg="$resource.properties.softwareRevision"/>
+                  </prop>
+                  <prop type="object" name="tags" arg="$resource.tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="object" name="extendedLocation" required="True">
+                    <prop type="string" name="name" required="True"/>
+                    <prop type="string" name="type" required="True"/>
+                  </prop>
+                  <prop readOnly="True" type="ResourceId" name="id"/>
+                  <prop type="string" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="string" name="assetEndpointProfileRef" required="True"/>
+                    <prop type="object" name="attributes"/>
+                    <prop type="array<object>" name="datasets">
+                      <item type="object">
+                        <prop type="array<object>" name="dataPoints">
+                          <item type="object">
+                            <prop type="string" name="dataPointConfiguration"/>
+                            <prop type="string" name="dataSource" required="True"/>
+                            <prop type="string" name="name" required="True"/>
+                            <prop type="string" name="observabilityMode">
+                              <default value="&quot;None&quot;"/>
+                              <enum>
+                                <item value="&quot;Counter&quot;"/>
+                                <item value="&quot;Gauge&quot;"/>
+                                <item value="&quot;Histogram&quot;"/>
+                                <item value="&quot;Log&quot;"/>
+                                <item value="&quot;None&quot;"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="string" name="datasetConfiguration"/>
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="@Topic_read" name="topic"/>
+                      </item>
+                    </prop>
+                    <prop type="string" name="defaultDatasetsConfiguration"/>
+                    <prop type="string" name="defaultEventsConfiguration"/>
+                    <prop type="object" name="defaultTopic" cls="Topic_read">
+                      <prop type="string" name="path" required="True"/>
+                      <prop type="string" name="retain">
+                        <default value="&quot;Never&quot;"/>
+                        <enum>
+                          <item value="&quot;Keep&quot;"/>
+                          <item value="&quot;Never&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="string" name="description"/>
+                    <prop type="array<string>" name="discoveredAssetRefs">
+                      <item type="string"/>
+                    </prop>
+                    <prop type="string" name="displayName"/>
+                    <prop type="string" name="documentationUri"/>
+                    <prop type="boolean" name="enabled"/>
+                    <prop type="array<object>" name="events">
+                      <item type="object">
+                        <prop type="string" name="eventConfiguration"/>
+                        <prop type="string" name="eventNotifier" required="True"/>
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="string" name="observabilityMode">
+                          <default value="&quot;None&quot;"/>
+                          <enum>
+                            <item value="&quot;Log&quot;"/>
+                            <item value="&quot;None&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="@Topic_read" name="topic"/>
+                      </item>
+                    </prop>
+                    <prop type="string" name="externalAssetId"/>
+                    <prop type="string" name="hardwareRevision"/>
+                    <prop type="string" name="manufacturer"/>
+                    <prop type="string" name="manufacturerUri"/>
+                    <prop type="string" name="model"/>
+                    <prop type="string" name="productCode"/>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="serialNumber"/>
+                    <prop type="string" name="softwareRevision"/>
+                    <prop readOnly="True" type="object" name="status">
+                      <prop readOnly="True" type="array<object>" name="datasets">
+                        <item type="object">
+                          <prop readOnly="True" type="object" name="messageSchemaReference" cls="MessageSchemaReference_read">
+                            <prop readOnly="True" type="string" name="schemaName" required="True"/>
+                            <prop readOnly="True" type="string" name="schemaRegistryNamespace" required="True"/>
+                            <prop readOnly="True" type="string" name="schemaVersion" required="True"/>
+                          </prop>
+                          <prop readOnly="True" type="string" name="name" required="True"/>
+                        </item>
+                      </prop>
+                      <prop readOnly="True" type="array<object>" name="errors">
+                        <item type="object">
+                          <prop readOnly="True" type="integer32" name="code"/>
+                          <prop readOnly="True" type="string" name="message"/>
+                        </item>
+                      </prop>
+                      <prop readOnly="True" type="array<object>" name="events">
+                        <item type="object">
+                          <prop readOnly="True" type="@MessageSchemaReference_read" name="messageSchemaReference"/>
+                          <prop readOnly="True" type="string" name="name" required="True"/>
+                        </item>
+                      </prop>
+                      <prop readOnly="True" type="integer64" name="version"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="uuid"/>
+                    <prop readOnly="True" type="integer64" name="version"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="update" version="2024-11-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.deviceregistry/assets/{}" version="2024-11-01" swagger="mgmt-plane/deviceregistry/ResourceProviders/Microsoft.DeviceRegistry/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGV2aWNlUmVnaXN0cnkvYXNzZXRzL3thc3NldE5hbWV9/V/MjAyNC0xMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.assetName" options="asset-name name n" required="True" idPart="name">
+          <help short="Asset name parameter."/>
+          <format pattern="^[a-z0-9][a-z0-9-]*[a-z0-9]$" maxLength="63" minLength="3"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg nullable="True" type="object" var="$resource.properties.attributes" options="attributes" group="Properties">
+          <help short="A set of key-value pairs that contain custom attributes set by the customer."/>
+        </arg>
+        <arg nullable="True" type="array<object>" var="$resource.properties.datasets" options="datasets" group="Properties">
+          <help short="Array of datasets that are part of the asset. Each dataset describes the data points that make up the set."/>
+          <item nullable="True" type="object">
+            <arg nullable="True" type="array<object>" var="$resource.properties.datasets[].dataPoints" options="data-points">
+              <help short="Array of data points that are part of the dataset. Each data point can have per-data point configuration."/>
+              <item nullable="True" type="object">
+                <arg nullable="True" type="string" var="$resource.properties.datasets[].dataPoints[].dataPointConfiguration" options="data-point-configuration">
+                  <help short="Stringified JSON that contains connector-specific configuration for the data point. For OPC UA, this could include configuration like, publishingInterval, samplingInterval, and queueSize."/>
+                </arg>
+                <arg type="string" var="$resource.properties.datasets[].dataPoints[].dataSource" options="data-source">
+                  <help short="The address of the source of the data in the asset (e.g. URL) so that a client can access the data source on the asset."/>
+                </arg>
+                <arg type="string" var="$resource.properties.datasets[].dataPoints[].name" options="name">
+                  <help short="The name of the data point."/>
+                </arg>
+                <arg nullable="True" type="string" var="$resource.properties.datasets[].dataPoints[].observabilityMode" options="observability-mode">
+                  <help short="An indication of how the data point should be mapped to OpenTelemetry."/>
+                  <enum>
+                    <item name="Counter" value="&quot;Counter&quot;"/>
+                    <item name="Gauge" value="&quot;Gauge&quot;"/>
+                    <item name="Histogram" value="&quot;Histogram&quot;"/>
+                    <item name="Log" value="&quot;Log&quot;"/>
+                    <item name="None" value="&quot;None&quot;"/>
+                  </enum>
+                </arg>
+              </item>
+            </arg>
+            <arg nullable="True" type="string" var="$resource.properties.datasets[].datasetConfiguration" options="dataset-configuration">
+              <help short="Stringified JSON that contains connector-specific JSON string that describes configuration for the specific dataset."/>
+            </arg>
+            <arg type="string" var="$resource.properties.datasets[].name" options="name">
+              <help short="Name of the dataset."/>
+            </arg>
+            <arg nullable="True" type="@TopicCreateOrUpdate_update" var="$resource.properties.datasets[].topic" options="topic">
+              <help short="Object that describes the topic information for the specific dataset."/>
+            </arg>
+          </item>
+        </arg>
+        <arg nullable="True" type="string" var="$resource.properties.defaultDatasetsConfiguration" options="default-datasets-configuration" group="Properties">
+          <help short="Stringified JSON that contains connector-specific default configuration for all datasets. Each dataset can have its own configuration that overrides the default settings here."/>
+        </arg>
+        <arg nullable="True" type="string" var="$resource.properties.defaultEventsConfiguration" options="default-events-configuration" group="Properties">
+          <help short="Stringified JSON that contains connector-specific default configuration for all events. Each event can have its own configuration that overrides the default settings here."/>
+        </arg>
+        <arg nullable="True" type="object" var="$resource.properties.defaultTopic" options="default-topic" group="Properties" cls="TopicCreateOrUpdate_update">
+          <help short="Object that describes the default topic information for the asset."/>
+          <arg type="string" var="@TopicCreateOrUpdate_update.path" options="path">
+            <help short="The topic path for messages published to an MQTT broker."/>
+          </arg>
+          <arg nullable="True" type="string" var="@TopicCreateOrUpdate_update.retain" options="retain">
+            <help short="When set to 'Keep', messages published to an MQTT broker will have the retain flag set. Default: 'Never'."/>
+            <enum>
+              <item name="Keep" value="&quot;Keep&quot;"/>
+              <item name="Never" value="&quot;Never&quot;"/>
+            </enum>
+          </arg>
+        </arg>
+        <arg nullable="True" type="string" var="$resource.properties.description" options="description" group="Properties">
+          <help short="Human-readable description of the asset."/>
+        </arg>
+        <arg nullable="True" type="string" var="$resource.properties.displayName" options="display-name" group="Properties">
+          <help short="Human-readable display name."/>
+        </arg>
+        <arg nullable="True" type="string" var="$resource.properties.documentationUri" options="documentation-uri" group="Properties">
+          <help short="Reference to the documentation."/>
+        </arg>
+        <arg nullable="True" type="boolean" var="$resource.properties.enabled" options="enabled" group="Properties">
+          <help short="Enabled/Disabled status of the asset."/>
+        </arg>
+        <arg nullable="True" type="array<object>" var="$resource.properties.events" options="events" group="Properties">
+          <help short="Array of events that are part of the asset. Each event can have per-event configuration."/>
+          <item nullable="True" type="object">
+            <arg nullable="True" type="string" var="$resource.properties.events[].eventConfiguration" options="event-configuration">
+              <help short="Stringified JSON that contains connector-specific configuration for the event. For OPC UA, this could include configuration like, publishingInterval, samplingInterval, and queueSize."/>
+            </arg>
+            <arg type="string" var="$resource.properties.events[].eventNotifier" options="event-notifier">
+              <help short="The address of the notifier of the event in the asset (e.g. URL) so that a client can access the event on the asset."/>
+            </arg>
+            <arg type="string" var="$resource.properties.events[].name" options="name">
+              <help short="The name of the event."/>
+            </arg>
+            <arg nullable="True" type="string" var="$resource.properties.events[].observabilityMode" options="observability-mode">
+              <help short="An indication of how the event should be mapped to OpenTelemetry."/>
+              <enum>
+                <item name="Log" value="&quot;Log&quot;"/>
+                <item name="None" value="&quot;None&quot;"/>
+              </enum>
+            </arg>
+            <arg nullable="True" type="@TopicCreateOrUpdate_update" var="$resource.properties.events[].topic" options="topic">
+              <help short="Object that describes the topic information for the specific event."/>
+            </arg>
+          </item>
+        </arg>
+        <arg nullable="True" type="string" var="$resource.properties.hardwareRevision" options="hardware-revision" group="Properties">
+          <help short="Revision number of the hardware."/>
+        </arg>
+        <arg nullable="True" type="string" var="$resource.properties.manufacturer" options="manufacturer" group="Properties">
+          <help short="Asset manufacturer name."/>
+        </arg>
+        <arg nullable="True" type="string" var="$resource.properties.manufacturerUri" options="manufacturer-uri" group="Properties">
+          <help short="Asset manufacturer URI."/>
+        </arg>
+        <arg nullable="True" type="string" var="$resource.properties.model" options="model" group="Properties">
+          <help short="Asset model name."/>
+        </arg>
+        <arg nullable="True" type="string" var="$resource.properties.productCode" options="product-code" group="Properties">
+          <help short="Asset product code."/>
+        </arg>
+        <arg nullable="True" type="string" var="$resource.properties.serialNumber" options="serial-number" group="Properties">
+          <help short="Asset serial number."/>
+        </arg>
+        <arg nullable="True" type="string" var="$resource.properties.softwareRevision" options="software-revision" group="Properties">
+          <help short="Revision number of the software."/>
+        </arg>
+      </argGroup>
+      <argGroup name="Resource">
+        <arg nullable="True" type="object" var="$resource.tags" options="tags" group="Resource">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item nullable="True" type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <operation operationId="Assets_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/assets/{assetName}">
+          <request method="get">
+            <path>
+              <param type="string" name="assetName" arg="$Path.assetName" required="True">
+                <format pattern="^[a-z0-9][a-z0-9-]*[a-z0-9]$" maxLength="63" minLength="3"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="object" name="extendedLocation" required="True">
+                    <prop type="string" name="name" required="True"/>
+                    <prop type="string" name="type" required="True"/>
+                  </prop>
+                  <prop readOnly="True" type="ResourceId" name="id"/>
+                  <prop type="string" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="string" name="assetEndpointProfileRef" required="True"/>
+                    <prop type="object" name="attributes"/>
+                    <prop type="array<object>" name="datasets">
+                      <item type="object">
+                        <prop type="array<object>" name="dataPoints">
+                          <item type="object">
+                            <prop type="string" name="dataPointConfiguration"/>
+                            <prop type="string" name="dataSource" required="True"/>
+                            <prop type="string" name="name" required="True"/>
+                            <prop type="string" name="observabilityMode">
+                              <default value="&quot;None&quot;"/>
+                              <enum>
+                                <item value="&quot;Counter&quot;"/>
+                                <item value="&quot;Gauge&quot;"/>
+                                <item value="&quot;Histogram&quot;"/>
+                                <item value="&quot;Log&quot;"/>
+                                <item value="&quot;None&quot;"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="string" name="datasetConfiguration"/>
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="@Topic_read" name="topic"/>
+                      </item>
+                    </prop>
+                    <prop type="string" name="defaultDatasetsConfiguration"/>
+                    <prop type="string" name="defaultEventsConfiguration"/>
+                    <prop type="object" name="defaultTopic" cls="Topic_read">
+                      <prop type="string" name="path" required="True"/>
+                      <prop type="string" name="retain">
+                        <default value="&quot;Never&quot;"/>
+                        <enum>
+                          <item value="&quot;Keep&quot;"/>
+                          <item value="&quot;Never&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="string" name="description"/>
+                    <prop type="array<string>" name="discoveredAssetRefs">
+                      <item type="string"/>
+                    </prop>
+                    <prop type="string" name="displayName"/>
+                    <prop type="string" name="documentationUri"/>
+                    <prop type="boolean" name="enabled"/>
+                    <prop type="array<object>" name="events">
+                      <item type="object">
+                        <prop type="string" name="eventConfiguration"/>
+                        <prop type="string" name="eventNotifier" required="True"/>
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="string" name="observabilityMode">
+                          <default value="&quot;None&quot;"/>
+                          <enum>
+                            <item value="&quot;Log&quot;"/>
+                            <item value="&quot;None&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="@Topic_read" name="topic"/>
+                      </item>
+                    </prop>
+                    <prop type="string" name="externalAssetId"/>
+                    <prop type="string" name="hardwareRevision"/>
+                    <prop type="string" name="manufacturer"/>
+                    <prop type="string" name="manufacturerUri"/>
+                    <prop type="string" name="model"/>
+                    <prop type="string" name="productCode"/>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="serialNumber"/>
+                    <prop type="string" name="softwareRevision"/>
+                    <prop readOnly="True" type="object" name="status">
+                      <prop readOnly="True" type="array<object>" name="datasets">
+                        <item type="object">
+                          <prop readOnly="True" type="object" name="messageSchemaReference" cls="MessageSchemaReference_read">
+                            <prop readOnly="True" type="string" name="schemaName" required="True"/>
+                            <prop readOnly="True" type="string" name="schemaRegistryNamespace" required="True"/>
+                            <prop readOnly="True" type="string" name="schemaVersion" required="True"/>
+                          </prop>
+                          <prop readOnly="True" type="string" name="name" required="True"/>
+                        </item>
+                      </prop>
+                      <prop readOnly="True" type="array<object>" name="errors">
+                        <item type="object">
+                          <prop readOnly="True" type="integer32" name="code"/>
+                          <prop readOnly="True" type="string" name="message"/>
+                        </item>
+                      </prop>
+                      <prop readOnly="True" type="array<object>" name="events">
+                        <item type="object">
+                          <prop readOnly="True" type="@MessageSchemaReference_read" name="messageSchemaReference"/>
+                          <prop readOnly="True" type="string" name="name" required="True"/>
+                        </item>
+                      </prop>
+                      <prop readOnly="True" type="integer64" name="version"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="uuid"/>
+                    <prop readOnly="True" type="integer64" name="version"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation>
+        <instanceUpdate ref="$Instance">
+          <json>
+            <schema type="object" name="resource" required="True" clientFlatten="True">
+              <prop type="object" name="properties">
+                <prop type="object" name="attributes" arg="$resource.properties.attributes"/>
+                <prop type="array<object>" name="datasets" arg="$resource.properties.datasets">
+                  <item type="object">
+                    <prop type="array<object>" name="dataPoints" arg="$resource.properties.datasets[].dataPoints">
+                      <item type="object">
+                        <prop type="string" name="dataPointConfiguration" arg="$resource.properties.datasets[].dataPoints[].dataPointConfiguration"/>
+                        <prop type="string" name="dataSource" arg="$resource.properties.datasets[].dataPoints[].dataSource" required="True"/>
+                        <prop type="string" name="name" arg="$resource.properties.datasets[].dataPoints[].name" required="True"/>
+                        <prop type="string" name="observabilityMode" arg="$resource.properties.datasets[].dataPoints[].observabilityMode">
+                          <default value="&quot;None&quot;"/>
+                          <enum>
+                            <item value="&quot;Counter&quot;"/>
+                            <item value="&quot;Gauge&quot;"/>
+                            <item value="&quot;Histogram&quot;"/>
+                            <item value="&quot;Log&quot;"/>
+                            <item value="&quot;None&quot;"/>
+                          </enum>
+                        </prop>
+                      </item>
+                    </prop>
+                    <prop type="string" name="datasetConfiguration" arg="$resource.properties.datasets[].datasetConfiguration"/>
+                    <prop type="string" name="name" arg="$resource.properties.datasets[].name" required="True"/>
+                    <prop type="@TopicCreateOrUpdate_update" name="topic" arg="$resource.properties.datasets[].topic"/>
+                  </item>
+                </prop>
+                <prop type="string" name="defaultDatasetsConfiguration" arg="$resource.properties.defaultDatasetsConfiguration"/>
+                <prop type="string" name="defaultEventsConfiguration" arg="$resource.properties.defaultEventsConfiguration"/>
+                <prop type="object" name="defaultTopic" arg="$resource.properties.defaultTopic" cls="TopicCreateOrUpdate_update">
+                  <prop type="string" name="path" arg="@TopicCreateOrUpdate_update.path" required="True"/>
+                  <prop type="string" name="retain" arg="@TopicCreateOrUpdate_update.retain">
+                    <default value="&quot;Never&quot;"/>
+                    <enum>
+                      <item value="&quot;Keep&quot;"/>
+                      <item value="&quot;Never&quot;"/>
+                    </enum>
+                  </prop>
+                </prop>
+                <prop type="string" name="description" arg="$resource.properties.description"/>
+                <prop type="string" name="displayName" arg="$resource.properties.displayName"/>
+                <prop type="string" name="documentationUri" arg="$resource.properties.documentationUri"/>
+                <prop type="boolean" name="enabled" arg="$resource.properties.enabled"/>
+                <prop type="array<object>" name="events" arg="$resource.properties.events">
+                  <item type="object">
+                    <prop type="string" name="eventConfiguration" arg="$resource.properties.events[].eventConfiguration"/>
+                    <prop type="string" name="eventNotifier" arg="$resource.properties.events[].eventNotifier" required="True"/>
+                    <prop type="string" name="name" arg="$resource.properties.events[].name" required="True"/>
+                    <prop type="string" name="observabilityMode" arg="$resource.properties.events[].observabilityMode">
+                      <default value="&quot;None&quot;"/>
+                      <enum>
+                        <item value="&quot;Log&quot;"/>
+                        <item value="&quot;None&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="@TopicCreateOrUpdate_update" name="topic" arg="$resource.properties.events[].topic"/>
+                  </item>
+                </prop>
+                <prop type="string" name="hardwareRevision" arg="$resource.properties.hardwareRevision"/>
+                <prop type="string" name="manufacturer" arg="$resource.properties.manufacturer"/>
+                <prop type="string" name="manufacturerUri" arg="$resource.properties.manufacturerUri"/>
+                <prop type="string" name="model" arg="$resource.properties.model"/>
+                <prop type="string" name="productCode" arg="$resource.properties.productCode"/>
+                <prop type="string" name="serialNumber" arg="$resource.properties.serialNumber"/>
+                <prop type="string" name="softwareRevision" arg="$resource.properties.softwareRevision"/>
+              </prop>
+              <prop type="object" name="tags" arg="$resource.tags">
+                <additionalProp>
+                  <item type="string"/>
+                </additionalProp>
+              </prop>
+            </schema>
+          </json>
+        </instanceUpdate>
+      </operation>
+      <operation operationId="Assets_CreateOrReplace">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/assets/{assetName}">
+          <request method="put">
+            <path>
+              <param type="string" name="assetName" arg="$Path.assetName" required="True">
+                <format pattern="^[a-z0-9][a-z0-9-]*[a-z0-9]$" maxLength="63" minLength="3"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json ref="$Instance"/>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="object" name="extendedLocation" required="True">
+                    <prop type="string" name="name" required="True"/>
+                    <prop type="string" name="type" required="True"/>
+                  </prop>
+                  <prop readOnly="True" type="ResourceId" name="id"/>
+                  <prop type="string" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="string" name="assetEndpointProfileRef" required="True"/>
+                    <prop type="object" name="attributes"/>
+                    <prop type="array<object>" name="datasets">
+                      <item type="object">
+                        <prop type="array<object>" name="dataPoints">
+                          <item type="object">
+                            <prop type="string" name="dataPointConfiguration"/>
+                            <prop type="string" name="dataSource" required="True"/>
+                            <prop type="string" name="name" required="True"/>
+                            <prop type="string" name="observabilityMode">
+                              <default value="&quot;None&quot;"/>
+                              <enum>
+                                <item value="&quot;Counter&quot;"/>
+                                <item value="&quot;Gauge&quot;"/>
+                                <item value="&quot;Histogram&quot;"/>
+                                <item value="&quot;Log&quot;"/>
+                                <item value="&quot;None&quot;"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="string" name="datasetConfiguration"/>
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="@Topic_read" name="topic"/>
+                      </item>
+                    </prop>
+                    <prop type="string" name="defaultDatasetsConfiguration"/>
+                    <prop type="string" name="defaultEventsConfiguration"/>
+                    <prop type="@Topic_read" name="defaultTopic"/>
+                    <prop type="string" name="description"/>
+                    <prop type="array<string>" name="discoveredAssetRefs">
+                      <item type="string"/>
+                    </prop>
+                    <prop type="string" name="displayName"/>
+                    <prop type="string" name="documentationUri"/>
+                    <prop type="boolean" name="enabled"/>
+                    <prop type="array<object>" name="events">
+                      <item type="object">
+                        <prop type="string" name="eventConfiguration"/>
+                        <prop type="string" name="eventNotifier" required="True"/>
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="string" name="observabilityMode">
+                          <default value="&quot;None&quot;"/>
+                          <enum>
+                            <item value="&quot;Log&quot;"/>
+                            <item value="&quot;None&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="@Topic_read" name="topic"/>
+                      </item>
+                    </prop>
+                    <prop type="string" name="externalAssetId"/>
+                    <prop type="string" name="hardwareRevision"/>
+                    <prop type="string" name="manufacturer"/>
+                    <prop type="string" name="manufacturerUri"/>
+                    <prop type="string" name="model"/>
+                    <prop type="string" name="productCode"/>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="serialNumber"/>
+                    <prop type="string" name="softwareRevision"/>
+                    <prop readOnly="True" type="object" name="status">
+                      <prop readOnly="True" type="array<object>" name="datasets">
+                        <item type="object">
+                          <prop readOnly="True" type="@MessageSchemaReference_read" name="messageSchemaReference"/>
+                          <prop readOnly="True" type="string" name="name" required="True"/>
+                        </item>
+                      </prop>
+                      <prop readOnly="True" type="array<object>" name="errors">
+                        <item type="object">
+                          <prop readOnly="True" type="integer32" name="code"/>
+                          <prop readOnly="True" type="string" name="message"/>
+                        </item>
+                      </prop>
+                      <prop readOnly="True" type="array<object>" name="events">
+                        <item type="object">
+                          <prop readOnly="True" type="@MessageSchemaReference_read" name="messageSchemaReference"/>
+                          <prop readOnly="True" type="string" name="name" required="True"/>
+                        </item>
+                      </prop>
+                      <prop readOnly="True" type="integer64" name="version"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="uuid"/>
+                    <prop readOnly="True" type="integer64" name="version"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

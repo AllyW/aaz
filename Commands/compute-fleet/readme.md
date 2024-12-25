@@ -2,6 +2,11 @@
 
 Manage for Azure Compute Fleet
 
+## Subgroups
+
+- [identity](/Commands/compute-fleet/identity/readme.md)
+: compute-fleet identity
+
 ## Commands
 
 - [create](/Commands/compute-fleet/_create.md)

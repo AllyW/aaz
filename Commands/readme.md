@@ -44,6 +44,9 @@
 - [automation](/Commands/automation/readme.md)
 : Manage Automation Account.
 
+- [azure-playwright-service](/Commands/azure-playwright-service/readme.md)
+: azure-playwright-service
+
 - [baremetalinstance](/Commands/baremetalinstance/readme.md)
 : Handle Operations for Compute Azure Bare Instances.
 
@@ -86,6 +89,9 @@
 - [compute-recommender](/Commands/compute-recommender/readme.md)
 : Manage sku/zone/region recommender info for compute resources
 
+- [compute-schedule](/Commands/compute-schedule/readme.md)
+: compute-schedule
+
 - [confidentialledger](/Commands/confidentialledger/readme.md)
 : Deploy and manage Azure confidential ledgers.
 
@@ -119,11 +125,20 @@
 - [dataprotection](/Commands/dataprotection/readme.md)
 : Manage dataprotection.
 
+- [deidservice](/Commands/deidservice/readme.md)
+: deidservice
+
 - [desktopvirtualization](/Commands/desktopvirtualization/readme.md)
 : Manage desktop virtualization.
 
+- [dev-ops-infrastructure](/Commands/dev-ops-infrastructure/readme.md)
+: dev-ops-infrastructure
+
 - [devcenter](/Commands/devcenter/readme.md)
 : Manage resources with devcenter.
+
+- [device-registry](/Commands/device-registry/readme.md)
+: device-registry
 
 - [disk](/Commands/disk/readme.md)
 : Manage Azure Managed Disks.
@@ -139,6 +154,9 @@
 
 - [dns-resolver](/Commands/dns-resolver/readme.md)
 : Manage Dns Resolver
+
+- [document-db](/Commands/document-db/readme.md)
+: document-db
 
 - [durabletask](/Commands/durabletask/readme.md)
 : Commands to manage Durabletasks.
@@ -173,6 +191,9 @@
 - [graph-services](/Commands/graph-services/readme.md)
 : Make operations on Microsoft.GraphServices resource types
 
+- [health-data-ai-services](/Commands/health-data-ai-services/readme.md)
+: health-data-ai-services
+
 - [healthcareapis](/Commands/healthcareapis/readme.md)
 : Azure Healthcare APIs is a secure cloud platform for managing health data, supporting analytics, machine learning, and scalable solutions.
 
@@ -193,6 +214,9 @@
 
 - [large-storage-instance](/Commands/large-storage-instance/readme.md)
 : Handle Operations for Storage Azure Large Instances.
+
+- [liftrbasic](/Commands/liftrbasic/readme.md)
+: liftrbasic
 
 - [load](/Commands/load/readme.md)
 : Manage Azure Load Testing resources.

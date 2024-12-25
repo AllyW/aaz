@@ -20,7 +20,7 @@
                 <format pattern=".*"/>
               </param>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
@@ -35,12 +35,10 @@
             <body>
               <json var="$Instance">
                 <schema type="object">
-                  <prop readOnly="True" type="ResourceId" name="id">
-                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.AzureLargeInstance/azureLargeInstances/{}"/>
-                  </prop>
-                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="ResourceId" name="id"/>
+                  <prop type="string" name="location" required="True"/>
                   <prop readOnly="True" type="string" name="name"/>
-                  <prop type="object" name="properties" clientFlatten="True">
+                  <prop type="object" name="properties">
                     <prop type="string" name="azureLargeInstanceId"/>
                     <prop type="object" name="hardwareProfile">
                       <prop type="string" name="azureLargeInstanceSize">
@@ -184,7 +182,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>
@@ -210,7 +208,7 @@
                 <format pattern=".*"/>
               </param>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
@@ -226,7 +224,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>
@@ -372,7 +370,7 @@
         </arg>
       </argGroup>
       <argGroup name="Resource">
-        <arg type="ResourceLocation" var="$resource.location" options="location l" required="True" group="Resource">
+        <arg type="string" var="$resource.location" options="location l" required="True" group="Resource">
           <help short="The geo-location where the resource lives"/>
         </arg>
         <arg type="object" var="$resource.tags" options="tags" group="Resource">
@@ -390,7 +388,7 @@
                 <format pattern=".*"/>
               </param>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
@@ -403,8 +401,8 @@
             <body>
               <json>
                 <schema type="object" name="resource" required="True" clientFlatten="True">
-                  <prop type="ResourceLocation" name="location" arg="$resource.location" required="True"/>
-                  <prop type="object" name="properties" clientFlatten="True">
+                  <prop type="string" name="location" arg="$resource.location" required="True"/>
+                  <prop type="object" name="properties">
                     <prop type="string" name="azureLargeInstanceId" arg="$resource.properties.azureLargeInstanceId"/>
                     <prop type="object" name="hardwareProfile">
                       <prop type="string" name="azureLargeInstanceSize" arg="$resource.properties.hardwareProfile.azureLargeInstanceSize">
@@ -513,12 +511,10 @@
             <body>
               <json var="$Instance">
                 <schema type="object">
-                  <prop readOnly="True" type="ResourceId" name="id">
-                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.AzureLargeInstance/azureLargeInstances/{}"/>
-                  </prop>
-                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="ResourceId" name="id"/>
+                  <prop type="string" name="location" required="True"/>
                   <prop readOnly="True" type="string" name="name"/>
-                  <prop type="object" name="properties" clientFlatten="True">
+                  <prop type="object" name="properties">
                     <prop type="string" name="azureLargeInstanceId"/>
                     <prop type="object" name="hardwareProfile">
                       <prop type="string" name="azureLargeInstanceSize">
@@ -662,7 +658,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>
@@ -825,7 +821,7 @@
                 <format pattern=".*"/>
               </param>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
@@ -839,13 +835,11 @@
           <response statusCode="200">
             <body>
               <json var="$Instance">
-                <schema type="object" cls="AzureLargeInstance_read">
-                  <prop readOnly="True" type="ResourceId" name="id">
-                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.AzureLargeInstance/azureLargeInstances/{}"/>
-                  </prop>
-                  <prop type="ResourceLocation" name="location" required="True"/>
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id"/>
+                  <prop type="string" name="location" required="True"/>
                   <prop readOnly="True" type="string" name="name"/>
-                  <prop type="object" name="properties" clientFlatten="True">
+                  <prop type="object" name="properties">
                     <prop type="string" name="azureLargeInstanceId"/>
                     <prop type="object" name="hardwareProfile">
                       <prop type="string" name="azureLargeInstanceSize">
@@ -989,7 +983,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>
@@ -999,7 +993,7 @@
         <instanceUpdate ref="$Instance">
           <json>
             <schema type="object" name="resource" required="True" clientFlatten="True">
-              <prop type="object" name="properties" clientFlatten="True">
+              <prop type="object" name="properties">
                 <prop type="string" name="azureLargeInstanceId" arg="$resource.properties.azureLargeInstanceId"/>
                 <prop type="object" name="hardwareProfile" arg="$resource.properties.hardwareProfile">
                   <prop type="string" name="azureLargeInstanceSize" arg="$resource.properties.hardwareProfile.azureLargeInstanceSize">
@@ -1112,7 +1106,7 @@
                 <format pattern=".*"/>
               </param>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
@@ -1129,14 +1123,155 @@
           <response statusCode="200 201">
             <body>
               <json var="$Instance">
-                <schema type="@AzureLargeInstance_read"/>
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id"/>
+                  <prop type="string" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="string" name="azureLargeInstanceId"/>
+                    <prop type="object" name="hardwareProfile">
+                      <prop type="string" name="azureLargeInstanceSize">
+                        <enum>
+                          <item value="&quot;S112&quot;"/>
+                          <item value="&quot;S144&quot;"/>
+                          <item value="&quot;S144m&quot;"/>
+                          <item value="&quot;S192&quot;"/>
+                          <item value="&quot;S192m&quot;"/>
+                          <item value="&quot;S192xm&quot;"/>
+                          <item value="&quot;S224&quot;"/>
+                          <item value="&quot;S224m&quot;"/>
+                          <item value="&quot;S224om&quot;"/>
+                          <item value="&quot;S224oo&quot;"/>
+                          <item value="&quot;S224oom&quot;"/>
+                          <item value="&quot;S224ooo&quot;"/>
+                          <item value="&quot;S224se&quot;"/>
+                          <item value="&quot;S384&quot;"/>
+                          <item value="&quot;S384m&quot;"/>
+                          <item value="&quot;S384xm&quot;"/>
+                          <item value="&quot;S384xxm&quot;"/>
+                          <item value="&quot;S448&quot;"/>
+                          <item value="&quot;S448m&quot;"/>
+                          <item value="&quot;S448om&quot;"/>
+                          <item value="&quot;S448oo&quot;"/>
+                          <item value="&quot;S448oom&quot;"/>
+                          <item value="&quot;S448ooo&quot;"/>
+                          <item value="&quot;S448se&quot;"/>
+                          <item value="&quot;S576m&quot;"/>
+                          <item value="&quot;S576xm&quot;"/>
+                          <item value="&quot;S672&quot;"/>
+                          <item value="&quot;S672m&quot;"/>
+                          <item value="&quot;S672om&quot;"/>
+                          <item value="&quot;S672oo&quot;"/>
+                          <item value="&quot;S672oom&quot;"/>
+                          <item value="&quot;S672ooo&quot;"/>
+                          <item value="&quot;S72&quot;"/>
+                          <item value="&quot;S72m&quot;"/>
+                          <item value="&quot;S768&quot;"/>
+                          <item value="&quot;S768m&quot;"/>
+                          <item value="&quot;S768xm&quot;"/>
+                          <item value="&quot;S896&quot;"/>
+                          <item value="&quot;S896m&quot;"/>
+                          <item value="&quot;S896om&quot;"/>
+                          <item value="&quot;S896oo&quot;"/>
+                          <item value="&quot;S896oom&quot;"/>
+                          <item value="&quot;S896ooo&quot;"/>
+                          <item value="&quot;S96&quot;"/>
+                          <item value="&quot;S960m&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="hardwareType">
+                        <enum>
+                          <item value="&quot;Cisco_UCS&quot;"/>
+                          <item value="&quot;HPE&quot;"/>
+                          <item value="&quot;SDFLEX&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="string" name="hwRevision"/>
+                    <prop type="object" name="networkProfile">
+                      <prop type="string" name="circuitId"/>
+                      <prop type="array<object>" name="networkInterfaces">
+                        <item type="object">
+                          <prop type="string" name="ipAddress"/>
+                        </item>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="osProfile">
+                      <prop type="string" name="computerName"/>
+                      <prop type="string" name="osType"/>
+                      <prop type="string" name="sshPublicKey"/>
+                      <prop type="string" name="version"/>
+                    </prop>
+                    <prop type="string" name="powerState">
+                      <enum>
+                        <item value="&quot;restarting&quot;"/>
+                        <item value="&quot;started&quot;"/>
+                        <item value="&quot;starting&quot;"/>
+                        <item value="&quot;stopped&quot;"/>
+                        <item value="&quot;stopping&quot;"/>
+                        <item value="&quot;unknown&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Creating&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Migrating&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="proximityPlacementGroup"/>
+                    <prop type="object" name="storageProfile">
+                      <prop type="string" name="nfsIpAddress"/>
+                      <prop type="array<object>" name="osDisks">
+                        <item type="object">
+                          <prop type="integer32" name="diskSizeGB"/>
+                          <prop readOnly="True" type="integer32" name="lun"/>
+                          <prop type="string" name="name"/>
+                        </item>
+                      </prop>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
               </json>
             </body>
           </response>
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>

@@ -24,14 +24,12 @@
             <body>
               <json var="$Instance">
                 <schema type="object">
-                  <prop readOnly="True" type="string" name="nextLink"/>
-                  <prop type="array<object>" name="value" required="True">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True" identifiers="name">
                     <item type="object">
-                      <prop readOnly="True" type="ResourceId" name="id">
-                        <format template="/subscriptions/{}/providers/Microsoft.EdgeZones/extendedZones/{}"/>
-                      </prop>
+                      <prop readOnly="True" type="ResourceId" name="id"/>
                       <prop readOnly="True" type="string" name="name"/>
-                      <prop type="object" name="properties" clientFlatten="True">
+                      <prop type="object" name="properties">
                         <prop readOnly="True" type="string" name="displayName" required="True"/>
                         <prop readOnly="True" type="string" name="geography" required="True"/>
                         <prop readOnly="True" type="string" name="geographyGroup" required="True"/>
@@ -52,7 +50,7 @@
                         <prop readOnly="True" type="string" name="regionCategory" required="True"/>
                         <prop readOnly="True" type="string" name="regionType" required="True"/>
                         <prop readOnly="True" type="string" name="regionalDisplayName" required="True"/>
-                        <prop type="string" name="registrationState">
+                        <prop readOnly="True" type="string" name="registrationState">
                           <enum>
                             <item value="&quot;NotRegistered&quot;"/>
                             <item value="&quot;PendingRegister&quot;"/>
@@ -93,7 +91,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>

@@ -77,9 +77,7 @@
                                 <item type="string"/>
                               </prop>
                               <prop type="object" name="privateEndpoint">
-                                <prop readOnly="True" type="ResourceId" name="id">
-                                  <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/privateEndpoints/{}"/>
-                                </prop>
+                                <prop readOnly="True" type="ResourceId" name="id"/>
                               </prop>
                               <prop type="object" name="privateLinkServiceConnectionState" required="True">
                                 <prop type="string" name="actionsRequired"/>
@@ -223,9 +221,7 @@
                                 <item type="string"/>
                               </prop>
                               <prop type="object" name="privateEndpoint">
-                                <prop readOnly="True" type="ResourceId" name="id">
-                                  <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/privateEndpoints/{}"/>
-                                </prop>
+                                <prop readOnly="True" type="ResourceId" name="id"/>
                               </prop>
                               <prop type="object" name="privateLinkServiceConnectionState" required="True">
                                 <prop type="string" name="actionsRequired"/>
