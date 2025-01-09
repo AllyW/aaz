@@ -83,6 +83,9 @@
 - [communication](/Commands/communication/readme.md)
 : Manage communication service with communication.
 
+- [commvault](/Commands/commvault/readme.md)
+: commvault
+
 - [compute](/Commands/compute/readme.md)
 : Mange azure compute vm config
 
