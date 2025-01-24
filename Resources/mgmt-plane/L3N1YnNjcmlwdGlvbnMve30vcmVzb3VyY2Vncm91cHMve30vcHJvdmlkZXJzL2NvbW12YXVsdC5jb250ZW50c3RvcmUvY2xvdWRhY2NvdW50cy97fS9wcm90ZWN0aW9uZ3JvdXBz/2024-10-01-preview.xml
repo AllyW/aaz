@@ -99,15 +99,6 @@
                             </prop>
                           </prop>
                         </prop>
-                        <prop type="object" name="user" required="True">
-                          <prop type="string" name="emailAddress" required="True">
-                            <format pattern="^[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}$"/>
-                          </prop>
-                          <prop type="string" name="firstName"/>
-                          <prop type="string" name="lastName"/>
-                          <prop type="string" name="phoneNumber"/>
-                          <prop type="string" name="upn"/>
-                        </prop>
                       </prop>
                       <prop readOnly="True" type="object" name="systemData">
                         <prop type="dateTime" name="createdAt"/>

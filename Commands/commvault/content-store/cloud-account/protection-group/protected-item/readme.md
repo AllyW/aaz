@@ -10,5 +10,8 @@ commvault content-store cloud-account protection-group protected-item
 - [list](/Commands/commvault/content-store/cloud-account/protection-group/protected-item/_list.md)
 : List ProtectedItem resources by ProtectionGroup
 
+- [restore](/Commands/commvault/content-store/cloud-account/protection-group/protected-item/_restore.md)
+: Restore resource for a protected item.
+
 - [show](/Commands/commvault/content-store/cloud-account/protection-group/protected-item/_show.md)
 : Get a ProtectedItem

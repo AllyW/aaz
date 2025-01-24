@@ -61,17 +61,10 @@
                   <prop type="object" name="properties">
                     <prop type="object" name="marketplace" required="True">
                       <prop type="object" name="offerDetails" required="True">
-                        <prop readOnly="True" type="dateTime" name="endDate"/>
                         <prop type="string" name="offerId" required="True"/>
                         <prop type="string" name="planId" required="True"/>
                         <prop type="string" name="planName"/>
                         <prop type="string" name="publisherId" required="True"/>
-                        <prop type="string" name="renewalMode">
-                          <enum>
-                            <item value="&quot;Auto&quot;"/>
-                            <item value="&quot;Manual&quot;"/>
-                          </enum>
-                        </prop>
                         <prop type="string" name="termId"/>
                         <prop type="string" name="termUnit"/>
                       </prop>
@@ -92,12 +85,13 @@
                         <item value="&quot;Succeeded&quot;"/>
                       </enum>
                     </prop>
+                    <prop readOnly="True" type="string" name="ssoUrl"/>
                     <prop type="object" name="user" required="True">
                       <prop type="string" name="emailAddress" required="True">
                         <format pattern="^[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}$"/>
                       </prop>
-                      <prop type="string" name="firstName"/>
-                      <prop type="string" name="lastName"/>
+                      <prop type="string" name="firstName" required="True"/>
+                      <prop type="string" name="lastName" required="True"/>
                       <prop type="string" name="phoneNumber"/>
                       <prop type="string" name="upn"/>
                     </prop>
@@ -247,13 +241,6 @@
             <arg type="string" var="$resource.properties.marketplace.offerDetails.publisherId" options="publisher-id" required="True">
               <help short="Publisher Id for the marketplace offer"/>
             </arg>
-            <arg type="string" var="$resource.properties.marketplace.offerDetails.renewalMode" options="renewal-mode">
-              <help short="Subscription renewal mode"/>
-              <enum>
-                <item name="Auto" value="&quot;Auto&quot;"/>
-                <item name="Manual" value="&quot;Manual&quot;"/>
-              </enum>
-            </arg>
             <arg type="string" var="$resource.properties.marketplace.offerDetails.termId" options="term-id">
               <help short="Plan Display Name for the marketplace offer"/>
             </arg>
@@ -271,10 +258,10 @@
             <help short="Email address of the user"/>
             <format pattern="^[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}$"/>
           </arg>
-          <arg type="string" var="$resource.properties.user.firstName" options="first-name">
+          <arg type="string" var="$resource.properties.user.firstName" options="first-name" required="True">
             <help short="First name of the user"/>
           </arg>
-          <arg type="string" var="$resource.properties.user.lastName" options="last-name">
+          <arg type="string" var="$resource.properties.user.lastName" options="last-name" required="True">
             <help short="Last name of the user"/>
           </arg>
           <arg type="string" var="$resource.properties.user.phoneNumber" options="phone-number">
@@ -345,12 +332,6 @@
                         <prop type="string" name="planId" arg="$resource.properties.marketplace.offerDetails.planId" required="True"/>
                         <prop type="string" name="planName" arg="$resource.properties.marketplace.offerDetails.planName"/>
                         <prop type="string" name="publisherId" arg="$resource.properties.marketplace.offerDetails.publisherId" required="True"/>
-                        <prop type="string" name="renewalMode" arg="$resource.properties.marketplace.offerDetails.renewalMode">
-                          <enum>
-                            <item value="&quot;Auto&quot;"/>
-                            <item value="&quot;Manual&quot;"/>
-                          </enum>
-                        </prop>
                         <prop type="string" name="termId" arg="$resource.properties.marketplace.offerDetails.termId"/>
                         <prop type="string" name="termUnit" arg="$resource.properties.marketplace.offerDetails.termUnit"/>
                       </prop>
@@ -360,8 +341,8 @@
                       <prop type="string" name="emailAddress" arg="$resource.properties.user.emailAddress" required="True">
                         <format pattern="^[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}$"/>
                       </prop>
-                      <prop type="string" name="firstName" arg="$resource.properties.user.firstName"/>
-                      <prop type="string" name="lastName" arg="$resource.properties.user.lastName"/>
+                      <prop type="string" name="firstName" arg="$resource.properties.user.firstName" required="True"/>
+                      <prop type="string" name="lastName" arg="$resource.properties.user.lastName" required="True"/>
                       <prop type="string" name="phoneNumber" arg="$resource.properties.user.phoneNumber"/>
                       <prop type="string" name="upn" arg="$resource.properties.user.upn"/>
                     </prop>
@@ -405,17 +386,10 @@
                   <prop type="object" name="properties">
                     <prop type="object" name="marketplace" required="True">
                       <prop type="object" name="offerDetails" required="True">
-                        <prop readOnly="True" type="dateTime" name="endDate"/>
                         <prop type="string" name="offerId" required="True"/>
                         <prop type="string" name="planId" required="True"/>
                         <prop type="string" name="planName"/>
                         <prop type="string" name="publisherId" required="True"/>
-                        <prop type="string" name="renewalMode">
-                          <enum>
-                            <item value="&quot;Auto&quot;"/>
-                            <item value="&quot;Manual&quot;"/>
-                          </enum>
-                        </prop>
                         <prop type="string" name="termId"/>
                         <prop type="string" name="termUnit"/>
                       </prop>
@@ -436,12 +410,13 @@
                         <item value="&quot;Succeeded&quot;"/>
                       </enum>
                     </prop>
+                    <prop readOnly="True" type="string" name="ssoUrl"/>
                     <prop type="object" name="user" required="True">
                       <prop type="string" name="emailAddress" required="True">
                         <format pattern="^[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}$"/>
                       </prop>
-                      <prop type="string" name="firstName"/>
-                      <prop type="string" name="lastName"/>
+                      <prop type="string" name="firstName" required="True"/>
+                      <prop type="string" name="lastName" required="True"/>
                       <prop type="string" name="phoneNumber"/>
                       <prop type="string" name="upn"/>
                     </prop>
@@ -535,13 +510,6 @@
             <arg type="string" var="$resource.properties.marketplace.offerDetails.publisherId" options="publisher-id">
               <help short="Publisher Id for the marketplace offer"/>
             </arg>
-            <arg nullable="True" type="string" var="$resource.properties.marketplace.offerDetails.renewalMode" options="renewal-mode">
-              <help short="Subscription renewal mode"/>
-              <enum>
-                <item name="Auto" value="&quot;Auto&quot;"/>
-                <item name="Manual" value="&quot;Manual&quot;"/>
-              </enum>
-            </arg>
             <arg nullable="True" type="string" var="$resource.properties.marketplace.offerDetails.termId" options="term-id">
               <help short="Plan Display Name for the marketplace offer"/>
             </arg>
@@ -559,10 +527,10 @@
             <help short="Email address of the user"/>
             <format pattern="^[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}$"/>
           </arg>
-          <arg nullable="True" type="string" var="$resource.properties.user.firstName" options="first-name">
+          <arg type="string" var="$resource.properties.user.firstName" options="first-name">
             <help short="First name of the user"/>
           </arg>
-          <arg nullable="True" type="string" var="$resource.properties.user.lastName" options="last-name">
+          <arg type="string" var="$resource.properties.user.lastName" options="last-name">
             <help short="Last name of the user"/>
           </arg>
           <arg nullable="True" type="string" var="$resource.properties.user.phoneNumber" options="phone-number">
@@ -630,17 +598,10 @@
                   <prop type="object" name="properties">
                     <prop type="object" name="marketplace" required="True">
                       <prop type="object" name="offerDetails" required="True">
-                        <prop readOnly="True" type="dateTime" name="endDate"/>
                         <prop type="string" name="offerId" required="True"/>
                         <prop type="string" name="planId" required="True"/>
                         <prop type="string" name="planName"/>
                         <prop type="string" name="publisherId" required="True"/>
-                        <prop type="string" name="renewalMode">
-                          <enum>
-                            <item value="&quot;Auto&quot;"/>
-                            <item value="&quot;Manual&quot;"/>
-                          </enum>
-                        </prop>
                         <prop type="string" name="termId"/>
                         <prop type="string" name="termUnit"/>
                       </prop>
@@ -661,12 +622,13 @@
                         <item value="&quot;Succeeded&quot;"/>
                       </enum>
                     </prop>
+                    <prop readOnly="True" type="string" name="ssoUrl"/>
                     <prop type="object" name="user" required="True">
                       <prop type="string" name="emailAddress" required="True">
                         <format pattern="^[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}$"/>
                       </prop>
-                      <prop type="string" name="firstName"/>
-                      <prop type="string" name="lastName"/>
+                      <prop type="string" name="firstName" required="True"/>
+                      <prop type="string" name="lastName" required="True"/>
                       <prop type="string" name="phoneNumber"/>
                       <prop type="string" name="upn"/>
                     </prop>
@@ -738,12 +700,6 @@
                     <prop type="string" name="planId" arg="$resource.properties.marketplace.offerDetails.planId" required="True"/>
                     <prop type="string" name="planName" arg="$resource.properties.marketplace.offerDetails.planName"/>
                     <prop type="string" name="publisherId" arg="$resource.properties.marketplace.offerDetails.publisherId" required="True"/>
-                    <prop type="string" name="renewalMode" arg="$resource.properties.marketplace.offerDetails.renewalMode">
-                      <enum>
-                        <item value="&quot;Auto&quot;"/>
-                        <item value="&quot;Manual&quot;"/>
-                      </enum>
-                    </prop>
                     <prop type="string" name="termId" arg="$resource.properties.marketplace.offerDetails.termId"/>
                     <prop type="string" name="termUnit" arg="$resource.properties.marketplace.offerDetails.termUnit"/>
                   </prop>
@@ -753,8 +709,8 @@
                   <prop type="string" name="emailAddress" arg="$resource.properties.user.emailAddress" required="True">
                     <format pattern="^[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}$"/>
                   </prop>
-                  <prop type="string" name="firstName" arg="$resource.properties.user.firstName"/>
-                  <prop type="string" name="lastName" arg="$resource.properties.user.lastName"/>
+                  <prop type="string" name="firstName" arg="$resource.properties.user.firstName" required="True"/>
+                  <prop type="string" name="lastName" arg="$resource.properties.user.lastName" required="True"/>
                   <prop type="string" name="phoneNumber" arg="$resource.properties.user.phoneNumber"/>
                   <prop type="string" name="upn" arg="$resource.properties.user.upn"/>
                 </prop>
@@ -821,17 +777,10 @@
                   <prop type="object" name="properties">
                     <prop type="object" name="marketplace" required="True">
                       <prop type="object" name="offerDetails" required="True">
-                        <prop readOnly="True" type="dateTime" name="endDate"/>
                         <prop type="string" name="offerId" required="True"/>
                         <prop type="string" name="planId" required="True"/>
                         <prop type="string" name="planName"/>
                         <prop type="string" name="publisherId" required="True"/>
-                        <prop type="string" name="renewalMode">
-                          <enum>
-                            <item value="&quot;Auto&quot;"/>
-                            <item value="&quot;Manual&quot;"/>
-                          </enum>
-                        </prop>
                         <prop type="string" name="termId"/>
                         <prop type="string" name="termUnit"/>
                       </prop>
@@ -852,12 +801,13 @@
                         <item value="&quot;Succeeded&quot;"/>
                       </enum>
                     </prop>
+                    <prop readOnly="True" type="string" name="ssoUrl"/>
                     <prop type="object" name="user" required="True">
                       <prop type="string" name="emailAddress" required="True">
                         <format pattern="^[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}$"/>
                       </prop>
-                      <prop type="string" name="firstName"/>
-                      <prop type="string" name="lastName"/>
+                      <prop type="string" name="firstName" required="True"/>
+                      <prop type="string" name="lastName" required="True"/>
                       <prop type="string" name="phoneNumber"/>
                       <prop type="string" name="upn"/>
                     </prop>
@@ -981,17 +931,10 @@
                     <prop type="object" name="properties">
                       <prop type="object" name="marketplace" required="True">
                         <prop type="object" name="offerDetails" required="True">
-                          <prop readOnly="True" type="dateTime" name="endDate"/>
                           <prop type="string" name="offerId" required="True"/>
                           <prop type="string" name="planId" required="True"/>
                           <prop type="string" name="planName"/>
                           <prop type="string" name="publisherId" required="True"/>
-                          <prop type="string" name="renewalMode">
-                            <enum>
-                              <item value="&quot;Auto&quot;"/>
-                              <item value="&quot;Manual&quot;"/>
-                            </enum>
-                          </prop>
                           <prop type="string" name="termId"/>
                           <prop type="string" name="termUnit"/>
                         </prop>
@@ -1012,12 +955,13 @@
                           <item value="&quot;Succeeded&quot;"/>
                         </enum>
                       </prop>
+                      <prop readOnly="True" type="string" name="ssoUrl"/>
                       <prop type="object" name="user" required="True">
                         <prop type="string" name="emailAddress" required="True">
                           <format pattern="^[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}$"/>
                         </prop>
-                        <prop type="string" name="firstName"/>
-                        <prop type="string" name="lastName"/>
+                        <prop type="string" name="firstName" required="True"/>
+                        <prop type="string" name="lastName" required="True"/>
                         <prop type="string" name="phoneNumber"/>
                         <prop type="string" name="upn"/>
                       </prop>
@@ -1128,17 +1072,10 @@
                     <prop type="object" name="properties">
                       <prop type="object" name="marketplace" required="True">
                         <prop type="object" name="offerDetails" required="True">
-                          <prop readOnly="True" type="dateTime" name="endDate"/>
                           <prop type="string" name="offerId" required="True"/>
                           <prop type="string" name="planId" required="True"/>
                           <prop type="string" name="planName"/>
                           <prop type="string" name="publisherId" required="True"/>
-                          <prop type="string" name="renewalMode">
-                            <enum>
-                              <item value="&quot;Auto&quot;"/>
-                              <item value="&quot;Manual&quot;"/>
-                            </enum>
-                          </prop>
                           <prop type="string" name="termId"/>
                           <prop type="string" name="termUnit"/>
                         </prop>
@@ -1159,12 +1096,13 @@
                           <item value="&quot;Succeeded&quot;"/>
                         </enum>
                       </prop>
+                      <prop readOnly="True" type="string" name="ssoUrl"/>
                       <prop type="object" name="user" required="True">
                         <prop type="string" name="emailAddress" required="True">
                           <format pattern="^[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}$"/>
                         </prop>
-                        <prop type="string" name="firstName"/>
-                        <prop type="string" name="lastName"/>
+                        <prop type="string" name="firstName" required="True"/>
+                        <prop type="string" name="lastName" required="True"/>
                         <prop type="string" name="phoneNumber"/>
                         <prop type="string" name="upn"/>
                       </prop>
@@ -1287,17 +1225,10 @@
                     <prop type="object" name="properties">
                       <prop type="object" name="marketplace" required="True">
                         <prop type="object" name="offerDetails" required="True">
-                          <prop readOnly="True" type="dateTime" name="endDate"/>
                           <prop type="string" name="offerId" required="True"/>
                           <prop type="string" name="planId" required="True"/>
                           <prop type="string" name="planName"/>
                           <prop type="string" name="publisherId" required="True"/>
-                          <prop type="string" name="renewalMode">
-                            <enum>
-                              <item value="&quot;Auto&quot;"/>
-                              <item value="&quot;Manual&quot;"/>
-                            </enum>
-                          </prop>
                           <prop type="string" name="termId"/>
                           <prop type="string" name="termUnit"/>
                         </prop>
@@ -1318,12 +1249,13 @@
                           <item value="&quot;Succeeded&quot;"/>
                         </enum>
                       </prop>
+                      <prop readOnly="True" type="string" name="ssoUrl"/>
                       <prop type="object" name="user" required="True">
                         <prop type="string" name="emailAddress" required="True">
                           <format pattern="^[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}$"/>
                         </prop>
-                        <prop type="string" name="firstName"/>
-                        <prop type="string" name="lastName"/>
+                        <prop type="string" name="firstName" required="True"/>
+                        <prop type="string" name="lastName" required="True"/>
                         <prop type="string" name="phoneNumber"/>
                         <prop type="string" name="upn"/>
                       </prop>
@@ -1434,17 +1366,10 @@
                     <prop type="object" name="properties">
                       <prop type="object" name="marketplace" required="True">
                         <prop type="object" name="offerDetails" required="True">
-                          <prop readOnly="True" type="dateTime" name="endDate"/>
                           <prop type="string" name="offerId" required="True"/>
                           <prop type="string" name="planId" required="True"/>
                           <prop type="string" name="planName"/>
                           <prop type="string" name="publisherId" required="True"/>
-                          <prop type="string" name="renewalMode">
-                            <enum>
-                              <item value="&quot;Auto&quot;"/>
-                              <item value="&quot;Manual&quot;"/>
-                            </enum>
-                          </prop>
                           <prop type="string" name="termId"/>
                           <prop type="string" name="termUnit"/>
                         </prop>
@@ -1465,12 +1390,13 @@
                           <item value="&quot;Succeeded&quot;"/>
                         </enum>
                       </prop>
+                      <prop readOnly="True" type="string" name="ssoUrl"/>
                       <prop type="object" name="user" required="True">
                         <prop type="string" name="emailAddress" required="True">
                           <format pattern="^[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}$"/>
                         </prop>
-                        <prop type="string" name="firstName"/>
-                        <prop type="string" name="lastName"/>
+                        <prop type="string" name="firstName" required="True"/>
+                        <prop type="string" name="lastName" required="True"/>
                         <prop type="string" name="phoneNumber"/>
                         <prop type="string" name="upn"/>
                       </prop>
@@ -1582,17 +1508,10 @@
                     <prop type="object" name="properties">
                       <prop type="object" name="marketplace" required="True">
                         <prop type="object" name="offerDetails" required="True">
-                          <prop readOnly="True" type="dateTime" name="endDate"/>
                           <prop type="string" name="offerId" required="True"/>
                           <prop type="string" name="planId" required="True"/>
                           <prop type="string" name="planName"/>
                           <prop type="string" name="publisherId" required="True"/>
-                          <prop type="string" name="renewalMode">
-                            <enum>
-                              <item value="&quot;Auto&quot;"/>
-                              <item value="&quot;Manual&quot;"/>
-                            </enum>
-                          </prop>
                           <prop type="string" name="termId"/>
                           <prop type="string" name="termUnit"/>
                         </prop>
@@ -1613,12 +1532,13 @@
                           <item value="&quot;Succeeded&quot;"/>
                         </enum>
                       </prop>
+                      <prop readOnly="True" type="string" name="ssoUrl"/>
                       <prop type="object" name="user" required="True">
                         <prop type="string" name="emailAddress" required="True">
                           <format pattern="^[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}$"/>
                         </prop>
-                        <prop type="string" name="firstName"/>
-                        <prop type="string" name="lastName"/>
+                        <prop type="string" name="firstName" required="True"/>
+                        <prop type="string" name="lastName" required="True"/>
                         <prop type="string" name="phoneNumber"/>
                         <prop type="string" name="upn"/>
                       </prop>
