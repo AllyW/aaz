@@ -72,17 +72,10 @@
                       <prop type="object" name="properties">
                         <prop type="object" name="marketplace" required="True">
                           <prop type="object" name="offerDetails" required="True">
-                            <prop readOnly="True" type="dateTime" name="endDate"/>
                             <prop type="string" name="offerId" required="True"/>
                             <prop type="string" name="planId" required="True"/>
                             <prop type="string" name="planName"/>
                             <prop type="string" name="publisherId" required="True"/>
-                            <prop type="string" name="renewalMode">
-                              <enum>
-                                <item value="&quot;Auto&quot;"/>
-                                <item value="&quot;Manual&quot;"/>
-                              </enum>
-                            </prop>
                             <prop type="string" name="termId"/>
                             <prop type="string" name="termUnit"/>
                           </prop>
@@ -103,12 +96,13 @@
                             <item value="&quot;Succeeded&quot;"/>
                           </enum>
                         </prop>
+                        <prop readOnly="True" type="string" name="ssoUrl"/>
                         <prop type="object" name="user" required="True">
                           <prop type="string" name="emailAddress" required="True">
                             <format pattern="^[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}$"/>
                           </prop>
-                          <prop type="string" name="firstName"/>
-                          <prop type="string" name="lastName"/>
+                          <prop type="string" name="firstName" required="True"/>
+                          <prop type="string" name="lastName" required="True"/>
                           <prop type="string" name="phoneNumber"/>
                           <prop type="string" name="upn"/>
                         </prop>
@@ -207,17 +201,10 @@
                       <prop type="object" name="properties">
                         <prop type="object" name="marketplace" required="True">
                           <prop type="object" name="offerDetails" required="True">
-                            <prop readOnly="True" type="dateTime" name="endDate"/>
                             <prop type="string" name="offerId" required="True"/>
                             <prop type="string" name="planId" required="True"/>
                             <prop type="string" name="planName"/>
                             <prop type="string" name="publisherId" required="True"/>
-                            <prop type="string" name="renewalMode">
-                              <enum>
-                                <item value="&quot;Auto&quot;"/>
-                                <item value="&quot;Manual&quot;"/>
-                              </enum>
-                            </prop>
                             <prop type="string" name="termId"/>
                             <prop type="string" name="termUnit"/>
                           </prop>
@@ -238,12 +225,13 @@
                             <item value="&quot;Succeeded&quot;"/>
                           </enum>
                         </prop>
+                        <prop readOnly="True" type="string" name="ssoUrl"/>
                         <prop type="object" name="user" required="True">
                           <prop type="string" name="emailAddress" required="True">
                             <format pattern="^[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}$"/>
                           </prop>
-                          <prop type="string" name="firstName"/>
-                          <prop type="string" name="lastName"/>
+                          <prop type="string" name="firstName" required="True"/>
+                          <prop type="string" name="lastName" required="True"/>
                           <prop type="string" name="phoneNumber"/>
                           <prop type="string" name="upn"/>
                         </prop>
