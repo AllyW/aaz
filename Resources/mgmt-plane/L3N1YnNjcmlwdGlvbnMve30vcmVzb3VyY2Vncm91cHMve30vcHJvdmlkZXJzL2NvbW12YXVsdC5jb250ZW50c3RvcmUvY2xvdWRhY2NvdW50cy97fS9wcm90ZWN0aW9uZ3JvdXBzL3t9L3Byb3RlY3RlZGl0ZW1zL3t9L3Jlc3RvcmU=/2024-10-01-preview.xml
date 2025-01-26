@@ -147,10 +147,10 @@
             <body>
               <json var="$Instance">
                 <schema type="object">
-                  <prop readOnly="True" type="array<string>" name="jobIds" required="True">
+                  <prop readOnly="True" type="array<string>" name="jobIds">
                     <item type="string"/>
                   </prop>
-                  <prop readOnly="True" type="integer32" name="taskId" required="True"/>
+                  <prop readOnly="True" type="integer32" name="taskId"/>
                 </schema>
               </json>
             </body>

@@ -45,10 +45,10 @@
                   <prop readOnly="True" type="ResourceId" name="id"/>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties">
-                    <prop readOnly="True" type="integer64" name="lastBackUpTime" required="True"/>
-                    <prop readOnly="True" type="integer32" name="numberOfProtectedItems" required="True"/>
+                    <prop readOnly="True" type="integer64" name="lastBackUpTime"/>
+                    <prop readOnly="True" type="integer32" name="numberOfProtectedItems"/>
                     <prop type="string" name="plan" required="True"/>
-                    <prop readOnly="True" type="string" name="protectionStatus" required="True">
+                    <prop readOnly="True" type="string" name="protectionStatus">
                       <enum>
                         <item value="&quot;all&quot;"/>
                         <item value="&quot;backed_up_with_error&quot;"/>
@@ -339,10 +339,10 @@
                   <prop readOnly="True" type="ResourceId" name="id"/>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties">
-                    <prop readOnly="True" type="integer64" name="lastBackUpTime" required="True"/>
-                    <prop readOnly="True" type="integer32" name="numberOfProtectedItems" required="True"/>
+                    <prop readOnly="True" type="integer64" name="lastBackUpTime"/>
+                    <prop readOnly="True" type="integer32" name="numberOfProtectedItems"/>
                     <prop type="string" name="plan" required="True"/>
-                    <prop readOnly="True" type="string" name="protectionStatus" required="True">
+                    <prop readOnly="True" type="string" name="protectionStatus">
                       <enum>
                         <item value="&quot;all&quot;"/>
                         <item value="&quot;backed_up_with_error&quot;"/>
@@ -531,10 +531,10 @@
                   <prop readOnly="True" type="ResourceId" name="id"/>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties">
-                    <prop readOnly="True" type="integer64" name="lastBackUpTime" required="True"/>
-                    <prop readOnly="True" type="integer32" name="numberOfProtectedItems" required="True"/>
+                    <prop readOnly="True" type="integer64" name="lastBackUpTime"/>
+                    <prop readOnly="True" type="integer32" name="numberOfProtectedItems"/>
                     <prop type="string" name="plan" required="True"/>
-                    <prop readOnly="True" type="string" name="protectionStatus" required="True">
+                    <prop readOnly="True" type="string" name="protectionStatus">
                       <enum>
                         <item value="&quot;all&quot;"/>
                         <item value="&quot;backed_up_with_error&quot;"/>
@@ -708,10 +708,10 @@
                   <prop readOnly="True" type="ResourceId" name="id"/>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties">
-                    <prop readOnly="True" type="integer64" name="lastBackUpTime" required="True"/>
-                    <prop readOnly="True" type="integer32" name="numberOfProtectedItems" required="True"/>
+                    <prop readOnly="True" type="integer64" name="lastBackUpTime"/>
+                    <prop readOnly="True" type="integer32" name="numberOfProtectedItems"/>
                     <prop type="string" name="plan" required="True"/>
-                    <prop readOnly="True" type="string" name="protectionStatus" required="True">
+                    <prop readOnly="True" type="string" name="protectionStatus">
                       <enum>
                         <item value="&quot;all&quot;"/>
                         <item value="&quot;backed_up_with_error&quot;"/>

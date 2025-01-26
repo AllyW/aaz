@@ -49,7 +49,7 @@
             <body>
               <json var="$Instance">
                 <schema type="object">
-                  <prop readOnly="True" type="array<integer64>" name="restoreTimes" required="True">
+                  <prop readOnly="True" type="array<integer64>" name="restoreTimes">
                     <item type="integer64"/>
                   </prop>
                 </schema>

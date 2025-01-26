@@ -48,9 +48,9 @@
                       <prop readOnly="True" type="ResourceId" name="id"/>
                       <prop readOnly="True" type="string" name="name"/>
                       <prop type="object" name="properties">
-                        <prop readOnly="True" type="integer64" name="lastBackUpTime" required="True"/>
-                        <prop readOnly="True" type="string" name="location" required="True"/>
-                        <prop readOnly="True" type="string" name="resourceGroup" required="True"/>
+                        <prop readOnly="True" type="integer64" name="lastBackUpTime"/>
+                        <prop readOnly="True" type="string" name="location"/>
+                        <prop readOnly="True" type="string" name="resourceGroup"/>
                       </prop>
                       <prop readOnly="True" type="object" name="systemData">
                         <prop type="dateTime" name="createdAt"/>
