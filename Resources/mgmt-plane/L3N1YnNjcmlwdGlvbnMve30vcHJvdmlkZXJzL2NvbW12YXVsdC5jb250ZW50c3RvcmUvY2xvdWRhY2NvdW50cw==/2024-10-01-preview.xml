@@ -42,7 +42,7 @@
               <json var="$Instance">
                 <schema type="object">
                   <prop type="string" name="nextLink"/>
-                  <prop type="array<object>" name="value" required="True" identifiers="name">
+                  <prop type="array<object>" name="value" required="True">
                     <item type="object">
                       <prop readOnly="True" type="ResourceId" name="id"/>
                       <prop type="IdentityObject" name="identity">
@@ -169,7 +169,7 @@
               <json var="$Instance">
                 <schema type="object">
                   <prop type="string" name="nextLink"/>
-                  <prop type="array<object>" name="value" required="True" identifiers="name">
+                  <prop type="array<object>" name="value" required="True">
                     <item type="object">
                       <prop readOnly="True" type="ResourceId" name="id"/>
                       <prop type="IdentityObject" name="identity">

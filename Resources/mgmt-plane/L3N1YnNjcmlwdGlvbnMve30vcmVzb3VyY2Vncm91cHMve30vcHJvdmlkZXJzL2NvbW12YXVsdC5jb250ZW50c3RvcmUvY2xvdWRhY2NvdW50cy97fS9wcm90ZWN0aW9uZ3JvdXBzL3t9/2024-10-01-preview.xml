@@ -45,6 +45,11 @@
                   <prop readOnly="True" type="ResourceId" name="id"/>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties">
+                    <prop type="string" name="dataSourceType" required="True">
+                      <enum>
+                        <item value="&quot;AzureVM&quot;"/>
+                      </enum>
+                    </prop>
                     <prop readOnly="True" type="integer64" name="lastBackUpTime"/>
                     <prop readOnly="True" type="integer32" name="numberOfProtectedItems"/>
                     <prop type="string" name="plan" required="True"/>
@@ -211,6 +216,12 @@
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <argGroup name="Properties">
+        <arg type="string" var="$resource.properties.dataSourceType" options="data-source-type" group="Properties">
+          <help short="The datasource type of Commvault Protection Group"/>
+          <enum>
+            <item name="AzureVM" value="&quot;AzureVM&quot;"/>
+          </enum>
+        </arg>
         <arg type="string" var="$resource.properties.plan" options="plan" group="Properties">
           <help short="The Commvault Plan to be associated with the Protection Group"/>
         </arg>
@@ -288,6 +299,11 @@
               <json>
                 <schema type="object" name="resource" required="True" clientFlatten="True">
                   <prop type="object" name="properties">
+                    <prop type="string" name="dataSourceType" arg="$resource.properties.dataSourceType" required="True">
+                      <enum>
+                        <item value="&quot;AzureVM&quot;"/>
+                      </enum>
+                    </prop>
                     <prop type="string" name="plan" arg="$resource.properties.plan" required="True"/>
                     <prop type="object" name="resources" arg="$resource.properties.resources" required="True">
                       <prop type="array<string>" name="manual" arg="$resource.properties.resources.manual">
@@ -339,6 +355,11 @@
                   <prop readOnly="True" type="ResourceId" name="id"/>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties">
+                    <prop type="string" name="dataSourceType" required="True">
+                      <enum>
+                        <item value="&quot;AzureVM&quot;"/>
+                      </enum>
+                    </prop>
                     <prop readOnly="True" type="integer64" name="lastBackUpTime"/>
                     <prop readOnly="True" type="integer32" name="numberOfProtectedItems"/>
                     <prop type="string" name="plan" required="True"/>
@@ -531,6 +552,11 @@
                   <prop readOnly="True" type="ResourceId" name="id"/>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties">
+                    <prop type="string" name="dataSourceType" required="True">
+                      <enum>
+                        <item value="&quot;AzureVM&quot;"/>
+                      </enum>
+                    </prop>
                     <prop readOnly="True" type="integer64" name="lastBackUpTime"/>
                     <prop readOnly="True" type="integer32" name="numberOfProtectedItems"/>
                     <prop type="string" name="plan" required="True"/>
@@ -708,6 +734,11 @@
                   <prop readOnly="True" type="ResourceId" name="id"/>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties">
+                    <prop type="string" name="dataSourceType" required="True">
+                      <enum>
+                        <item value="&quot;AzureVM&quot;"/>
+                      </enum>
+                    </prop>
                     <prop readOnly="True" type="integer64" name="lastBackUpTime"/>
                     <prop readOnly="True" type="integer32" name="numberOfProtectedItems"/>
                     <prop type="string" name="plan" required="True"/>

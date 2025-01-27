@@ -36,11 +36,16 @@
               <json var="$Instance">
                 <schema type="object">
                   <prop type="string" name="nextLink"/>
-                  <prop type="array<object>" name="value" required="True" identifiers="name">
+                  <prop type="array<object>" name="value" required="True">
                     <item type="object">
                       <prop readOnly="True" type="ResourceId" name="id"/>
                       <prop readOnly="True" type="string" name="name"/>
                       <prop type="object" name="properties">
+                        <prop type="string" name="dataSourceType" required="True">
+                          <enum>
+                            <item value="&quot;AzureVM&quot;"/>
+                          </enum>
+                        </prop>
                         <prop readOnly="True" type="integer64" name="lastBackUpTime"/>
                         <prop readOnly="True" type="integer32" name="numberOfProtectedItems"/>
                         <prop type="string" name="plan" required="True"/>
