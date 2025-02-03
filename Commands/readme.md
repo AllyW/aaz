@@ -35,9 +35,6 @@
 - [arize-ai](/Commands/arize-ai/readme.md)
 : arize-ai
 
-- [astronomer](/Commands/astronomer/readme.md)
-: Manage Azure Astronomer resources.
-
 - [attestation](/Commands/attestation/readme.md)
 : Manage Microsoft Azure Attestation (MAA).
 
