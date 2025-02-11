@@ -1,6 +1,6 @@
 # [Command] _qumulo storage file-system list_
 
-List file system resources
+List FileSystemResource resources by subscription ID
 
 ## Versions
 
@@ -20,10 +20,3 @@ List file system resources
 
 <!-- mgmt-plane /subscriptions/{}/providers/qumulo.storage/filesystems 2024-06-19 -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/qumulo.storage/filesystems 2024-06-19 -->
-
-#### examples
-
-- List file system by resource group
-    ```bash
-        qumulo storage file-system list -g rg
-    ```
