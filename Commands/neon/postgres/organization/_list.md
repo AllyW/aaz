@@ -1,6 +1,6 @@
 # [Command] _neon postgres organization list_
 
-List Neon organizations by subscription ID
+List OrganizationResource resources by subscription ID
 
 ## Versions
 
@@ -15,3 +15,8 @@ List Neon organizations by subscription ID
     ```bash
         neon postgres organization list --subscription 12345678-1234-1234-1234-123456789abc --resource-group demoResourceGroup
     ```
+
+### [2024-12-22-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL25lb24ucG9zdGdyZXMvb3JnYW5pemF0aW9ucw==/2024-12-22-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/neon.postgres/organizations 2024-12-22-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/neon.postgres/organizations 2024-12-22-preview -->

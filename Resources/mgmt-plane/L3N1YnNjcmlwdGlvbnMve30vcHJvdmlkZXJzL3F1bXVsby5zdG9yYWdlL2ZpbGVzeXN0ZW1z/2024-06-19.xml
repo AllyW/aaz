@@ -3,7 +3,7 @@
   <resource id="/subscriptions/{}/providers/qumulo.storage/filesystems" version="2024-06-19" swagger="mgmt-plane/liftrqumulo/ResourceProviders/Qumulo.Storage/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvUXVtdWxvLlN0b3JhZ2UvZmlsZVN5c3RlbXM=/V/MjAyNC0wNi0xOQ=="/>
   <resource id="/subscriptions/{}/resourcegroups/{}/providers/qumulo.storage/filesystems" version="2024-06-19" swagger="mgmt-plane/liftrqumulo/ResourceProviders/Qumulo.Storage/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9RdW11bG8uU3RvcmFnZS9maWxlU3lzdGVtcw==/V/MjAyNC0wNi0xOQ=="/>
   <commandGroup name="qumulo storage file-system">
-    <command name="list" version="2024-06-19" confirmation="">
+    <command name="list" version="2024-06-19">
       <resource id="/subscriptions/{}/providers/qumulo.storage/filesystems" version="2024-06-19" swagger="mgmt-plane/liftrqumulo/ResourceProviders/Qumulo.Storage/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvUXVtdWxvLlN0b3JhZ2UvZmlsZVN5c3RlbXM=/V/MjAyNC0wNi0xOQ=="/>
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/qumulo.storage/filesystems" version="2024-06-19" swagger="mgmt-plane/liftrqumulo/ResourceProviders/Qumulo.Storage/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9RdW11bG8uU3RvcmFnZS9maWxlU3lzdGVtcw==/V/MjAyNC0wNi0xOQ=="/>
       <argGroup name="">
@@ -28,9 +28,7 @@
         <http path="/subscriptions/{subscriptionId}/providers/Qumulo.Storage/fileSystems">
           <request method="get">
             <path>
-              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
-                <format minLength="1"/>
-              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
@@ -46,9 +44,7 @@
                   <prop type="string" name="nextLink"/>
                   <prop type="array<object>" name="value" required="True">
                     <item type="object">
-                      <prop readOnly="True" type="ResourceId" name="id">
-                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Qumulo.Storage/fileSystems/{}"/>
-                      </prop>
+                      <prop readOnly="True" type="string" name="id"/>
                       <prop type="IdentityObject" name="identity">
                         <prop readOnly="True" type="uuid" name="principalId"/>
                         <prop readOnly="True" type="uuid" name="tenantId"/>
@@ -71,8 +67,8 @@
                       </prop>
                       <prop type="ResourceLocation" name="location" required="True"/>
                       <prop readOnly="True" type="string" name="name"/>
-                      <prop type="object" name="properties" clientFlatten="True">
-                        <prop type="string" name="adminPassword" required="True" secret="True"/>
+                      <prop type="object" name="properties">
+                        <prop type="string" name="adminPassword" required="True"/>
                         <prop type="string" name="availabilityZone"/>
                         <prop type="string" name="clusterLoginUrl"/>
                         <prop type="string" name="delegatedSubnetId" required="True"/>
@@ -102,13 +98,14 @@
                             <item value="&quot;Deleted&quot;"/>
                             <item value="&quot;Deleting&quot;"/>
                             <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;NotSpecified&quot;"/>
                             <item value="&quot;Succeeded&quot;"/>
                             <item value="&quot;Updating&quot;"/>
                           </enum>
                         </prop>
                         <prop type="string" name="storageSku" required="True"/>
                         <prop type="object" name="userDetails" required="True">
-                          <prop type="string" name="email" required="True" secret="True"/>
+                          <prop type="string" name="email" required="True"/>
                         </prop>
                       </prop>
                       <prop readOnly="True" type="object" name="systemData">
@@ -148,7 +145,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>
@@ -159,11 +156,9 @@
           <request method="get">
             <path>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
               </param>
-              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
-                <format minLength="1"/>
-              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
@@ -179,9 +174,7 @@
                   <prop type="string" name="nextLink"/>
                   <prop type="array<object>" name="value" required="True">
                     <item type="object">
-                      <prop readOnly="True" type="ResourceId" name="id">
-                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Qumulo.Storage/fileSystems/{}"/>
-                      </prop>
+                      <prop readOnly="True" type="string" name="id"/>
                       <prop type="IdentityObject" name="identity">
                         <prop readOnly="True" type="uuid" name="principalId"/>
                         <prop readOnly="True" type="uuid" name="tenantId"/>
@@ -204,8 +197,8 @@
                       </prop>
                       <prop type="ResourceLocation" name="location" required="True"/>
                       <prop readOnly="True" type="string" name="name"/>
-                      <prop type="object" name="properties" clientFlatten="True">
-                        <prop type="string" name="adminPassword" required="True" secret="True"/>
+                      <prop type="object" name="properties">
+                        <prop type="string" name="adminPassword" required="True"/>
                         <prop type="string" name="availabilityZone"/>
                         <prop type="string" name="clusterLoginUrl"/>
                         <prop type="string" name="delegatedSubnetId" required="True"/>
@@ -235,13 +228,14 @@
                             <item value="&quot;Deleted&quot;"/>
                             <item value="&quot;Deleting&quot;"/>
                             <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;NotSpecified&quot;"/>
                             <item value="&quot;Succeeded&quot;"/>
                             <item value="&quot;Updating&quot;"/>
                           </enum>
                         </prop>
                         <prop type="string" name="storageSku" required="True"/>
                         <prop type="object" name="userDetails" required="True">
-                          <prop type="string" name="email" required="True" secret="True"/>
+                          <prop type="string" name="email" required="True"/>
                         </prop>
                       </prop>
                       <prop readOnly="True" type="object" name="systemData">
@@ -281,7 +275,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>

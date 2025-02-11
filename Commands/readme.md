@@ -32,6 +32,9 @@
 - [arcgateway](/Commands/arcgateway/readme.md)
 : Manage gateway connection on Arc machine
 
+- [arize-ai](/Commands/arize-ai/readme.md)
+: arize-ai
+
 - [astronomer](/Commands/astronomer/readme.md)
 : Manage Azure Astronomer resources.
 
@@ -76,6 +79,9 @@
 
 - [communication](/Commands/communication/readme.md)
 : Manage communication service with communication.
+
+- [commvault](/Commands/commvault/readme.md)
+: commvault
 
 - [compute](/Commands/compute/readme.md)
 : Mange azure compute vm config
@@ -188,11 +194,20 @@
 - [lab](/Commands/lab/readme.md)
 : Manage azure devtest labs.
 
+- [lambda-test](/Commands/lambda-test/readme.md)
+: lambda-test
+
 - [large-instance](/Commands/large-instance/readme.md)
 : Handle Operations for Compute Azure Large Instances.
 
 - [large-storage-instance](/Commands/large-storage-instance/readme.md)
 : Handle Operations for Storage Azure Large Instances.
+
+- [liftr-pilot](/Commands/liftr-pilot/readme.md)
+: liftr-pilot
+
+- [liftrbasic](/Commands/liftrbasic/readme.md)
+: liftrbasic
 
 - [load](/Commands/load/readme.md)
 : Manage Azure Load Testing resources.
@@ -220,6 +235,9 @@
 
 - [mobile-network](/Commands/mobile-network/readme.md)
 : Manage mobile network
+
+- [mongo-db](/Commands/mongo-db/readme.md)
+: mongo-db
 
 - [monitor](/Commands/monitor/readme.md)
 : Manage the Azure Monitor Service.
@@ -262,6 +280,9 @@
 
 - [palo-alto](/Commands/palo-alto/readme.md)
 : Manage palo-alto networks resource
+
+- [pinecone](/Commands/pinecone/readme.md)
+: pinecone
 
 - [playwright-testing](/Commands/playwright-testing/readme.md)
 : Manage Microsoft Playwright Testing service
@@ -364,6 +385,9 @@
 
 - [voice-service](/Commands/voice-service/readme.md)
 : Manage voice services
+
+- [weights-and-biases](/Commands/weights-and-biases/readme.md)
+: weights-and-biases
 
 - [workloads](/Commands/workloads/readme.md)
 : Manage workloads

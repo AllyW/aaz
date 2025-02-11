@@ -16,7 +16,7 @@ Manage qumulo storage file system
 : Delete a FileSystemResource
 
 - [list](/Commands/qumulo/storage/file-system/_list.md)
-: List file system resources
+: List FileSystemResource resources by subscription ID
 
 - [show](/Commands/qumulo/storage/file-system/_show.md)
 : Get a FileSystemResource
