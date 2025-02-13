@@ -59,7 +59,7 @@
                   <prop type="ResourceLocation" name="location" required="True"/>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties">
-                    <prop type="string" name="adminPassword" required="True"/>
+                    <prop type="string" name="adminPassword" required="True" secret="True"/>
                     <prop type="string" name="availabilityZone"/>
                     <prop type="string" name="clusterLoginUrl"/>
                     <prop type="string" name="delegatedSubnetId" required="True"/>
@@ -96,7 +96,7 @@
                     </prop>
                     <prop type="string" name="storageSku" required="True"/>
                     <prop type="object" name="userDetails" required="True">
-                      <prop type="string" name="email" required="True"/>
+                      <prop type="string" name="email" required="True" secret="True"/>
                     </prop>
                   </prop>
                   <prop readOnly="True" type="object" name="systemData">
@@ -327,7 +327,7 @@
                   </prop>
                   <prop type="ResourceLocation" name="location" arg="$resource.location" required="True"/>
                   <prop type="object" name="properties">
-                    <prop type="string" name="adminPassword" arg="$resource.properties.adminPassword" required="True"/>
+                    <prop type="string" name="adminPassword" arg="$resource.properties.adminPassword" required="True" secret="True"/>
                     <prop type="string" name="availabilityZone" arg="$resource.properties.availabilityZone"/>
                     <prop type="string" name="clusterLoginUrl" arg="$resource.properties.clusterLoginUrl"/>
                     <prop type="string" name="delegatedSubnetId" arg="$resource.properties.delegatedSubnetId" required="True"/>
@@ -343,7 +343,7 @@
                     </prop>
                     <prop type="string" name="storageSku" arg="$resource.properties.storageSku" required="True"/>
                     <prop type="object" name="userDetails" arg="$resource.properties.userDetails" required="True">
-                      <prop type="string" name="email" arg="$resource.properties.userDetails.email" required="True"/>
+                      <prop type="string" name="email" arg="$resource.properties.userDetails.email" required="True" secret="True"/>
                     </prop>
                   </prop>
                   <prop type="object" name="tags" arg="$resource.tags">
@@ -383,7 +383,7 @@
                   <prop type="ResourceLocation" name="location" required="True"/>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties">
-                    <prop type="string" name="adminPassword" required="True"/>
+                    <prop type="string" name="adminPassword" required="True" secret="True"/>
                     <prop type="string" name="availabilityZone"/>
                     <prop type="string" name="clusterLoginUrl"/>
                     <prop type="string" name="delegatedSubnetId" required="True"/>
@@ -420,7 +420,7 @@
                     </prop>
                     <prop type="string" name="storageSku" required="True"/>
                     <prop type="object" name="userDetails" required="True">
-                      <prop type="string" name="email" required="True"/>
+                      <prop type="string" name="email" required="True" secret="True"/>
                     </prop>
                   </prop>
                   <prop readOnly="True" type="object" name="systemData">
@@ -595,7 +595,7 @@
                   <prop type="ResourceLocation" name="location" required="True"/>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties">
-                    <prop type="string" name="adminPassword" required="True"/>
+                    <prop type="string" name="adminPassword" required="True" secret="True"/>
                     <prop type="string" name="availabilityZone"/>
                     <prop type="string" name="clusterLoginUrl"/>
                     <prop type="string" name="delegatedSubnetId" required="True"/>
@@ -632,7 +632,7 @@
                     </prop>
                     <prop type="string" name="storageSku" required="True"/>
                     <prop type="object" name="userDetails" required="True">
-                      <prop type="string" name="email" required="True"/>
+                      <prop type="string" name="email" required="True" secret="True"/>
                     </prop>
                   </prop>
                   <prop readOnly="True" type="object" name="systemData">
@@ -696,7 +696,7 @@
                 </prop>
               </prop>
               <prop type="object" name="properties">
-                <prop type="string" name="adminPassword" arg="$resource.properties.adminPassword" required="True"/>
+                <prop type="string" name="adminPassword" arg="$resource.properties.adminPassword" required="True" secret="True"/>
                 <prop type="string" name="availabilityZone" arg="$resource.properties.availabilityZone"/>
                 <prop type="string" name="clusterLoginUrl" arg="$resource.properties.clusterLoginUrl"/>
                 <prop type="string" name="delegatedSubnetId" arg="$resource.properties.delegatedSubnetId" required="True"/>
@@ -712,7 +712,7 @@
                 </prop>
                 <prop type="string" name="storageSku" arg="$resource.properties.storageSku" required="True"/>
                 <prop type="object" name="userDetails" arg="$resource.properties.userDetails" required="True">
-                  <prop type="string" name="email" arg="$resource.properties.userDetails.email" required="True"/>
+                  <prop type="string" name="email" arg="$resource.properties.userDetails.email" required="True" secret="True"/>
                 </prop>
               </prop>
               <prop type="object" name="tags" arg="$resource.tags">
@@ -775,7 +775,7 @@
                   <prop type="ResourceLocation" name="location" required="True"/>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties">
-                    <prop type="string" name="adminPassword" required="True"/>
+                    <prop type="string" name="adminPassword" required="True" secret="True"/>
                     <prop type="string" name="availabilityZone"/>
                     <prop type="string" name="clusterLoginUrl"/>
                     <prop type="string" name="delegatedSubnetId" required="True"/>
@@ -812,7 +812,7 @@
                     </prop>
                     <prop type="string" name="storageSku" required="True"/>
                     <prop type="object" name="userDetails" required="True">
-                      <prop type="string" name="email" required="True"/>
+                      <prop type="string" name="email" required="True" secret="True"/>
                     </prop>
                   </prop>
                   <prop readOnly="True" type="object" name="systemData">
@@ -932,7 +932,7 @@
                     <prop type="ResourceLocation" name="location" required="True"/>
                     <prop readOnly="True" type="string" name="name"/>
                     <prop type="object" name="properties">
-                      <prop type="string" name="adminPassword" required="True"/>
+                      <prop type="string" name="adminPassword" required="True" secret="True"/>
                       <prop type="string" name="availabilityZone"/>
                       <prop type="string" name="clusterLoginUrl"/>
                       <prop type="string" name="delegatedSubnetId" required="True"/>
@@ -969,7 +969,7 @@
                       </prop>
                       <prop type="string" name="storageSku" required="True"/>
                       <prop type="object" name="userDetails" required="True">
-                        <prop type="string" name="email" required="True"/>
+                        <prop type="string" name="email" required="True" secret="True"/>
                       </prop>
                     </prop>
                     <prop readOnly="True" type="object" name="systemData">
@@ -1076,7 +1076,7 @@
                     <prop type="ResourceLocation" name="location" required="True"/>
                     <prop readOnly="True" type="string" name="name"/>
                     <prop type="object" name="properties">
-                      <prop type="string" name="adminPassword" required="True"/>
+                      <prop type="string" name="adminPassword" required="True" secret="True"/>
                       <prop type="string" name="availabilityZone"/>
                       <prop type="string" name="clusterLoginUrl"/>
                       <prop type="string" name="delegatedSubnetId" required="True"/>
@@ -1113,7 +1113,7 @@
                       </prop>
                       <prop type="string" name="storageSku" required="True"/>
                       <prop type="object" name="userDetails" required="True">
-                        <prop type="string" name="email" required="True"/>
+                        <prop type="string" name="email" required="True" secret="True"/>
                       </prop>
                     </prop>
                     <prop readOnly="True" type="object" name="systemData">
@@ -1232,7 +1232,7 @@
                     <prop type="ResourceLocation" name="location" required="True"/>
                     <prop readOnly="True" type="string" name="name"/>
                     <prop type="object" name="properties">
-                      <prop type="string" name="adminPassword" required="True"/>
+                      <prop type="string" name="adminPassword" required="True" secret="True"/>
                       <prop type="string" name="availabilityZone"/>
                       <prop type="string" name="clusterLoginUrl"/>
                       <prop type="string" name="delegatedSubnetId" required="True"/>
@@ -1269,7 +1269,7 @@
                       </prop>
                       <prop type="string" name="storageSku" required="True"/>
                       <prop type="object" name="userDetails" required="True">
-                        <prop type="string" name="email" required="True"/>
+                        <prop type="string" name="email" required="True" secret="True"/>
                       </prop>
                     </prop>
                     <prop readOnly="True" type="object" name="systemData">
@@ -1376,7 +1376,7 @@
                     <prop type="ResourceLocation" name="location" required="True"/>
                     <prop readOnly="True" type="string" name="name"/>
                     <prop type="object" name="properties">
-                      <prop type="string" name="adminPassword" required="True"/>
+                      <prop type="string" name="adminPassword" required="True" secret="True"/>
                       <prop type="string" name="availabilityZone"/>
                       <prop type="string" name="clusterLoginUrl"/>
                       <prop type="string" name="delegatedSubnetId" required="True"/>
@@ -1413,7 +1413,7 @@
                       </prop>
                       <prop type="string" name="storageSku" required="True"/>
                       <prop type="object" name="userDetails" required="True">
-                        <prop type="string" name="email" required="True"/>
+                        <prop type="string" name="email" required="True" secret="True"/>
                       </prop>
                     </prop>
                     <prop readOnly="True" type="object" name="systemData">
@@ -1521,7 +1521,7 @@
                     <prop type="ResourceLocation" name="location" required="True"/>
                     <prop readOnly="True" type="string" name="name"/>
                     <prop type="object" name="properties">
-                      <prop type="string" name="adminPassword" required="True"/>
+                      <prop type="string" name="adminPassword" required="True" secret="True"/>
                       <prop type="string" name="availabilityZone"/>
                       <prop type="string" name="clusterLoginUrl"/>
                       <prop type="string" name="delegatedSubnetId" required="True"/>
@@ -1558,7 +1558,7 @@
                       </prop>
                       <prop type="string" name="storageSku" required="True"/>
                       <prop type="object" name="userDetails" required="True">
-                        <prop type="string" name="email" required="True"/>
+                        <prop type="string" name="email" required="True" secret="True"/>
                       </prop>
                     </prop>
                     <prop readOnly="True" type="object" name="systemData">

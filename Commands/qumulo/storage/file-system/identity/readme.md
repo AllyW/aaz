@@ -1,6 +1,6 @@
 # [Group] _qumulo storage file-system identity_
 
-Manage the user or system managed identities.
+qumulo storage file-system identity
 
 ## Commands
 

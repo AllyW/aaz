@@ -68,7 +68,7 @@
                       <prop type="ResourceLocation" name="location" required="True"/>
                       <prop readOnly="True" type="string" name="name"/>
                       <prop type="object" name="properties">
-                        <prop type="string" name="adminPassword" required="True"/>
+                        <prop type="string" name="adminPassword" required="True" secret="True"/>
                         <prop type="string" name="availabilityZone"/>
                         <prop type="string" name="clusterLoginUrl"/>
                         <prop type="string" name="delegatedSubnetId" required="True"/>
@@ -105,7 +105,7 @@
                         </prop>
                         <prop type="string" name="storageSku" required="True"/>
                         <prop type="object" name="userDetails" required="True">
-                          <prop type="string" name="email" required="True"/>
+                          <prop type="string" name="email" required="True" secret="True"/>
                         </prop>
                       </prop>
                       <prop readOnly="True" type="object" name="systemData">
@@ -198,7 +198,7 @@
                       <prop type="ResourceLocation" name="location" required="True"/>
                       <prop readOnly="True" type="string" name="name"/>
                       <prop type="object" name="properties">
-                        <prop type="string" name="adminPassword" required="True"/>
+                        <prop type="string" name="adminPassword" required="True" secret="True"/>
                         <prop type="string" name="availabilityZone"/>
                         <prop type="string" name="clusterLoginUrl"/>
                         <prop type="string" name="delegatedSubnetId" required="True"/>
@@ -235,7 +235,7 @@
                         </prop>
                         <prop type="string" name="storageSku" required="True"/>
                         <prop type="object" name="userDetails" required="True">
-                          <prop type="string" name="email" required="True"/>
+                          <prop type="string" name="email" required="True" secret="True"/>
                         </prop>
                       </prop>
                       <prop readOnly="True" type="object" name="systemData">

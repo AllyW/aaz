@@ -1,11 +1,11 @@
 # [Group] _qumulo storage file-system_
 
-Manage qumulo storage file system
+qumulo storage file-system
 
 ## Subgroups
 
 - [identity](/Commands/qumulo/storage/file-system/identity/readme.md)
-: Manage the user or system managed identities.
+: qumulo storage file-system identity
 
 ## Commands
 
