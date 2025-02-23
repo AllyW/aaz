@@ -14,3 +14,14 @@ List AutonomousDatabaseBackup resources by AutonomousDatabase
     ```bash
         az oracle-database autonomous-database backup list --autonomousdatabasename <ADBS name> --resource-group <resource_group>
     ```
+
+### [2024-10-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL29yYWNsZS5kYXRhYmFzZS9hdXRvbm9tb3VzZGF0YWJhc2VzL3t9L2F1dG9ub21vdXNkYXRhYmFzZWJhY2t1cHM=/2024-10-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/oracle.database/autonomousdatabases/{}/autonomousdatabasebackups 2024-10-01-preview -->
+
+#### examples
+
+- List ADBS Backups
+    ```bash
+        az oracle-database autonomous-database backup list --autonomousdatabasename <ADBS name> --resource-group <resource_group>
+    ```

@@ -36,3 +36,14 @@ Get a pool
     ```bash
         mdp pool show --name "cli-contoso-pool" --resource-group "rg1"
     ```
+
+### [2025-01-21](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kZXZvcHNpbmZyYXN0cnVjdHVyZS9wb29scy97fQ==/2025-01-21.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.devopsinfrastructure/pools/{} 2025-01-21 -->
+
+#### examples
+
+- Get
+    ```bash
+        mdp pool show --name "cli-contoso-pool" --resource-group "rg1"
+    ```

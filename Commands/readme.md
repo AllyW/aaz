@@ -20,6 +20,9 @@
 - [aosm](/Commands/aosm/readme.md)
 : Manage Azure Operator Service Manager resources.
 
+- [api-center](/Commands/api-center/readme.md)
+: api-center
+
 - [apic](/Commands/apic/readme.md)
 : Manage Azure API Center services
 
@@ -86,6 +89,9 @@
 - [compute-recommender](/Commands/compute-recommender/readme.md)
 : Manage sku/zone/region recommender info for compute resources
 
+- [compute-schedule](/Commands/compute-schedule/readme.md)
+: compute-schedule
+
 - [confidentialledger](/Commands/confidentialledger/readme.md)
 : Deploy and manage Azure confidential ledgers.
 
@@ -122,8 +128,14 @@
 - [desktopvirtualization](/Commands/desktopvirtualization/readme.md)
 : Manage desktop virtualization.
 
+- [dev-ops-infrastructure](/Commands/dev-ops-infrastructure/readme.md)
+: dev-ops-infrastructure
+
 - [devcenter](/Commands/devcenter/readme.md)
 : Manage resources with devcenter.
+
+- [device-registry](/Commands/device-registry/readme.md)
+: device-registry
 
 - [disk](/Commands/disk/readme.md)
 : Manage Azure Managed Disks.
@@ -139,6 +151,9 @@
 
 - [dns-resolver](/Commands/dns-resolver/readme.md)
 : Manage Dns Resolver
+
+- [document-db](/Commands/document-db/readme.md)
+: document-db
 
 - [durabletask](/Commands/durabletask/readme.md)
 : Commands to manage Durabletask schedulers and taskhubs
@@ -172,6 +187,9 @@
 
 - [graph-services](/Commands/graph-services/readme.md)
 : Make operations on Microsoft.GraphServices resource types
+
+- [health-data-ai-services](/Commands/health-data-ai-services/readme.md)
+: health-data-ai-services
 
 - [healthcareapis](/Commands/healthcareapis/readme.md)
 : Azure Healthcare APIs is a secure cloud platform for managing health data, supporting analytics, machine learning, and scalable solutions.
@@ -254,6 +272,9 @@
 - [notification-hub](/Commands/notification-hub/readme.md)
 : Manage notification hubs.
 
+- [oracle](/Commands/oracle/readme.md)
+: oracle
+
 - [oracle-database](/Commands/oracle-database/readme.md)
 : Command Modules for RP Oracle.Database
 
@@ -331,6 +352,9 @@
 
 - [stack-hci](/Commands/stack-hci/readme.md)
 : Manage Azure Stack HCI.
+
+- [standby-pool](/Commands/standby-pool/readme.md)
+: standby-pool
 
 - [storage](/Commands/storage/readme.md)
 : Manage Azure Cloud Storage resources.

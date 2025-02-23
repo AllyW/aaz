@@ -25,3 +25,14 @@ List sku resources in given location
     ```bash
         mdp sku list --location eastus
     ```
+
+### [2025-01-21](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kZXZvcHNpbmZyYXN0cnVjdHVyZS9sb2NhdGlvbnMve30vc2t1cw==/2025-01-21.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.devopsinfrastructure/locations/{}/skus 2025-01-21 -->
+
+#### examples
+
+- List by location
+    ```bash
+        mdp sku list --location eastus
+    ```

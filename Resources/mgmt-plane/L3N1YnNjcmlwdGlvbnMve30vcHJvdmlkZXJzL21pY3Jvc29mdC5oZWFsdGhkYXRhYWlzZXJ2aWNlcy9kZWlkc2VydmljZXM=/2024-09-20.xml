@@ -2,8 +2,8 @@
 <CodeGen plane="mgmt-plane">
   <resource id="/subscriptions/{}/providers/microsoft.healthdataaiservices/deidservices" version="2024-09-20" swagger="mgmt-plane/healthdataaiservices/ResourceProviders/Microsoft.HealthDataAIServices/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkhlYWx0aERhdGFBSVNlcnZpY2VzL2RlaWRTZXJ2aWNlcw==/V/MjAyNC0wOS0yMA=="/>
   <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.healthdataaiservices/deidservices" version="2024-09-20" swagger="mgmt-plane/healthdataaiservices/ResourceProviders/Microsoft.HealthDataAIServices/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuSGVhbHRoRGF0YUFJU2VydmljZXMvZGVpZFNlcnZpY2Vz/V/MjAyNC0wOS0yMA=="/>
-  <commandGroup name="healthcareapis deidservice">
-    <command name="list" version="2024-09-20" confirmation="">
+  <commandGroup name="health-data-ai-services deid-service">
+    <command name="list" version="2024-09-20">
       <resource id="/subscriptions/{}/providers/microsoft.healthdataaiservices/deidservices" version="2024-09-20" swagger="mgmt-plane/healthdataaiservices/ResourceProviders/Microsoft.HealthDataAIServices/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkhlYWx0aERhdGFBSVNlcnZpY2VzL2RlaWRTZXJ2aWNlcw==/V/MjAyNC0wOS0yMA=="/>
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.healthdataaiservices/deidservices" version="2024-09-20" swagger="mgmt-plane/healthdataaiservices/ResourceProviders/Microsoft.HealthDataAIServices/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuSGVhbHRoRGF0YUFJU2VydmljZXMvZGVpZFNlcnZpY2Vz/V/MjAyNC0wOS0yMA=="/>
       <argGroup name="">

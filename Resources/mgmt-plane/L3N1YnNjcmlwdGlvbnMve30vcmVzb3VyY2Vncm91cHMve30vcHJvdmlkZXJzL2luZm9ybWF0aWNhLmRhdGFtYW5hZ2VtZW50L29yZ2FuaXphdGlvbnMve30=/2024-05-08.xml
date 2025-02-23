@@ -9,12 +9,8 @@
           <help short="Name of the Organizations resource"/>
           <format pattern="^[a-zA-Z0-9_-]*$"/>
         </arg>
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
-          <help short="Resource group name"/>
-        </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" group="" idPart="subscription">
-          <help short="Subscription"/>
-        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <operation operationId="Organizations_Get">
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Informatica.DataManagement/organizations/{organizationName}">
@@ -166,12 +162,8 @@
           <help short="Name of the Organizations resource"/>
           <format pattern="^[a-zA-Z0-9_-]*$"/>
         </arg>
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
-          <help short="Resource group name"/>
-        </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" group="" idPart="subscription">
-          <help short="Subscription"/>
-        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <operation operationId="Organizations_Delete">
         <longRunning finalStateVia="location"/>
@@ -220,12 +212,8 @@
           <help short="Name of the Organizations resource"/>
           <format pattern="^[a-zA-Z0-9_-]*$"/>
         </arg>
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
-          <help short="Resource group name"/>
-        </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" group="" idPart="subscription">
-          <help short="Subscription"/>
-        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <argGroup name="Properties">
         <arg type="object" var="$resource.properties.companyDetails" options="company-details" group="Properties">
@@ -557,12 +545,8 @@
           <help short="Name of the Organizations resource"/>
           <format pattern="^[a-zA-Z0-9_-]*$"/>
         </arg>
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
-          <help short="Resource group name"/>
-        </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" group="" idPart="subscription">
-          <help short="Subscription"/>
-        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <argGroup name="Properties">
         <arg nullable="True" type="object" var="$resource.properties.companyDetails" options="company-details" group="Properties">

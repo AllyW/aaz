@@ -14,3 +14,14 @@ Get a DbSystemShape
     ```bash
         oracle-database database-system-shape show --name <name> --location <location>
     ```
+
+### [2024-10-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL29yYWNsZS5kYXRhYmFzZS9sb2NhdGlvbnMve30vZGJzeXN0ZW1zaGFwZXMve30=/2024-10-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/oracle.database/locations/{}/dbsystemshapes/{} 2024-10-01-preview -->
+
+#### examples
+
+- Get database system shapes
+    ```bash
+        oracle-database database-system-shape show --name <name> --location <location>
+    ```

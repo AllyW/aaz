@@ -2,6 +2,20 @@
 
 Manage virtual instance
 
+## Subgroups
+
+- [application-instance](/Commands/workloads/sap-virtual-instance/application-instance/readme.md)
+: workloads sap-virtual-instance application-instance
+
+- [central-instance](/Commands/workloads/sap-virtual-instance/central-instance/readme.md)
+: workloads sap-virtual-instance central-instance
+
+- [database-instance](/Commands/workloads/sap-virtual-instance/database-instance/readme.md)
+: workloads sap-virtual-instance database-instance
+
+- [identity](/Commands/workloads/sap-virtual-instance/identity/readme.md)
+: workloads sap-virtual-instance identity
+
 ## Commands
 
 - [create](/Commands/workloads/sap-virtual-instance/_create.md)
