@@ -16,12 +16,8 @@
             <item name="ScalableExecution" value="&quot;ScalableExecution&quot;"/>
           </enum>
         </arg>
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
-          <help short="Name of Azure resource group"/>
-        </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" group="" idPart="subscription">
-          <help short="Name or ID of Azure subscription"/>
-        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <operation operationId="AccountQuotas_Get">
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzurePlaywrightService/accounts/{accountName}/quotas/{quotaName}">
@@ -37,7 +33,7 @@
                 </enum>
               </param>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
@@ -52,11 +48,9 @@
             <body>
               <json var="$Instance">
                 <schema type="object">
-                  <prop readOnly="True" type="ResourceId" name="id">
-                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.AzurePlaywrightService/accounts/{}/quotas/{}"/>
-                  </prop>
+                  <prop readOnly="True" type="ResourceId" name="id"/>
                   <prop readOnly="True" type="string" name="name"/>
-                  <prop type="object" name="properties" clientFlatten="True">
+                  <prop type="object" name="properties">
                     <prop type="object" name="freeTrial">
                       <prop readOnly="True" type="integer32" name="allocatedValue"/>
                       <prop readOnly="True" type="dateTime" name="createdAt"/>
@@ -107,7 +101,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>

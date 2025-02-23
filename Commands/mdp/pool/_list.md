@@ -54,3 +54,20 @@ List all pools
     ```bash
         mdp pool list
     ```
+
+### [2025-01-21](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kZXZvcHNpbmZyYXN0cnVjdHVyZS9wb29scw==/2025-01-21.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.devopsinfrastructure/pools 2025-01-21 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.devopsinfrastructure/pools 2025-01-21 -->
+
+#### examples
+
+- List by resource group
+    ```bash
+        mdp pool list --resource-group "rg1"
+    ```
+
+- List by subscription
+    ```bash
+        mdp pool list
+    ```

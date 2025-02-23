@@ -9,9 +9,7 @@
           <help short="The name of the ExtendedZone"/>
           <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
         </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" stage="Preview" group="" idPart="subscription">
-          <help short=""/>
-        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <operation operationId="ExtendedZones_Unregister">
         <http path="/subscriptions/{subscriptionId}/providers/Microsoft.EdgeZones/extendedZones/{extendedZoneName}/unregister">
@@ -33,17 +31,15 @@
             <body>
               <json var="$Instance">
                 <schema type="object">
-                  <prop readOnly="True" type="ResourceId" name="id">
-                    <format template="/subscriptions/{}/providers/Microsoft.EdgeZones/extendedZones/{}"/>
-                  </prop>
+                  <prop readOnly="True" type="ResourceId" name="id"/>
                   <prop readOnly="True" type="string" name="name"/>
-                  <prop type="object" name="properties" clientFlatten="True">
-                    <prop readOnly="True" type="string" name="displayName" required="True"/>
-                    <prop readOnly="True" type="string" name="geography" required="True"/>
-                    <prop readOnly="True" type="string" name="geographyGroup" required="True"/>
-                    <prop readOnly="True" type="string" name="homeLocation" required="True"/>
-                    <prop readOnly="True" type="string" name="latitude" required="True"/>
-                    <prop readOnly="True" type="string" name="longitude" required="True"/>
+                  <prop type="object" name="properties">
+                    <prop readOnly="True" type="string" name="displayName"/>
+                    <prop readOnly="True" type="string" name="geography"/>
+                    <prop readOnly="True" type="string" name="geographyGroup"/>
+                    <prop readOnly="True" type="string" name="homeLocation"/>
+                    <prop readOnly="True" type="string" name="latitude"/>
+                    <prop readOnly="True" type="string" name="longitude"/>
                     <prop readOnly="True" type="string" name="provisioningState">
                       <enum>
                         <item value="&quot;Accepted&quot;"/>
@@ -55,10 +51,10 @@
                         <item value="&quot;Updating&quot;"/>
                       </enum>
                     </prop>
-                    <prop readOnly="True" type="string" name="regionCategory" required="True"/>
-                    <prop readOnly="True" type="string" name="regionType" required="True"/>
-                    <prop readOnly="True" type="string" name="regionalDisplayName" required="True"/>
-                    <prop type="string" name="registrationState">
+                    <prop readOnly="True" type="string" name="regionCategory"/>
+                    <prop readOnly="True" type="string" name="regionType"/>
+                    <prop readOnly="True" type="string" name="regionalDisplayName"/>
+                    <prop readOnly="True" type="string" name="registrationState">
                       <enum>
                         <item value="&quot;NotRegistered&quot;"/>
                         <item value="&quot;PendingRegister&quot;"/>
@@ -97,7 +93,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>

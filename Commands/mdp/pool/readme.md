@@ -7,6 +7,9 @@ Manage a pool resource
 - [agent](/Commands/mdp/pool/agent/readme.md)
 : Manage pool resource agents
 
+- [identity](/Commands/mdp/pool/identity/readme.md)
+: mdp pool identity
+
 ## Commands
 
 - [create](/Commands/mdp/pool/_create.md)
