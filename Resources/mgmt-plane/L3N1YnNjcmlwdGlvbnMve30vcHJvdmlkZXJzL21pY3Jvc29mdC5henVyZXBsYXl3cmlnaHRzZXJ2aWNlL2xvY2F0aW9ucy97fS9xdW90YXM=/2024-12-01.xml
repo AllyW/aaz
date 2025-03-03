@@ -5,12 +5,8 @@
     <command name="list" version="2024-12-01">
       <resource id="/subscriptions/{}/providers/microsoft.azureplaywrightservice/locations/{}/quotas" version="2024-12-01" swagger="mgmt-plane/playwrighttesting/ResourceProviders/Microsoft.AzurePlaywrightService/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkF6dXJlUGxheXdyaWdodFNlcnZpY2UvbG9jYXRpb25zL3tsb2NhdGlvbn0vcXVvdGFz/V/MjAyNC0xMi0wMQ=="/>
       <argGroup name="">
-        <arg type="ResourceLocation" var="$Path.location" options="location l" required="True" group="" idPart="name">
-          <help short="The location of subscription quota resource."/>
-        </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" group="" idPart="subscription">
-          <help short="Name or ID of Azure subscription"/>
-        </arg>
+        <arg type="ResourceLocation" var="$Path.location" options="location l" required="True" idPart="name"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <operation operationId="Quotas_ListBySubscription">
         <http path="/subscriptions/{subscriptionId}/providers/Microsoft.AzurePlaywrightService/locations/{location}/quotas">
@@ -33,11 +29,9 @@
                   <prop type="string" name="nextLink"/>
                   <prop type="array<object>" name="value" required="True">
                     <item type="object">
-                      <prop readOnly="True" type="ResourceId" name="id">
-                        <format template="/subscriptions/{}/providers/Microsoft.AzurePlaywrightService/locations/{}/quotas/{}"/>
-                      </prop>
+                      <prop readOnly="True" type="ResourceId" name="id"/>
                       <prop readOnly="True" type="string" name="name"/>
-                      <prop type="object" name="properties" clientFlatten="True">
+                      <prop type="object" name="properties">
                         <prop type="object" name="freeTrial">
                           <prop readOnly="True" type="string" name="accountId"/>
                           <prop readOnly="True" type="string" name="state">
@@ -100,7 +94,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>

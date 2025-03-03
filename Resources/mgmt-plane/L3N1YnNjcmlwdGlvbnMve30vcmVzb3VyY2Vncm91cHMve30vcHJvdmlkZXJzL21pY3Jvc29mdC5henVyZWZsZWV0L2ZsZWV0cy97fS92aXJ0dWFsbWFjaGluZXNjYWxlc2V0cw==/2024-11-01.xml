@@ -10,9 +10,7 @@
           <format pattern="^[^_\W][\w\-._]{0,79}(?<![-.])$"/>
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription s" required="True" group="" idPart="subscription">
-          <help short=""/>
-        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <operation operationId="Fleets_ListVirtualMachineScaleSets">
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureFleet/fleets/{name}/virtualMachineScaleSets">
@@ -22,7 +20,7 @@
                 <format pattern="^[^_\W][\w\-._]{0,79}(?<![-.])$"/>
               </param>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
@@ -56,7 +54,7 @@
                         <prop type="string" name="message"/>
                         <prop type="string" name="target"/>
                       </prop>
-                      <prop readOnly="True" type="string" name="id"/>
+                      <prop readOnly="True" type="ResourceId" name="id"/>
                       <prop readOnly="True" type="string" name="name"/>
                       <prop readOnly="True" type="string" name="operationStatus">
                         <enum>
@@ -79,7 +77,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>

@@ -9,12 +9,8 @@
           <help short="Name of the Organizations resource"/>
           <format pattern="^[a-zA-Z0-9_-]*$"/>
         </arg>
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
-          <help short="Resource group name"/>
-        </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" group="" idPart="subscription">
-          <help short="Subscription"/>
-        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <operation operationId="ServerlessRuntimes_ListByInformaticaOrganizationResource">
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Informatica.DataManagement/organizations/{organizationName}/serverlessRuntimes">
@@ -24,11 +20,9 @@
                 <format pattern="^[a-zA-Z0-9_-]*$"/>
               </param>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
               </param>
-              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
-                <format minLength="1"/>
-              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
@@ -44,11 +38,9 @@
                   <prop type="string" name="nextLink"/>
                   <prop type="array<object>" name="value" required="True">
                     <item type="object">
-                      <prop readOnly="True" type="ResourceId" name="id">
-                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Informatica.DataManagement/organizations/{}/serverlessRuntimes/{}"/>
-                      </prop>
+                      <prop readOnly="True" type="ResourceId" name="id"/>
                       <prop readOnly="True" type="string" name="name"/>
-                      <prop type="object" name="properties" clientFlatten="True">
+                      <prop type="object" name="properties">
                         <prop type="array<object>" name="advancedCustomProperties">
                           <item type="object">
                             <prop type="string" name="key"/>
@@ -154,7 +146,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>

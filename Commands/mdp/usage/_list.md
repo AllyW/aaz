@@ -14,3 +14,14 @@ List quota resources in given location
     ```bash
         mdp usage list --location westus
     ```
+
+### [2025-01-21](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kZXZvcHNpbmZyYXN0cnVjdHVyZS9sb2NhdGlvbnMve30vdXNhZ2Vz/2025-01-21.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.devopsinfrastructure/locations/{}/usages 2025-01-21 -->
+
+#### examples
+
+- List by location
+    ```bash
+        mdp usage list --location westus
+    ```

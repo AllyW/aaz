@@ -4,6 +4,9 @@ Manage an Azure API Center service instance.
 
 ## Subgroups
 
+- [identity](/Commands/apic/service/identity/readme.md)
+: apic service identity
+
 - [portal](/Commands/apic/service/portal/readme.md)
 : Commands to manage API Center Service Portal Configuration in API Center
 
