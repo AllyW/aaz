@@ -5,9 +5,6 @@
     <command name="show" version="2024-11-15">
       <resource id="/jobs/{}" version="2024-11-15" swagger="data-plane:healthdataaiservices.deidservices/healthdataaiservices/ResourceProviders/HealthDataAIServices.DeidServices/Paths/L2pvYnMve25hbWV9/V/MjAyNC0xMS0xNQ=="/>
       <argGroup name="">
-        <arg type="uuid" var="$Header.x-ms-client-request-id" options="x-ms-client-request-id">
-          <help short="An opaque, globally-unique, client-generated string identifier for the request."/>
-        </arg>
         <arg type="string" var="$Path.name" options="name" required="True">
           <help short="The name of a job."/>
           <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]+[a-zA-Z0-9]$" maxLength="36" minLength="3"/>
@@ -27,9 +24,7 @@
                 <format minLength="1"/>
               </const>
             </query>
-            <header clientRequestId="x-ms-client-request-id">
-              <param type="uuid" name="x-ms-client-request-id" arg="$Header.x-ms-client-request-id"/>
-            </header>
+            <header clientRequestId="x-ms-client-request-id"/>
           </request>
           <response statusCode="200">
             <header>
@@ -129,9 +124,6 @@
     <command name="delete" version="2024-11-15" confirmation="Are you sure you want to perform this operation?">
       <resource id="/jobs/{}" version="2024-11-15" swagger="data-plane:healthdataaiservices.deidservices/healthdataaiservices/ResourceProviders/HealthDataAIServices.DeidServices/Paths/L2pvYnMve25hbWV9/V/MjAyNC0xMS0xNQ=="/>
       <argGroup name="">
-        <arg type="uuid" var="$Header.x-ms-client-request-id" options="x-ms-client-request-id">
-          <help short="An opaque, globally-unique, client-generated string identifier for the request."/>
-        </arg>
         <arg type="string" var="$Path.name" options="name" required="True">
           <help short="The name of a job."/>
           <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]+[a-zA-Z0-9]$" maxLength="36" minLength="3"/>
@@ -151,9 +143,7 @@
                 <format minLength="1"/>
               </const>
             </query>
-            <header clientRequestId="x-ms-client-request-id">
-              <param type="uuid" name="x-ms-client-request-id" arg="$Header.x-ms-client-request-id"/>
-            </header>
+            <header clientRequestId="x-ms-client-request-id"/>
           </request>
           <response statusCode="204">
             <header>
@@ -176,9 +166,6 @@
     <command name="create" version="2024-11-15">
       <resource id="/jobs/{}" version="2024-11-15" swagger="data-plane:healthdataaiservices.deidservices/healthdataaiservices/ResourceProviders/HealthDataAIServices.DeidServices/Paths/L2pvYnMve25hbWV9/V/MjAyNC0xMS0xNQ=="/>
       <argGroup name="">
-        <arg type="uuid" var="$Header.x-ms-client-request-id" options="x-ms-client-request-id">
-          <help short="An opaque, globally-unique, client-generated string identifier for the request."/>
-        </arg>
         <arg type="string" var="$Path.name" options="name" required="True">
           <help short="The name of a job."/>
           <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]+[a-zA-Z0-9]$" maxLength="36" minLength="3"/>
@@ -251,9 +238,7 @@
                 <format minLength="1"/>
               </const>
             </query>
-            <header clientRequestId="x-ms-client-request-id">
-              <param type="uuid" name="x-ms-client-request-id" arg="$Header.x-ms-client-request-id"/>
-            </header>
+            <header clientRequestId="x-ms-client-request-id"/>
             <body>
               <json>
                 <schema type="object" name="resource" required="True" clientFlatten="True">
@@ -396,9 +381,6 @@
     <command name="update" version="2024-11-15">
       <resource id="/jobs/{}" version="2024-11-15" swagger="data-plane:healthdataaiservices.deidservices/healthdataaiservices/ResourceProviders/HealthDataAIServices.DeidServices/Paths/L2pvYnMve25hbWV9/V/MjAyNC0xMS0xNQ=="/>
       <argGroup name="">
-        <arg type="uuid" var="$Header.x-ms-client-request-id" options="x-ms-client-request-id">
-          <help short="An opaque, globally-unique, client-generated string identifier for the request."/>
-        </arg>
         <arg type="string" var="$Path.name" options="name" required="True">
           <help short="The name of a job."/>
           <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]+[a-zA-Z0-9]$" maxLength="36" minLength="3"/>
@@ -466,9 +448,7 @@
                 <format minLength="1"/>
               </const>
             </query>
-            <header clientRequestId="x-ms-client-request-id">
-              <param type="uuid" name="x-ms-client-request-id" arg="$Header.x-ms-client-request-id"/>
-            </header>
+            <header clientRequestId="x-ms-client-request-id"/>
           </request>
           <response statusCode="200">
             <header>
@@ -622,9 +602,7 @@
                 <format minLength="1"/>
               </const>
             </query>
-            <header clientRequestId="x-ms-client-request-id">
-              <param type="uuid" name="x-ms-client-request-id" arg="$Header.x-ms-client-request-id"/>
-            </header>
+            <header clientRequestId="x-ms-client-request-id"/>
             <body>
               <json ref="$Instance"/>
             </body>

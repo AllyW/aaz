@@ -5,11 +5,9 @@
     <command name="show" version="2024-12-01">
       <resource id="/accounts/{}/access-tokens/{}" version="2024-12-01" swagger="data-plane:microsoft.playwrighttesting.authmanager/playwrighttesting/ResourceProviders/Microsoft.PlaywrightTesting.AuthManager/Paths/L2FjY291bnRzL3thY2NvdW50SWR9L2FjY2Vzcy10b2tlbnMve2FjY2Vzc1Rva2VuSWR9/V/MjAyNC0xMi0wMQ=="/>
       <argGroup name="">
-        <arg type="uuid" var="$Header.x-ms-client-request-id" options="x-ms-client-request-id">
-          <help short="An opaque, globally-unique, client-generated string identifier for the request."/>
-        </arg>
         <arg type="uuid" var="$Path.accessTokenId" options="access-token-id" required="True">
           <help short="The access-token id."/>
+          <format pattern="[A-Za-z0-9]+(-[A-Za-z0-9]+)+" maxLength="64"/>
         </arg>
         <arg type="string" var="$Path.accountId" options="account-id" required="True">
           <help short="The account id."/>
@@ -20,7 +18,9 @@
         <http path="/accounts/{accountId}/access-tokens/{accessTokenId}">
           <request method="get">
             <path>
-              <param type="uuid" name="accessTokenId" arg="$Path.accessTokenId" required="True"/>
+              <param type="uuid" name="accessTokenId" arg="$Path.accessTokenId" required="True">
+                <format pattern="[A-Za-z0-9]+(-[A-Za-z0-9]+)+" maxLength="64"/>
+              </param>
               <param type="string" name="accountId" arg="$Path.accountId" required="True">
                 <format pattern="[A-Za-z0-9]+(_[A-Za-z0-9]+)*(-[A-Za-z0-9]+)+" maxLength="64"/>
               </param>
@@ -31,9 +31,7 @@
                 <format minLength="1"/>
               </const>
             </query>
-            <header clientRequestId="x-ms-client-request-id">
-              <param type="uuid" name="x-ms-client-request-id" arg="$Header.x-ms-client-request-id"/>
-            </header>
+            <header clientRequestId="x-ms-client-request-id"/>
           </request>
           <response statusCode="200">
             <header>
@@ -44,7 +42,9 @@
                 <schema type="object">
                   <prop readOnly="True" type="dateTime" name="createdAt"/>
                   <prop type="dateTime" name="expiryAt" required="True"/>
-                  <prop readOnly="True" type="uuid" name="id"/>
+                  <prop readOnly="True" type="uuid" name="id">
+                    <format pattern="[A-Za-z0-9]+(-[A-Za-z0-9]+)+" maxLength="64"/>
+                  </prop>
                   <prop readOnly="True" type="string" name="jwtToken"/>
                   <prop type="string" name="name" required="True">
                     <format pattern="^[a-zA-Z]{1}[a-zA-Z0-9]{2,63}$" maxLength="64" minLength="3"/>
@@ -76,11 +76,9 @@
     <command name="delete" version="2024-12-01" confirmation="Are you sure you want to perform this operation?">
       <resource id="/accounts/{}/access-tokens/{}" version="2024-12-01" swagger="data-plane:microsoft.playwrighttesting.authmanager/playwrighttesting/ResourceProviders/Microsoft.PlaywrightTesting.AuthManager/Paths/L2FjY291bnRzL3thY2NvdW50SWR9L2FjY2Vzcy10b2tlbnMve2FjY2Vzc1Rva2VuSWR9/V/MjAyNC0xMi0wMQ=="/>
       <argGroup name="">
-        <arg type="uuid" var="$Header.x-ms-client-request-id" options="x-ms-client-request-id">
-          <help short="An opaque, globally-unique, client-generated string identifier for the request."/>
-        </arg>
         <arg type="uuid" var="$Path.accessTokenId" options="access-token-id" required="True">
           <help short="The access-token id."/>
+          <format pattern="[A-Za-z0-9]+(-[A-Za-z0-9]+)+" maxLength="64"/>
         </arg>
         <arg type="string" var="$Path.accountId" options="account-id" required="True">
           <help short="The account id."/>
@@ -91,7 +89,9 @@
         <http path="/accounts/{accountId}/access-tokens/{accessTokenId}">
           <request method="delete">
             <path>
-              <param type="uuid" name="accessTokenId" arg="$Path.accessTokenId" required="True"/>
+              <param type="uuid" name="accessTokenId" arg="$Path.accessTokenId" required="True">
+                <format pattern="[A-Za-z0-9]+(-[A-Za-z0-9]+)+" maxLength="64"/>
+              </param>
               <param type="string" name="accountId" arg="$Path.accountId" required="True">
                 <format pattern="[A-Za-z0-9]+(_[A-Za-z0-9]+)*(-[A-Za-z0-9]+)+" maxLength="64"/>
               </param>
@@ -102,9 +102,7 @@
                 <format minLength="1"/>
               </const>
             </query>
-            <header clientRequestId="x-ms-client-request-id">
-              <param type="uuid" name="x-ms-client-request-id" arg="$Header.x-ms-client-request-id"/>
-            </header>
+            <header clientRequestId="x-ms-client-request-id"/>
           </request>
           <response statusCode="204">
             <header>
@@ -127,11 +125,9 @@
     <command name="create" version="2024-12-01">
       <resource id="/accounts/{}/access-tokens/{}" version="2024-12-01" swagger="data-plane:microsoft.playwrighttesting.authmanager/playwrighttesting/ResourceProviders/Microsoft.PlaywrightTesting.AuthManager/Paths/L2FjY291bnRzL3thY2NvdW50SWR9L2FjY2Vzcy10b2tlbnMve2FjY2Vzc1Rva2VuSWR9/V/MjAyNC0xMi0wMQ=="/>
       <argGroup name="">
-        <arg type="uuid" var="$Header.x-ms-client-request-id" options="x-ms-client-request-id">
-          <help short="An opaque, globally-unique, client-generated string identifier for the request."/>
-        </arg>
         <arg type="uuid" var="$Path.accessTokenId" options="access-token-id" required="True">
           <help short="The access-token id."/>
+          <format pattern="[A-Za-z0-9]+(-[A-Za-z0-9]+)+" maxLength="64"/>
         </arg>
         <arg type="string" var="$Path.accountId" options="account-id" required="True">
           <help short="The account id."/>
@@ -151,7 +147,9 @@
         <http path="/accounts/{accountId}/access-tokens/{accessTokenId}">
           <request method="put">
             <path>
-              <param type="uuid" name="accessTokenId" arg="$Path.accessTokenId" required="True"/>
+              <param type="uuid" name="accessTokenId" arg="$Path.accessTokenId" required="True">
+                <format pattern="[A-Za-z0-9]+(-[A-Za-z0-9]+)+" maxLength="64"/>
+              </param>
               <param type="string" name="accountId" arg="$Path.accountId" required="True">
                 <format pattern="[A-Za-z0-9]+(_[A-Za-z0-9]+)*(-[A-Za-z0-9]+)+" maxLength="64"/>
               </param>
@@ -162,9 +160,7 @@
                 <format minLength="1"/>
               </const>
             </query>
-            <header clientRequestId="x-ms-client-request-id">
-              <param type="uuid" name="x-ms-client-request-id" arg="$Header.x-ms-client-request-id"/>
-            </header>
+            <header clientRequestId="x-ms-client-request-id"/>
             <body>
               <json>
                 <schema type="object" name="resource" required="True" clientFlatten="True">
@@ -185,7 +181,9 @@
                 <schema type="object">
                   <prop readOnly="True" type="dateTime" name="createdAt"/>
                   <prop type="dateTime" name="expiryAt" required="True"/>
-                  <prop readOnly="True" type="uuid" name="id"/>
+                  <prop readOnly="True" type="uuid" name="id">
+                    <format pattern="[A-Za-z0-9]+(-[A-Za-z0-9]+)+" maxLength="64"/>
+                  </prop>
                   <prop readOnly="True" type="string" name="jwtToken"/>
                   <prop type="string" name="name" required="True">
                     <format pattern="^[a-zA-Z]{1}[a-zA-Z0-9]{2,63}$" maxLength="64" minLength="3"/>
@@ -217,11 +215,9 @@
     <command name="update" version="2024-12-01">
       <resource id="/accounts/{}/access-tokens/{}" version="2024-12-01" swagger="data-plane:microsoft.playwrighttesting.authmanager/playwrighttesting/ResourceProviders/Microsoft.PlaywrightTesting.AuthManager/Paths/L2FjY291bnRzL3thY2NvdW50SWR9L2FjY2Vzcy10b2tlbnMve2FjY2Vzc1Rva2VuSWR9/V/MjAyNC0xMi0wMQ=="/>
       <argGroup name="">
-        <arg type="uuid" var="$Header.x-ms-client-request-id" options="x-ms-client-request-id">
-          <help short="An opaque, globally-unique, client-generated string identifier for the request."/>
-        </arg>
         <arg type="uuid" var="$Path.accessTokenId" options="access-token-id" required="True">
           <help short="The access-token id."/>
+          <format pattern="[A-Za-z0-9]+(-[A-Za-z0-9]+)+" maxLength="64"/>
         </arg>
         <arg type="string" var="$Path.accountId" options="account-id" required="True">
           <help short="The account id."/>
@@ -232,7 +228,9 @@
         <http path="/accounts/{accountId}/access-tokens/{accessTokenId}">
           <request method="get">
             <path>
-              <param type="uuid" name="accessTokenId" arg="$Path.accessTokenId" required="True"/>
+              <param type="uuid" name="accessTokenId" arg="$Path.accessTokenId" required="True">
+                <format pattern="[A-Za-z0-9]+(-[A-Za-z0-9]+)+" maxLength="64"/>
+              </param>
               <param type="string" name="accountId" arg="$Path.accountId" required="True">
                 <format pattern="[A-Za-z0-9]+(_[A-Za-z0-9]+)*(-[A-Za-z0-9]+)+" maxLength="64"/>
               </param>
@@ -243,9 +241,7 @@
                 <format minLength="1"/>
               </const>
             </query>
-            <header clientRequestId="x-ms-client-request-id">
-              <param type="uuid" name="x-ms-client-request-id" arg="$Header.x-ms-client-request-id"/>
-            </header>
+            <header clientRequestId="x-ms-client-request-id"/>
           </request>
           <response statusCode="200">
             <header>
@@ -256,7 +252,9 @@
                 <schema type="object">
                   <prop readOnly="True" type="dateTime" name="createdAt"/>
                   <prop type="dateTime" name="expiryAt" required="True"/>
-                  <prop readOnly="True" type="uuid" name="id"/>
+                  <prop readOnly="True" type="uuid" name="id">
+                    <format pattern="[A-Za-z0-9]+(-[A-Za-z0-9]+)+" maxLength="64"/>
+                  </prop>
                   <prop readOnly="True" type="string" name="jwtToken"/>
                   <prop type="string" name="name" required="True">
                     <format pattern="^[a-zA-Z]{1}[a-zA-Z0-9]{2,63}$" maxLength="64" minLength="3"/>
@@ -294,7 +292,9 @@
         <http path="/accounts/{accountId}/access-tokens/{accessTokenId}">
           <request method="put">
             <path>
-              <param type="uuid" name="accessTokenId" arg="$Path.accessTokenId" required="True"/>
+              <param type="uuid" name="accessTokenId" arg="$Path.accessTokenId" required="True">
+                <format pattern="[A-Za-z0-9]+(-[A-Za-z0-9]+)+" maxLength="64"/>
+              </param>
               <param type="string" name="accountId" arg="$Path.accountId" required="True">
                 <format pattern="[A-Za-z0-9]+(_[A-Za-z0-9]+)*(-[A-Za-z0-9]+)+" maxLength="64"/>
               </param>
@@ -305,9 +305,7 @@
                 <format minLength="1"/>
               </const>
             </query>
-            <header clientRequestId="x-ms-client-request-id">
-              <param type="uuid" name="x-ms-client-request-id" arg="$Header.x-ms-client-request-id"/>
-            </header>
+            <header clientRequestId="x-ms-client-request-id"/>
             <body>
               <json ref="$Instance"/>
             </body>
@@ -321,7 +319,9 @@
                 <schema type="object">
                   <prop readOnly="True" type="dateTime" name="createdAt"/>
                   <prop type="dateTime" name="expiryAt" required="True"/>
-                  <prop readOnly="True" type="uuid" name="id"/>
+                  <prop readOnly="True" type="uuid" name="id">
+                    <format pattern="[A-Za-z0-9]+(-[A-Za-z0-9]+)+" maxLength="64"/>
+                  </prop>
                   <prop readOnly="True" type="string" name="jwtToken"/>
                   <prop type="string" name="name" required="True">
                     <format pattern="^[a-zA-Z]{1}[a-zA-Z0-9]{2,63}$" maxLength="64" minLength="3"/>

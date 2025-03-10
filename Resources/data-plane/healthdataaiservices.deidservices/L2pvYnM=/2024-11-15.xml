@@ -5,9 +5,6 @@
     <command name="list" version="2024-11-15">
       <resource id="/jobs" version="2024-11-15" swagger="data-plane:healthdataaiservices.deidservices/healthdataaiservices/ResourceProviders/HealthDataAIServices.DeidServices/Paths/L2pvYnM=/V/MjAyNC0xMS0xNQ=="/>
       <argGroup name="">
-        <arg type="uuid" var="$Header.x-ms-client-request-id" options="x-ms-client-request-id">
-          <help short="An opaque, globally-unique, client-generated string identifier for the request."/>
-        </arg>
         <arg type="string" var="$Query.continuationToken" options="continuation-token">
           <help short="Token to continue a previous query."/>
         </arg>
@@ -26,9 +23,7 @@
                 <format minLength="1"/>
               </const>
             </query>
-            <header clientRequestId="x-ms-client-request-id">
-              <param type="uuid" name="x-ms-client-request-id" arg="$Header.x-ms-client-request-id"/>
-            </header>
+            <header clientRequestId="x-ms-client-request-id"/>
           </request>
           <response statusCode="200">
             <header>

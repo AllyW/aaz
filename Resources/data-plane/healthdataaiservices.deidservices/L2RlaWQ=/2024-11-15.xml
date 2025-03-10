@@ -4,11 +4,6 @@
   <commandGroup name="health-data-ai-services deid-services">
     <command name="deid" version="2024-11-15">
       <resource id="/deid" version="2024-11-15" swagger="data-plane:healthdataaiservices.deidservices/healthdataaiservices/ResourceProviders/HealthDataAIServices.DeidServices/Paths/L2RlaWQ=/V/MjAyNC0xMS0xNQ=="/>
-      <argGroup name="">
-        <arg type="uuid" var="$Header.x-ms-client-request-id" options="x-ms-client-request-id">
-          <help short="An opaque, globally-unique, client-generated string identifier for the request."/>
-        </arg>
-      </argGroup>
       <argGroup name="Body">
         <arg type="object" var="$body.customizations" options="customizations" group="Body">
           <help short="Customization parameters to override default service behaviors."/>
@@ -44,9 +39,7 @@
                 <format minLength="1"/>
               </const>
             </query>
-            <header clientRequestId="x-ms-client-request-id">
-              <param type="uuid" name="x-ms-client-request-id" arg="$Header.x-ms-client-request-id"/>
-            </header>
+            <header clientRequestId="x-ms-client-request-id"/>
             <body>
               <json>
                 <schema type="object" name="body" required="True" clientFlatten="True">

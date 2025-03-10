@@ -5,9 +5,6 @@
     <command name="show" version="2024-12-01">
       <resource id="/accounts/{}" version="2024-12-01" swagger="data-plane:microsoft.playwrighttesting.authmanager/playwrighttesting/ResourceProviders/Microsoft.PlaywrightTesting.AuthManager/Paths/L2FjY291bnRzL3thY2NvdW50SWR9/V/MjAyNC0xMi0wMQ=="/>
       <argGroup name="">
-        <arg type="uuid" var="$Header.x-ms-client-request-id" options="x-ms-client-request-id">
-          <help short="An opaque, globally-unique, client-generated string identifier for the request."/>
-        </arg>
         <arg type="string" var="$Path.accountId" options="account-id" required="True">
           <help short="The account id."/>
           <format pattern="[A-Za-z0-9]+(_[A-Za-z0-9]+)*(-[A-Za-z0-9]+)+" maxLength="64"/>
@@ -27,9 +24,7 @@
                 <format minLength="1"/>
               </const>
             </query>
-            <header clientRequestId="x-ms-client-request-id">
-              <param type="uuid" name="x-ms-client-request-id" arg="$Header.x-ms-client-request-id"/>
-            </header>
+            <header clientRequestId="x-ms-client-request-id"/>
           </request>
           <response statusCode="200">
             <header>
