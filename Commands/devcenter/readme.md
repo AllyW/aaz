@@ -9,3 +9,6 @@ Manage resources with devcenter.
 
 - [dev](/Commands/devcenter/dev/readme.md)
 : Manage devcenter developer resources.
+
+- [project](/Commands/devcenter/project/readme.md)
+: Manage Project
