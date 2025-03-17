@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.loadtestservice">
+  <resource id="/tests/{}/app-components" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L3Rlc3RzL3t0ZXN0SWR9L2FwcC1jb21wb25lbnRz/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+  <commandGroup name="load-test-service test app-component">
+    <command name="show" version="2024-12-01-preview">
+      <resource id="/tests/{}/app-components" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L3Rlc3RzL3t0ZXN0SWR9L2FwcC1jb21wb25lbnRz/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.endpoint" options="endpoint" required="True"/>
+        <arg type="string" var="$Path.testId" options="test-id" required="True">
+          <help short="Unique name for the load test, must contain only lower-case alphabetic, numeric, underscore or hyphen characters."/>
+          <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+        </arg>
+      </argGroup>
+      <operation operationId="LoadTestAdministration_GetAppComponents">
+        <http path="//{endpoint}/tests/{testId}/app-components">
+          <request method="get">
+            <path>
+              <param type="string" name="endpoint" arg="$Path.endpoint" required="True"/>
+              <param type="string" name="testId" arg="$Path.testId" required="True">
+                <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-12-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="object" name="components" required="True">
+                    <additionalProp>
+                      <item type="object">
+                        <prop type="string" name="displayName"/>
+                        <prop type="string" name="kind"/>
+                        <prop readOnly="True" type="string" name="resourceGroup"/>
+                        <prop readOnly="True" type="ResourceId" name="resourceId"/>
+                        <prop type="string" name="resourceName" required="True"/>
+                        <prop type="string" name="resourceType" required="True"/>
+                        <prop readOnly="True" type="string" name="subscriptionId"/>
+                      </item>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="createdBy"/>
+                  <prop readOnly="True" type="dateTime" name="createdDateTime"/>
+                  <prop readOnly="True" type="string" name="lastModifiedBy"/>
+                  <prop readOnly="True" type="dateTime" name="lastModifiedDateTime"/>
+                  <prop readOnly="True" type="string" name="testId"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="update" version="2024-12-01-preview">
+      <resource id="/tests/{}/app-components" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L3Rlc3RzL3t0ZXN0SWR9L2FwcC1jb21wb25lbnRz/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.endpoint" options="endpoint" required="True"/>
+        <arg type="string" var="$Path.testId" options="test-id" required="True">
+          <help short="Unique name for the load test, must contain only lower-case alphabetic, numeric, underscore or hyphen characters."/>
+          <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="object" var="$body.components" options="components" group="Body">
+          <help short="Azure resource collection { resource id (fully qualified resource Id e.g subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName}) : resource object } "/>
+          <additionalProp>
+            <item type="object">
+              <arg type="string" var="$body.components{}.displayName" options="display-name">
+                <help short="Azure resource display name"/>
+              </arg>
+              <arg type="string" var="$body.components{}.kind" options="kind">
+                <help short="Kind of Azure resource type"/>
+              </arg>
+              <arg type="string" var="$body.components{}.resourceName" options="resource-name">
+                <help short="Azure resource name, required while creating the app component."/>
+              </arg>
+              <arg type="string" var="$body.components{}.resourceType" options="resource-type">
+                <help short="Azure resource type, required while creating the app component."/>
+              </arg>
+            </item>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <operation operationId="LoadTestAdministration_CreateOrUpdateAppComponents">
+        <http path="//{endpoint}/tests/{testId}/app-components">
+          <request method="patch">
+            <path>
+              <param type="string" name="endpoint" arg="$Path.endpoint" required="True"/>
+              <param type="string" name="testId" arg="$Path.testId" required="True">
+                <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-12-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="object" name="components" arg="$body.components">
+                    <additionalProp>
+                      <item type="object">
+                        <prop type="string" name="displayName" arg="$body.components{}.displayName"/>
+                        <prop type="string" name="kind" arg="$body.components{}.kind"/>
+                        <prop type="string" name="resourceName" arg="$body.components{}.resourceName"/>
+                        <prop type="string" name="resourceType" arg="$body.components{}.resourceType"/>
+                      </item>
+                    </additionalProp>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="object" name="components" required="True">
+                    <additionalProp>
+                      <item type="object">
+                        <prop type="string" name="displayName"/>
+                        <prop type="string" name="kind"/>
+                        <prop readOnly="True" type="string" name="resourceGroup"/>
+                        <prop readOnly="True" type="ResourceId" name="resourceId"/>
+                        <prop type="string" name="resourceName" required="True"/>
+                        <prop type="string" name="resourceType" required="True"/>
+                        <prop readOnly="True" type="string" name="subscriptionId"/>
+                      </item>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="createdBy"/>
+                  <prop readOnly="True" type="dateTime" name="createdDateTime"/>
+                  <prop readOnly="True" type="string" name="lastModifiedBy"/>
+                  <prop readOnly="True" type="dateTime" name="lastModifiedDateTime"/>
+                  <prop readOnly="True" type="string" name="testId"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

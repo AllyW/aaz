@@ -1,0 +1,353 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.loadtestservice">
+  <resource id="/test-profile-runs/{}" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L3Rlc3QtcHJvZmlsZS1ydW5zL3t0ZXN0UHJvZmlsZVJ1bklkfQ==/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+  <commandGroup name="load-test-service test-profile-run">
+    <command name="show" version="2024-12-01-preview">
+      <resource id="/test-profile-runs/{}" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L3Rlc3QtcHJvZmlsZS1ydW5zL3t0ZXN0UHJvZmlsZVJ1bklkfQ==/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.endpoint" options="endpoint" required="True"/>
+        <arg type="string" var="$Path.testProfileRunId" options="test-profile-run-id" required="True">
+          <help short="Unique identifier for the test profile run, must contain only lower-case alphabetic, numeric, underscore or hyphen characters."/>
+          <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+        </arg>
+      </argGroup>
+      <operation operationId="TestProfileRunAdministration_GetTestProfileRun">
+        <http path="//{endpoint}/test-profile-runs/{testProfileRunId}">
+          <request method="get">
+            <path>
+              <param type="string" name="endpoint" arg="$Path.endpoint" required="True"/>
+              <param type="string" name="testProfileRunId" arg="$Path.testProfileRunId" required="True">
+                <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-12-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="createdBy"/>
+                  <prop readOnly="True" type="dateTime" name="createdDateTime"/>
+                  <prop type="string" name="description">
+                    <format maxLength="100"/>
+                  </prop>
+                  <prop type="string" name="displayName">
+                    <format maxLength="50" minLength="2"/>
+                  </prop>
+                  <prop readOnly="True" type="integer64" name="durationInSeconds"/>
+                  <prop readOnly="True" type="dateTime" name="endDateTime"/>
+                  <prop readOnly="True" type="array<object>" name="errorDetails">
+                    <item type="object">
+                      <prop readOnly="True" type="string" name="message"/>
+                    </item>
+                  </prop>
+                  <prop readOnly="True" type="string" name="lastModifiedBy"/>
+                  <prop readOnly="True" type="dateTime" name="lastModifiedDateTime"/>
+                  <prop readOnly="True" type="array<object>" name="recommendations">
+                    <item type="object">
+                      <prop type="string" name="category" required="True">
+                        <enum>
+                          <item value="&quot;CostOptimized&quot;"/>
+                          <item value="&quot;ThroughputOptimized&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="array<string>" name="configurations">
+                        <item type="string"/>
+                      </prop>
+                    </item>
+                  </prop>
+                  <prop readOnly="True" type="dateTime" name="startDateTime"/>
+                  <prop readOnly="True" type="string" name="status">
+                    <enum>
+                      <item value="&quot;ACCEPTED&quot;"/>
+                      <item value="&quot;CANCELLED&quot;"/>
+                      <item value="&quot;CANCELLING&quot;"/>
+                      <item value="&quot;DONE&quot;"/>
+                      <item value="&quot;EXECUTING&quot;"/>
+                      <item value="&quot;FAILED&quot;"/>
+                      <item value="&quot;NOTSTARTED&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop readOnly="True" type="object" name="targetResourceConfigurations">
+                    <prop type="string" name="kind" required="True">
+                      <enum>
+                        <item value="&quot;FunctionsFlexConsumption&quot;"/>
+                      </enum>
+                    </prop>
+                    <discriminator property="kind" value="FunctionsFlexConsumption">
+                      <prop type="object" name="configurations">
+                        <additionalProp>
+                          <item type="object">
+                            <prop type="integer64" name="httpConcurrency"/>
+                            <prop type="integer64" name="instanceMemoryMB" required="True"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </discriminator>
+                  </prop>
+                  <prop readOnly="True" type="ResourceId" name="targetResourceId"/>
+                  <prop type="string" name="testProfileId"/>
+                  <prop readOnly="True" type="string" name="testProfileRunId">
+                    <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="testRunDetails">
+                    <additionalProp readOnly="True">
+                      <item type="object">
+                        <prop type="string" name="configurationId" required="True"/>
+                        <prop type="object" name="properties" required="True">
+                          <additionalProp>
+                            <item type="string"/>
+                          </additionalProp>
+                        </prop>
+                        <prop type="string" name="status" required="True">
+                          <enum>
+                            <item value="&quot;ACCEPTED&quot;"/>
+                            <item value="&quot;CANCELLED&quot;"/>
+                            <item value="&quot;CANCELLING&quot;"/>
+                            <item value="&quot;CONFIGURED&quot;"/>
+                            <item value="&quot;CONFIGURING&quot;"/>
+                            <item value="&quot;DEPROVISIONED&quot;"/>
+                            <item value="&quot;DEPROVISIONING&quot;"/>
+                            <item value="&quot;DONE&quot;"/>
+                            <item value="&quot;EXECUTED&quot;"/>
+                            <item value="&quot;EXECUTING&quot;"/>
+                            <item value="&quot;FAILED&quot;"/>
+                            <item value="&quot;NOTSTARTED&quot;"/>
+                            <item value="&quot;PROVISIONED&quot;"/>
+                            <item value="&quot;PROVISIONING&quot;"/>
+                            <item value="&quot;VALIDATION_FAILURE&quot;"/>
+                            <item value="&quot;VALIDATION_SUCCESS&quot;"/>
+                          </enum>
+                        </prop>
+                      </item>
+                    </additionalProp>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="delete" version="2024-12-01-preview" confirmation="Are you sure you want to perform this operation?">
+      <resource id="/test-profile-runs/{}" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L3Rlc3QtcHJvZmlsZS1ydW5zL3t0ZXN0UHJvZmlsZVJ1bklkfQ==/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.endpoint" options="endpoint" required="True"/>
+        <arg type="string" var="$Path.testProfileRunId" options="test-profile-run-id" required="True">
+          <help short="Unique identifier for the test profile run, must contain only lower-case alphabetic, numeric, underscore or hyphen characters."/>
+          <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+        </arg>
+      </argGroup>
+      <operation operationId="TestProfileRunAdministration_DeleteTestProfileRun">
+        <http path="//{endpoint}/test-profile-runs/{testProfileRunId}">
+          <request method="delete">
+            <path>
+              <param type="string" name="endpoint" arg="$Path.endpoint" required="True"/>
+              <param type="string" name="testProfileRunId" arg="$Path.testProfileRunId" required="True">
+                <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-12-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="204"/>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+    <command name="update" version="2024-12-01-preview">
+      <resource id="/test-profile-runs/{}" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L3Rlc3QtcHJvZmlsZS1ydW5zL3t0ZXN0UHJvZmlsZVJ1bklkfQ==/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.endpoint" options="endpoint" required="True"/>
+        <arg type="string" var="$Path.testProfileRunId" options="test-profile-run-id" required="True">
+          <help short="Unique identifier for the test profile run, must contain only lower-case alphabetic, numeric, underscore or hyphen characters."/>
+          <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="string" var="$body.description" options="description" group="Body">
+          <help short="The test profile run description"/>
+          <format maxLength="100"/>
+        </arg>
+        <arg type="string" var="$body.displayName" options="display-name" group="Body">
+          <help short="Display name for the test profile run."/>
+          <format maxLength="50" minLength="2"/>
+        </arg>
+      </argGroup>
+      <operation operationId="TestProfileRunAdministration_CreateOrUpdateTestProfileRun">
+        <http path="//{endpoint}/test-profile-runs/{testProfileRunId}">
+          <request method="patch">
+            <path>
+              <param type="string" name="endpoint" arg="$Path.endpoint" required="True"/>
+              <param type="string" name="testProfileRunId" arg="$Path.testProfileRunId" required="True">
+                <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-12-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="string" name="description" arg="$body.description">
+                    <format maxLength="100"/>
+                  </prop>
+                  <prop type="string" name="displayName" arg="$body.displayName">
+                    <format maxLength="50" minLength="2"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="createdBy"/>
+                  <prop readOnly="True" type="dateTime" name="createdDateTime"/>
+                  <prop type="string" name="description">
+                    <format maxLength="100"/>
+                  </prop>
+                  <prop type="string" name="displayName">
+                    <format maxLength="50" minLength="2"/>
+                  </prop>
+                  <prop readOnly="True" type="integer64" name="durationInSeconds"/>
+                  <prop readOnly="True" type="dateTime" name="endDateTime"/>
+                  <prop readOnly="True" type="array<object>" name="errorDetails">
+                    <item type="object">
+                      <prop readOnly="True" type="string" name="message"/>
+                    </item>
+                  </prop>
+                  <prop readOnly="True" type="string" name="lastModifiedBy"/>
+                  <prop readOnly="True" type="dateTime" name="lastModifiedDateTime"/>
+                  <prop readOnly="True" type="array<object>" name="recommendations">
+                    <item type="object">
+                      <prop type="string" name="category" required="True">
+                        <enum>
+                          <item value="&quot;CostOptimized&quot;"/>
+                          <item value="&quot;ThroughputOptimized&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="array<string>" name="configurations">
+                        <item type="string"/>
+                      </prop>
+                    </item>
+                  </prop>
+                  <prop readOnly="True" type="dateTime" name="startDateTime"/>
+                  <prop readOnly="True" type="string" name="status">
+                    <enum>
+                      <item value="&quot;ACCEPTED&quot;"/>
+                      <item value="&quot;CANCELLED&quot;"/>
+                      <item value="&quot;CANCELLING&quot;"/>
+                      <item value="&quot;DONE&quot;"/>
+                      <item value="&quot;EXECUTING&quot;"/>
+                      <item value="&quot;FAILED&quot;"/>
+                      <item value="&quot;NOTSTARTED&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop readOnly="True" type="object" name="targetResourceConfigurations">
+                    <prop type="string" name="kind" required="True">
+                      <enum>
+                        <item value="&quot;FunctionsFlexConsumption&quot;"/>
+                      </enum>
+                    </prop>
+                    <discriminator property="kind" value="FunctionsFlexConsumption">
+                      <prop type="object" name="configurations">
+                        <additionalProp>
+                          <item type="object">
+                            <prop type="integer64" name="httpConcurrency"/>
+                            <prop type="integer64" name="instanceMemoryMB" required="True"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </discriminator>
+                  </prop>
+                  <prop readOnly="True" type="ResourceId" name="targetResourceId"/>
+                  <prop type="string" name="testProfileId"/>
+                  <prop readOnly="True" type="string" name="testProfileRunId">
+                    <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="testRunDetails">
+                    <additionalProp readOnly="True">
+                      <item type="object">
+                        <prop type="string" name="configurationId" required="True"/>
+                        <prop type="object" name="properties" required="True">
+                          <additionalProp>
+                            <item type="string"/>
+                          </additionalProp>
+                        </prop>
+                        <prop type="string" name="status" required="True">
+                          <enum>
+                            <item value="&quot;ACCEPTED&quot;"/>
+                            <item value="&quot;CANCELLED&quot;"/>
+                            <item value="&quot;CANCELLING&quot;"/>
+                            <item value="&quot;CONFIGURED&quot;"/>
+                            <item value="&quot;CONFIGURING&quot;"/>
+                            <item value="&quot;DEPROVISIONED&quot;"/>
+                            <item value="&quot;DEPROVISIONING&quot;"/>
+                            <item value="&quot;DONE&quot;"/>
+                            <item value="&quot;EXECUTED&quot;"/>
+                            <item value="&quot;EXECUTING&quot;"/>
+                            <item value="&quot;FAILED&quot;"/>
+                            <item value="&quot;NOTSTARTED&quot;"/>
+                            <item value="&quot;PROVISIONED&quot;"/>
+                            <item value="&quot;PROVISIONING&quot;"/>
+                            <item value="&quot;VALIDATION_FAILURE&quot;"/>
+                            <item value="&quot;VALIDATION_SUCCESS&quot;"/>
+                          </enum>
+                        </prop>
+                      </item>
+                    </additionalProp>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

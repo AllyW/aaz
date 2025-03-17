@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.loadtestservice">
+  <resource id="/test-runs/{}/metric-dimensions/{}/values" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L3Rlc3QtcnVucy97dGVzdFJ1bklkfS9tZXRyaWMtZGltZW5zaW9ucy97bmFtZX0vdmFsdWVz/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+  <commandGroup name="load-test-service test-run metric-dimension value">
+    <command name="list" version="2024-12-01-preview">
+      <resource id="/test-runs/{}/metric-dimensions/{}/values" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L3Rlc3QtcnVucy97dGVzdFJ1bklkfS9tZXRyaWMtZGltZW5zaW9ucy97bmFtZX0vdmFsdWVz/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.endpoint" options="endpoint" required="True"/>
+        <arg type="string" var="$Path.name" options="name" required="True">
+          <help short="Dimension name"/>
+        </arg>
+        <arg type="string" var="$Path.testRunId" options="test-run-id" required="True">
+          <help short="Unique name for the load test run, must contain only lower-case alphabetic, numeric, underscore or hyphen characters."/>
+          <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+        </arg>
+        <arg type="string" var="$Query.interval" options="interval">
+          <help short="The interval (i.e. timegrain) of the query."/>
+          <default value="&quot;PT1M&quot;"/>
+          <enum>
+            <item name="PT10S" value="&quot;PT10S&quot;"/>
+            <item name="PT1H" value="&quot;PT1H&quot;"/>
+            <item name="PT1M" value="&quot;PT1M&quot;"/>
+            <item name="PT5M" value="&quot;PT5M&quot;"/>
+            <item name="PT5S" value="&quot;PT5S&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$Query.metricNamespace" options="metric-namespace" required="True">
+          <help short="Metric namespace to query metric definitions for."/>
+        </arg>
+        <arg type="string" var="$Query.metricname" options="metricname" required="True">
+          <help short="Metric name"/>
+        </arg>
+        <arg type="string" var="$Query.timespan" options="timespan" required="True">
+          <help short="The timespan of the query. It is a string with the following format 'startDateTime_ISO/endDateTime_ISO'."/>
+        </arg>
+      </argGroup>
+      <operation operationId="LoadTestRun_ListMetricDimensionValues">
+        <http path="//{endpoint}/test-runs/{testRunId}/metric-dimensions/{name}/values">
+          <request method="get">
+            <path>
+              <param type="string" name="endpoint" arg="$Path.endpoint" required="True"/>
+              <param type="string" name="name" arg="$Path.name" required="True"/>
+              <param type="string" name="testRunId" arg="$Path.testRunId" required="True">
+                <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+              </param>
+            </path>
+            <query>
+              <param type="string" name="interval" arg="$Query.interval">
+                <default value="&quot;PT1M&quot;"/>
+                <enum>
+                  <item value="&quot;PT10S&quot;"/>
+                  <item value="&quot;PT1H&quot;"/>
+                  <item value="&quot;PT1M&quot;"/>
+                  <item value="&quot;PT5M&quot;"/>
+                  <item value="&quot;PT5S&quot;"/>
+                </enum>
+              </param>
+              <param type="string" name="metricNamespace" arg="$Query.metricNamespace" required="True"/>
+              <param type="string" name="metricname" arg="$Query.metricname" required="True"/>
+              <param type="string" name="timespan" arg="$Query.timespan" required="True"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-12-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<string>" name="value">
+                    <item type="string"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>
