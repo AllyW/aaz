@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen version="2025-03-24T06:04:29.515394Z" plane="data-plane:apicenter.dataapi">
+  <endpoint type="template">
+    <template cloud="AzureCloud" template="https://{serviceName}.data.{region}.azure-apicenter.ms"/>
+    <param type="string" name="region" arg="$Client.Endpoint.region" required="True" skipUrlEncoding="True"/>
+    <param type="string" name="serviceName" arg="$Client.Endpoint.serviceName" required="True" skipUrlEncoding="True"/>
+  </endpoint>
+  <auth>
+    <aad scopes="https://azure-apicenter.net/user_impersonation"/>
+  </auth>
+  <argGroup name="Client">
+    <arg type="string" var="$Client.Endpoint.region" options="region" required="True" group="Client"/>
+    <arg type="string" var="$Client.Endpoint.serviceName" options="service-name" required="True" group="Client"/>
+  </argGroup>
+</CodeGen>

@@ -20,6 +20,9 @@
 - [aosm](/Commands/aosm/readme.md)
 : Manage Azure Operator Service Manager resources.
 
+- [api-center](/Commands/api-center/readme.md)
+: Manage Api Center
+
 - [apic](/Commands/apic/readme.md)
 : Manage Azure API Center services
 
@@ -373,6 +376,9 @@
 
 - [voice-service](/Commands/voice-service/readme.md)
 : Manage voice services
+
+- [voice-services](/Commands/voice-services/readme.md)
+: Manage Voice Services
 
 - [workloads](/Commands/workloads/readme.md)
 : Manage workloads

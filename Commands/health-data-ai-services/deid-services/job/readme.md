@@ -10,11 +10,7 @@ Manage Job
 ## Commands
 
 - [cancel](/Commands/health-data-ai-services/deid-services/job/_cancel.md)
-: Cancels a job that is in progress. 
-
-The job will be marked as canceled and the service will stop processing the job. The service will not delete any documents that have already been processed.
-
-If the job is already complete, this will have no effect. 
+: Cancels a job that is in progress.
 
 - [create](/Commands/health-data-ai-services/deid-services/job/_create.md)
 : Create resource create or replace operation template.
