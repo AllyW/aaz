@@ -1,0 +1,249 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.loadtestservice">
+  <resource id="/test-profiles/{}" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L3Rlc3QtcHJvZmlsZXMve3Rlc3RQcm9maWxlSWR9/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+  <commandGroup name="load-test-service test-profile">
+    <command name="show" version="2024-12-01-preview">
+      <resource id="/test-profiles/{}" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L3Rlc3QtcHJvZmlsZXMve3Rlc3RQcm9maWxlSWR9/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.testProfileId" options="test-profile-id" required="True">
+          <help short="Unique identifier for the test profile, must contain only lower-case alphabetic, numeric, underscore or hyphen characters."/>
+          <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+        </arg>
+      </argGroup>
+      <operation operationId="TestProfileAdministration_GetTestProfile">
+        <http path="/test-profiles/{testProfileId}">
+          <request method="get">
+            <path>
+              <param type="string" name="testProfileId" arg="$Path.testProfileId" required="True">
+                <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-12-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="createdBy"/>
+                  <prop readOnly="True" type="dateTime" name="createdDateTime"/>
+                  <prop type="string" name="description">
+                    <format maxLength="100"/>
+                  </prop>
+                  <prop type="string" name="displayName">
+                    <format maxLength="50" minLength="2"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="lastModifiedBy"/>
+                  <prop readOnly="True" type="dateTime" name="lastModifiedDateTime"/>
+                  <prop type="object" name="targetResourceConfigurations">
+                    <prop type="string" name="kind" required="True">
+                      <enum>
+                        <item value="&quot;FunctionsFlexConsumption&quot;"/>
+                      </enum>
+                    </prop>
+                    <discriminator property="kind" value="FunctionsFlexConsumption">
+                      <prop type="object" name="configurations">
+                        <additionalProp>
+                          <item type="object">
+                            <prop type="integer64" name="httpConcurrency"/>
+                            <prop type="integer64" name="instanceMemoryMB" required="True"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </discriminator>
+                  </prop>
+                  <prop type="ResourceId" name="targetResourceId"/>
+                  <prop type="string" name="testId"/>
+                  <prop readOnly="True" type="string" name="testProfileId">
+                    <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema readOnly="True" type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="delete" version="2024-12-01-preview" confirmation="Are you sure you want to perform this operation?">
+      <resource id="/test-profiles/{}" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L3Rlc3QtcHJvZmlsZXMve3Rlc3RQcm9maWxlSWR9/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.testProfileId" options="test-profile-id" required="True">
+          <help short="Unique identifier for the test profile, must contain only lower-case alphabetic, numeric, underscore or hyphen characters."/>
+          <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+        </arg>
+      </argGroup>
+      <operation operationId="TestProfileAdministration_DeleteTestProfile">
+        <http path="/test-profiles/{testProfileId}">
+          <request method="delete">
+            <path>
+              <param type="string" name="testProfileId" arg="$Path.testProfileId" required="True">
+                <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-12-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="204"/>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema readOnly="True" type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+    <command name="update" version="2024-12-01-preview">
+      <resource id="/test-profiles/{}" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L3Rlc3QtcHJvZmlsZXMve3Rlc3RQcm9maWxlSWR9/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.testProfileId" options="test-profile-id" required="True">
+          <help short="Unique identifier for the test profile, must contain only lower-case alphabetic, numeric, underscore or hyphen characters."/>
+          <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="string" var="$body.description" options="description" group="Body">
+          <help short="Description for the test profile."/>
+          <format maxLength="100"/>
+        </arg>
+        <arg type="string" var="$body.displayName" options="display-name" group="Body">
+          <help short="Display name of the test profile."/>
+          <format maxLength="50" minLength="2"/>
+        </arg>
+        <arg type="object" var="$body.targetResourceConfigurations" options="target-resource-configurations" group="Body">
+          <help short="Configurations of the target resource on which testing would be done."/>
+          <arg type="object" var="$body.targetResourceConfigurations.FunctionsFlexConsumption" options="functions-flex-consumption">
+            <arg type="object" var="$body.targetResourceConfigurations.FunctionsFlexConsumption.configurations" options="configurations">
+              <help short="A map of configurations for a Function app using Flex Consumption Plan."/>
+              <additionalProp>
+                <item type="object">
+                  <arg type="integer64" var="$body.targetResourceConfigurations.FunctionsFlexConsumption.configurations{}.httpConcurrency" options="http-concurrency">
+                    <help short="HTTP Concurrency for the function app."/>
+                  </arg>
+                  <arg type="integer64" var="$body.targetResourceConfigurations.FunctionsFlexConsumption.configurations{}.instanceMemoryMB" options="instance-memory-mb" required="True">
+                    <help short="Memory size of the instance. Supported values are 2048, 4096."/>
+                  </arg>
+                </item>
+              </additionalProp>
+            </arg>
+          </arg>
+        </arg>
+      </argGroup>
+      <operation operationId="TestProfileAdministration_CreateOrUpdateTestProfile">
+        <http path="/test-profiles/{testProfileId}">
+          <request method="patch">
+            <path>
+              <param type="string" name="testProfileId" arg="$Path.testProfileId" required="True">
+                <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-12-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="string" name="description" arg="$body.description">
+                    <format maxLength="100"/>
+                  </prop>
+                  <prop type="string" name="displayName" arg="$body.displayName">
+                    <format maxLength="50" minLength="2"/>
+                  </prop>
+                  <prop type="object" name="targetResourceConfigurations" arg="$body.targetResourceConfigurations">
+                    <discriminator property="kind" value="FunctionsFlexConsumption">
+                      <prop type="object" name="configurations" arg="$body.targetResourceConfigurations.FunctionsFlexConsumption.configurations">
+                        <additionalProp>
+                          <item type="object">
+                            <prop type="integer64" name="httpConcurrency" arg="$body.targetResourceConfigurations.FunctionsFlexConsumption.configurations{}.httpConcurrency"/>
+                            <prop type="integer64" name="instanceMemoryMB" arg="$body.targetResourceConfigurations.FunctionsFlexConsumption.configurations{}.instanceMemoryMB" required="True"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </discriminator>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="201 200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="createdBy"/>
+                  <prop readOnly="True" type="dateTime" name="createdDateTime"/>
+                  <prop type="string" name="description">
+                    <format maxLength="100"/>
+                  </prop>
+                  <prop type="string" name="displayName">
+                    <format maxLength="50" minLength="2"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="lastModifiedBy"/>
+                  <prop readOnly="True" type="dateTime" name="lastModifiedDateTime"/>
+                  <prop type="object" name="targetResourceConfigurations">
+                    <prop type="string" name="kind" required="True">
+                      <enum>
+                        <item value="&quot;FunctionsFlexConsumption&quot;"/>
+                      </enum>
+                    </prop>
+                    <discriminator property="kind" value="FunctionsFlexConsumption">
+                      <prop type="object" name="configurations">
+                        <additionalProp>
+                          <item type="object">
+                            <prop type="integer64" name="httpConcurrency"/>
+                            <prop type="integer64" name="instanceMemoryMB" required="True"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </discriminator>
+                  </prop>
+                  <prop type="ResourceId" name="targetResourceId"/>
+                  <prop type="string" name="testId"/>
+                  <prop readOnly="True" type="string" name="testProfileId">
+                    <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema readOnly="True" type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

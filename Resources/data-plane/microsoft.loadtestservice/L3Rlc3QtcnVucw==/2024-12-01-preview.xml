@@ -1,0 +1,369 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.loadtestservice">
+  <resource id="/test-runs" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L3Rlc3QtcnVucw==/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+  <commandGroup name="load-test-service test-run">
+    <command name="list" version="2024-12-01-preview">
+      <resource id="/test-runs" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L3Rlc3QtcnVucw==/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="dateTime" var="$Query.executionFrom" options="execution-from">
+          <help short="Start DateTime(RFC 3339 literal format) of test-run execution time filter range."/>
+        </arg>
+        <arg type="dateTime" var="$Query.executionTo" options="execution-to">
+          <help short="End DateTime(RFC 3339 literal format) of test-run execution time filter range."/>
+        </arg>
+        <arg type="integer32" var="$Query.maxpagesize" options="maxpagesize">
+          <help short="Number of results in response."/>
+          <default value="50"/>
+        </arg>
+        <arg type="string" var="$Query.orderby" options="orderby">
+          <help short="Sort on the supported fields in (field asc/desc) format. eg: executedDateTime asc. Supported fields - executedDateTime"/>
+        </arg>
+        <arg type="string" var="$Query.search" options="search">
+          <help short="Prefix based, case sensitive search on searchable fields - description, executedUser. For example, to search for a test run, with description 500 VUs, the search parameter can be 500."/>
+        </arg>
+        <arg type="string" var="$Query.status" options="status">
+          <help short="Comma separated list of test run status."/>
+        </arg>
+        <arg type="string" var="$Query.testId" options="test-id">
+          <help short="Unique name of an existing load test."/>
+        </arg>
+      </argGroup>
+      <operation operationId="LoadTestRun_ListTestRuns">
+        <http path="/test-runs">
+          <request method="get">
+            <query>
+              <param type="dateTime" name="executionFrom" arg="$Query.executionFrom"/>
+              <param type="dateTime" name="executionTo" arg="$Query.executionTo"/>
+              <param type="integer32" name="maxpagesize" arg="$Query.maxpagesize">
+                <default value="50"/>
+              </param>
+              <param type="string" name="orderby" arg="$Query.orderby"/>
+              <param type="string" name="search" arg="$Query.search"/>
+              <param type="string" name="status" arg="$Query.status"/>
+              <param type="string" name="testId" arg="$Query.testId"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-12-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop type="object" name="autoStopCriteria">
+                        <prop type="boolean" name="autoStopDisabled">
+                          <default value="false"/>
+                        </prop>
+                        <prop type="float32" name="errorRate">
+                          <default value="90"/>
+                        </prop>
+                        <prop type="integer32" name="errorRateTimeWindowInSeconds">
+                          <default value="60"/>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="certificate">
+                        <prop type="string" name="name"/>
+                        <prop type="string" name="type">
+                          <enum>
+                            <item value="&quot;AKV_CERT_URI&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="value"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="createdBy"/>
+                      <prop type="string" name="createdByType">
+                        <enum>
+                          <item value="&quot;ScheduledTrigger&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="dateTime" name="createdDateTime"/>
+                      <prop type="boolean" name="debugLogsEnabled"/>
+                      <prop type="string" name="description">
+                        <format maxLength="100"/>
+                      </prop>
+                      <prop type="string" name="displayName">
+                        <format maxLength="50" minLength="2"/>
+                      </prop>
+                      <prop readOnly="True" type="integer64" name="duration"/>
+                      <prop readOnly="True" type="dateTime" name="endDateTime"/>
+                      <prop type="object" name="environmentVariables">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="array<object>" name="errorDetails">
+                        <item type="object">
+                          <prop readOnly="True" type="string" name="message"/>
+                        </item>
+                      </prop>
+                      <prop readOnly="True" type="dateTime" name="executedDateTime"/>
+                      <prop readOnly="True" type="string" name="kind">
+                        <enum>
+                          <item value="&quot;JMX&quot;"/>
+                          <item value="&quot;Locust&quot;"/>
+                          <item value="&quot;URL&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="string" name="lastModifiedBy"/>
+                      <prop readOnly="True" type="dateTime" name="lastModifiedDateTime"/>
+                      <prop readOnly="True" type="object" name="loadTestConfiguration">
+                        <prop type="integer32" name="engineInstances"/>
+                        <prop type="object" name="optionalLoadTestConfig">
+                          <prop type="integer32" name="duration"/>
+                          <prop type="string" name="endpointUrl"/>
+                          <prop type="integer32" name="maxResponseTimeInMs"/>
+                          <prop type="integer32" name="rampUpTime"/>
+                          <prop type="integer32" name="requestsPerSecond"/>
+                          <prop type="integer32" name="virtualUsers"/>
+                        </prop>
+                        <prop type="boolean" name="quickStartTest">
+                          <default value="false"/>
+                        </prop>
+                        <prop type="array<object>" name="regionalLoadTestConfig">
+                          <item type="object">
+                            <prop type="integer32" name="engineInstances" required="True"/>
+                            <prop type="string" name="region" required="True"/>
+                          </item>
+                        </prop>
+                        <prop type="boolean" name="splitAllCSVs">
+                          <default value="false"/>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="passFailCriteria">
+                        <prop type="object" name="passFailMetrics">
+                          <additionalProp>
+                            <item type="object">
+                              <prop type="string" name="action">
+                                <default value="&quot;continue&quot;"/>
+                                <enum>
+                                  <item value="&quot;continue&quot;"/>
+                                  <item value="&quot;stop&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop readOnly="True" type="float64" name="actualValue"/>
+                              <prop type="string" name="aggregate">
+                                <enum>
+                                  <item value="&quot;avg&quot;"/>
+                                  <item value="&quot;count&quot;"/>
+                                  <item value="&quot;max&quot;"/>
+                                  <item value="&quot;min&quot;"/>
+                                  <item value="&quot;p50&quot;"/>
+                                  <item value="&quot;p75&quot;"/>
+                                  <item value="&quot;p90&quot;"/>
+                                  <item value="&quot;p95&quot;"/>
+                                  <item value="&quot;p96&quot;"/>
+                                  <item value="&quot;p97&quot;"/>
+                                  <item value="&quot;p98&quot;"/>
+                                  <item value="&quot;p99&quot;"/>
+                                  <item value="&quot;p99.9&quot;"/>
+                                  <item value="&quot;p99.99&quot;"/>
+                                  <item value="&quot;percentage&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="clientMetric">
+                                <enum>
+                                  <item value="&quot;error&quot;"/>
+                                  <item value="&quot;latency&quot;"/>
+                                  <item value="&quot;requests&quot;"/>
+                                  <item value="&quot;requests_per_sec&quot;"/>
+                                  <item value="&quot;response_time_ms&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="condition"/>
+                              <prop type="string" name="requestName"/>
+                              <prop readOnly="True" type="string" name="result">
+                                <enum>
+                                  <item value="&quot;failed&quot;"/>
+                                  <item value="&quot;passed&quot;"/>
+                                  <item value="&quot;undetermined&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="float64" name="value"/>
+                            </item>
+                          </additionalProp>
+                        </prop>
+                        <prop type="object" name="passFailServerMetrics">
+                          <additionalProp>
+                            <item type="object">
+                              <prop type="string" name="action">
+                                <default value="&quot;continue&quot;"/>
+                                <enum>
+                                  <item value="&quot;continue&quot;"/>
+                                  <item value="&quot;stop&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop readOnly="True" type="float64" name="actualValue"/>
+                              <prop type="string" name="aggregation" required="True"/>
+                              <prop type="string" name="condition" required="True"/>
+                              <prop type="string" name="metricName" required="True"/>
+                              <prop type="string" name="metricNamespace" required="True"/>
+                              <prop type="ResourceId" name="resourceId" required="True"/>
+                              <prop readOnly="True" type="string" name="result">
+                                <enum>
+                                  <item value="&quot;failed&quot;"/>
+                                  <item value="&quot;passed&quot;"/>
+                                  <item value="&quot;undetermined&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="float64" name="value" required="True"/>
+                            </item>
+                          </additionalProp>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="portalUrl"/>
+                      <prop readOnly="True" type="boolean" name="publicIPDisabled"/>
+                      <prop readOnly="True" type="@Record<testrunstatistics>_read" name="regionalStatistics"/>
+                      <prop type="string" name="requestDataLevel">
+                        <enum>
+                          <item value="&quot;ERRORS&quot;"/>
+                          <item value="&quot;NONE&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="secrets">
+                        <additionalProp>
+                          <item type="object">
+                            <prop type="string" name="type">
+                              <enum>
+                                <item value="&quot;AKV_SECRET_URI&quot;"/>
+                                <item value="&quot;SECRET_VALUE&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="value"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="dateTime" name="startDateTime"/>
+                      <prop readOnly="True" type="string" name="status">
+                        <enum>
+                          <item value="&quot;ACCEPTED&quot;"/>
+                          <item value="&quot;CANCELLED&quot;"/>
+                          <item value="&quot;CANCELLING&quot;"/>
+                          <item value="&quot;CONFIGURED&quot;"/>
+                          <item value="&quot;CONFIGURING&quot;"/>
+                          <item value="&quot;DEPROVISIONED&quot;"/>
+                          <item value="&quot;DEPROVISIONING&quot;"/>
+                          <item value="&quot;DONE&quot;"/>
+                          <item value="&quot;EXECUTED&quot;"/>
+                          <item value="&quot;EXECUTING&quot;"/>
+                          <item value="&quot;FAILED&quot;"/>
+                          <item value="&quot;NOTSTARTED&quot;"/>
+                          <item value="&quot;PROVISIONED&quot;"/>
+                          <item value="&quot;PROVISIONING&quot;"/>
+                          <item value="&quot;VALIDATION_FAILURE&quot;"/>
+                          <item value="&quot;VALIDATION_SUCCESS&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="string" name="subnetId"/>
+                      <prop readOnly="True" type="object" name="testArtifacts">
+                        <prop readOnly="True" type="object" name="inputArtifacts">
+                          <prop readOnly="True" type="array<@Testrunfileinfo_read>" name="additionalFileInfo">
+                            <item type="@Testrunfileinfo_read"/>
+                          </prop>
+                          <prop type="object" name="configFileInfo" cls="Testrunfileinfo_read">
+                            <prop readOnly="True" type="dateTime" name="expireDateTime"/>
+                            <prop type="string" name="fileName" required="True"/>
+                            <prop readOnly="True" type="string" name="fileType">
+                              <enum>
+                                <item value="&quot;ADDITIONAL_ARTIFACTS&quot;"/>
+                                <item value="&quot;JMX_FILE&quot;"/>
+                                <item value="&quot;TEST_SCRIPT&quot;"/>
+                                <item value="&quot;URL_TEST_CONFIG&quot;"/>
+                                <item value="&quot;USER_PROPERTIES&quot;"/>
+                                <item value="&quot;ZIPPED_ARTIFACTS&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop readOnly="True" type="string" name="url"/>
+                            <prop readOnly="True" type="string" name="validationFailureDetails"/>
+                            <prop readOnly="True" type="string" name="validationStatus">
+                              <enum>
+                                <item value="&quot;NOT_VALIDATED&quot;"/>
+                                <item value="&quot;VALIDATION_FAILURE&quot;"/>
+                                <item value="&quot;VALIDATION_INITIATED&quot;"/>
+                                <item value="&quot;VALIDATION_NOT_REQUIRED&quot;"/>
+                                <item value="&quot;VALIDATION_SUCCESS&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                          <prop type="@Testrunfileinfo_read" name="inputArtifactsZipFileInfo"/>
+                          <prop type="@Testrunfileinfo_read" name="testScriptFileInfo"/>
+                          <prop type="@Testrunfileinfo_read" name="urlTestConfigFileInfo"/>
+                          <prop type="@Testrunfileinfo_read" name="userPropFileInfo"/>
+                        </prop>
+                        <prop type="object" name="outputArtifacts">
+                          <prop type="object" name="artifactsContainerInfo">
+                            <prop type="dateTime" name="expireDateTime"/>
+                            <prop type="string" name="url"/>
+                          </prop>
+                          <prop type="@Testrunfileinfo_read" name="logsFileInfo"/>
+                          <prop type="@Testrunfileinfo_read" name="reportFileInfo"/>
+                          <prop type="@Testrunfileinfo_read" name="resultFileInfo"/>
+                        </prop>
+                      </prop>
+                      <prop type="string" name="testId">
+                        <format maxLength="50" minLength="2"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="testResult">
+                        <enum>
+                          <item value="&quot;FAILED&quot;"/>
+                          <item value="&quot;NOT_APPLICABLE&quot;"/>
+                          <item value="&quot;PASSED&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="string" name="testRunId">
+                        <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+                      </prop>
+                      <prop readOnly="True" type="object" name="testRunStatistics" cls="Record<testrunstatistics>_read">
+                        <additionalProp>
+                          <item type="object">
+                            <prop readOnly="True" type="float64" name="errorCount"/>
+                            <prop readOnly="True" type="float64" name="errorPct"/>
+                            <prop readOnly="True" type="float64" name="maxResTime"/>
+                            <prop readOnly="True" type="float64" name="meanResTime"/>
+                            <prop readOnly="True" type="float64" name="medianResTime"/>
+                            <prop readOnly="True" type="float64" name="minResTime"/>
+                            <prop readOnly="True" type="float64" name="pct1ResTime"/>
+                            <prop readOnly="True" type="float64" name="pct2ResTime"/>
+                            <prop readOnly="True" type="float64" name="pct3ResTime"/>
+                            <prop readOnly="True" type="float64" name="pct75ResTime"/>
+                            <prop readOnly="True" type="float64" name="pct96ResTime"/>
+                            <prop readOnly="True" type="float64" name="pct97ResTime"/>
+                            <prop readOnly="True" type="float64" name="pct98ResTime"/>
+                            <prop readOnly="True" type="float64" name="pct9999ResTime"/>
+                            <prop readOnly="True" type="float64" name="pct999ResTime"/>
+                            <prop readOnly="True" type="float64" name="receivedKBytesPerSec"/>
+                            <prop readOnly="True" type="float64" name="sampleCount"/>
+                            <prop readOnly="True" type="float64" name="sentKBytesPerSec"/>
+                            <prop readOnly="True" type="float64" name="throughput"/>
+                            <prop readOnly="True" type="string" name="transaction"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="float64" name="virtualUserHours"/>
+                      <prop readOnly="True" type="integer32" name="virtualUsers"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema readOnly="True" type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

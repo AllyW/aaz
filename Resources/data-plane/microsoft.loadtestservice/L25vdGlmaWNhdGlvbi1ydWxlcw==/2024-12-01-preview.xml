@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.loadtestservice">
+  <resource id="/notification-rules" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L25vdGlmaWNhdGlvbi1ydWxlcw==/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+  <commandGroup name="load-test-service notification-rule">
+    <command name="list" version="2024-12-01-preview">
+      <resource id="/notification-rules" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L25vdGlmaWNhdGlvbi1ydWxlcw==/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="dateTime" var="$Query.lastModifiedEndTime" options="last-modified-end-time">
+          <help short="End DateTime(RFC 3339 literal format) of the last updated time range to filter notification rules."/>
+        </arg>
+        <arg type="dateTime" var="$Query.lastModifiedStartTime" options="last-modified-start-time">
+          <help short="Start DateTime(RFC 3339 literal format) of the last updated time range to filter notification rules."/>
+        </arg>
+        <arg type="integer32" var="$Query.maxpagesize" options="maxpagesize">
+          <help short="Number of results in response. Default page size is 50."/>
+          <default value="50"/>
+        </arg>
+        <arg type="string" var="$Query.scopes" options="scopes">
+          <help short="Search based on notification rules for the provided scopes."/>
+        </arg>
+        <arg type="string" var="$Query.testIds" options="test-ids">
+          <help short="Search based on notification rules associated with the provided test ids."/>
+        </arg>
+      </argGroup>
+      <operation operationId="NotificationRuleAdministration_ListNotificationRule">
+        <http path="/notification-rules">
+          <request method="get">
+            <query>
+              <param type="dateTime" name="lastModifiedEndTime" arg="$Query.lastModifiedEndTime"/>
+              <param type="dateTime" name="lastModifiedStartTime" arg="$Query.lastModifiedStartTime"/>
+              <param type="integer32" name="maxpagesize" arg="$Query.maxpagesize">
+                <default value="50"/>
+              </param>
+              <param type="string" name="scopes" arg="$Query.scopes"/>
+              <param type="string" name="testIds" arg="$Query.testIds"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-12-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop type="array<string>" name="actionGroupIds" required="True">
+                        <item type="string"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="createdBy"/>
+                      <prop readOnly="True" type="dateTime" name="createdDateTime"/>
+                      <prop type="string" name="displayName" required="True">
+                        <format maxLength="50" minLength="2"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="lastModifiedBy"/>
+                      <prop readOnly="True" type="dateTime" name="lastModifiedDateTime"/>
+                      <prop readOnly="True" type="string" name="notificationRuleId">
+                        <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+                      </prop>
+                      <prop type="string" name="scope" required="True">
+                        <enum>
+                          <item value="&quot;Tests&quot;"/>
+                        </enum>
+                      </prop>
+                      <discriminator property="scope" value="Tests">
+                        <prop type="object" name="eventFilters" required="True">
+                          <additionalProp>
+                            <item type="object">
+                              <prop type="string" name="kind" required="True">
+                                <enum>
+                                  <item value="&quot;TestRunEnded&quot;"/>
+                                  <item value="&quot;TestRunStarted&quot;"/>
+                                  <item value="&quot;TriggerCompleted&quot;"/>
+                                  <item value="&quot;TriggerDisabled&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="kind" value="TestRunEnded">
+                                <prop type="object" name="condition">
+                                  <prop type="array<string>" name="testRunResults">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;FAILED&quot;"/>
+                                        <item value="&quot;NOT_APPLICABLE&quot;"/>
+                                        <item value="&quot;PASSED&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop type="array<string>" name="testRunStatuses">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;ACCEPTED&quot;"/>
+                                        <item value="&quot;CANCELLED&quot;"/>
+                                        <item value="&quot;CANCELLING&quot;"/>
+                                        <item value="&quot;CONFIGURED&quot;"/>
+                                        <item value="&quot;CONFIGURING&quot;"/>
+                                        <item value="&quot;DEPROVISIONED&quot;"/>
+                                        <item value="&quot;DEPROVISIONING&quot;"/>
+                                        <item value="&quot;DONE&quot;"/>
+                                        <item value="&quot;EXECUTED&quot;"/>
+                                        <item value="&quot;EXECUTING&quot;"/>
+                                        <item value="&quot;FAILED&quot;"/>
+                                        <item value="&quot;NOTSTARTED&quot;"/>
+                                        <item value="&quot;PROVISIONED&quot;"/>
+                                        <item value="&quot;PROVISIONING&quot;"/>
+                                        <item value="&quot;VALIDATION_FAILURE&quot;"/>
+                                        <item value="&quot;VALIDATION_SUCCESS&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="kind" value="TestRunStarted"/>
+                              <discriminator property="kind" value="TriggerCompleted"/>
+                              <discriminator property="kind" value="TriggerDisabled"/>
+                            </item>
+                          </additionalProp>
+                        </prop>
+                        <prop type="array<string>" name="testIds">
+                          <item type="string"/>
+                        </prop>
+                      </discriminator>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema readOnly="True" type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

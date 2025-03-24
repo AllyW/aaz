@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.loadtestservice">
+  <resource id="/test-profiles" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L3Rlc3QtcHJvZmlsZXM=/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+  <commandGroup name="load-test-service test-profile">
+    <command name="list" version="2024-12-01-preview">
+      <resource id="/test-profiles" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L3Rlc3QtcHJvZmlsZXM=/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="dateTime" var="$Query.lastModifiedEndTime" options="last-modified-end-time">
+          <help short="End DateTime(RFC 3339 literal format) of the last updated time range to filter test profiles."/>
+        </arg>
+        <arg type="dateTime" var="$Query.lastModifiedStartTime" options="last-modified-start-time">
+          <help short="Start DateTime(RFC 3339 literal format) of the last updated time range to filter test profiles."/>
+        </arg>
+        <arg type="integer32" var="$Query.maxpagesize" options="maxpagesize">
+          <help short="Maximum number of results to include in a single response."/>
+        </arg>
+        <arg type="array<string>" var="$Query.testIds" options="test-ids">
+          <help short="Comma separated list IDs of the tests which should be associated with the test profiles to fetch."/>
+          <item type="string"/>
+        </arg>
+        <arg type="array<string>" var="$Query.testProfileIds" options="test-profile-ids">
+          <help short="Comma separated list of IDs of the test profiles to filter."/>
+          <item type="string"/>
+        </arg>
+      </argGroup>
+      <operation operationId="TestProfileAdministration_ListTestProfiles">
+        <http path="/test-profiles">
+          <request method="get">
+            <query>
+              <param type="dateTime" name="lastModifiedEndTime" arg="$Query.lastModifiedEndTime"/>
+              <param type="dateTime" name="lastModifiedStartTime" arg="$Query.lastModifiedStartTime"/>
+              <param type="integer32" name="maxpagesize" arg="$Query.maxpagesize"/>
+              <param type="array<string>" name="testIds" arg="$Query.testIds">
+                <item type="string"/>
+              </param>
+              <param type="array<string>" name="testProfileIds" arg="$Query.testProfileIds">
+                <item type="string"/>
+              </param>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-12-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop readOnly="True" type="string" name="createdBy"/>
+                      <prop readOnly="True" type="dateTime" name="createdDateTime"/>
+                      <prop type="string" name="description">
+                        <format maxLength="100"/>
+                      </prop>
+                      <prop type="string" name="displayName">
+                        <format maxLength="50" minLength="2"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="lastModifiedBy"/>
+                      <prop readOnly="True" type="dateTime" name="lastModifiedDateTime"/>
+                      <prop type="object" name="targetResourceConfigurations">
+                        <prop type="string" name="kind" required="True">
+                          <enum>
+                            <item value="&quot;FunctionsFlexConsumption&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="kind" value="FunctionsFlexConsumption">
+                          <prop type="object" name="configurations">
+                            <additionalProp>
+                              <item type="object">
+                                <prop type="integer64" name="httpConcurrency"/>
+                                <prop type="integer64" name="instanceMemoryMB" required="True"/>
+                              </item>
+                            </additionalProp>
+                          </prop>
+                        </discriminator>
+                      </prop>
+                      <prop type="ResourceId" name="targetResourceId"/>
+                      <prop type="string" name="testId"/>
+                      <prop readOnly="True" type="string" name="testProfileId">
+                        <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema readOnly="True" type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

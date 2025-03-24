@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.loadtestservice">
+  <resource id="/test-runs/{}/metric-definitions" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L3Rlc3QtcnVucy97dGVzdFJ1bklkfS9tZXRyaWMtZGVmaW5pdGlvbnM=/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+  <commandGroup name="load-test-service test-run metric-definition">
+    <command name="list" version="2024-12-01-preview">
+      <resource id="/test-runs/{}/metric-definitions" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L3Rlc3QtcnVucy97dGVzdFJ1bklkfS9tZXRyaWMtZGVmaW5pdGlvbnM=/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.testRunId" options="test-run-id" required="True">
+          <help short="Unique name for the load test run, must contain only lower-case alphabetic, numeric, underscore or hyphen characters."/>
+          <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+        </arg>
+        <arg type="string" var="$Query.metricNamespace" options="metric-namespace" required="True">
+          <help short="Metric namespace to query metric definitions for."/>
+        </arg>
+      </argGroup>
+      <operation operationId="LoadTestRun_ListMetricDefinitions">
+        <http path="/test-runs/{testRunId}/metric-definitions">
+          <request method="get">
+            <path>
+              <param type="string" name="testRunId" arg="$Path.testRunId" required="True">
+                <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+              </param>
+            </path>
+            <query>
+              <param type="string" name="metricNamespace" arg="$Query.metricNamespace" required="True"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-12-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop type="string" name="description"/>
+                      <prop type="array<object>" name="dimensions">
+                        <item type="object">
+                          <prop type="string" name="description"/>
+                          <prop type="string" name="name"/>
+                        </item>
+                      </prop>
+                      <prop type="array<object>" name="metricAvailabilities">
+                        <item type="object">
+                          <prop type="string" name="timeGrain">
+                            <enum>
+                              <item value="&quot;PT10S&quot;"/>
+                              <item value="&quot;PT1H&quot;"/>
+                              <item value="&quot;PT1M&quot;"/>
+                              <item value="&quot;PT5M&quot;"/>
+                              <item value="&quot;PT5S&quot;"/>
+                            </enum>
+                          </prop>
+                        </item>
+                      </prop>
+                      <prop type="string" name="name"/>
+                      <prop type="string" name="namespace"/>
+                      <prop type="string" name="primaryAggregationType">
+                        <enum>
+                          <item value="&quot;Average&quot;"/>
+                          <item value="&quot;Count&quot;"/>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;Percentile75&quot;"/>
+                          <item value="&quot;Percentile90&quot;"/>
+                          <item value="&quot;Percentile95&quot;"/>
+                          <item value="&quot;Percentile96&quot;"/>
+                          <item value="&quot;Percentile97&quot;"/>
+                          <item value="&quot;Percentile98&quot;"/>
+                          <item value="&quot;Percentile99&quot;"/>
+                          <item value="&quot;Percentile999&quot;"/>
+                          <item value="&quot;Percentile9999&quot;"/>
+                          <item value="&quot;Total&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="array<string>" name="supportedAggregationTypes">
+                        <item type="string"/>
+                      </prop>
+                      <prop type="string" name="unit">
+                        <enum>
+                          <item value="&quot;Bytes&quot;"/>
+                          <item value="&quot;BytesPerSecond&quot;"/>
+                          <item value="&quot;Count&quot;"/>
+                          <item value="&quot;CountPerSecond&quot;"/>
+                          <item value="&quot;Milliseconds&quot;"/>
+                          <item value="&quot;NotSpecified&quot;"/>
+                          <item value="&quot;Percent&quot;"/>
+                          <item value="&quot;Seconds&quot;"/>
+                        </enum>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema readOnly="True" type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

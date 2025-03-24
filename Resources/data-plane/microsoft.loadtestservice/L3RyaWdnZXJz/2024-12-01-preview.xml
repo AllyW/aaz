@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.loadtestservice">
+  <resource id="/triggers" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L3RyaWdnZXJz/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+  <commandGroup name="load-test-service trigger">
+    <command name="list" version="2024-12-01-preview">
+      <resource id="/triggers" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L3RyaWdnZXJz/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="dateTime" var="$Query.lastModifiedEndTime" options="last-modified-end-time">
+          <help short="End DateTime(RFC 3339 literal format) of the last updated time range to filter triggers."/>
+        </arg>
+        <arg type="dateTime" var="$Query.lastModifiedStartTime" options="last-modified-start-time">
+          <help short="Start DateTime(RFC 3339 literal format) of the last updated time range to filter triggers."/>
+        </arg>
+        <arg type="integer32" var="$Query.maxpagesize" options="maxpagesize">
+          <help short="Number of results in response. Default page size is 50."/>
+          <default value="50"/>
+        </arg>
+        <arg type="string" var="$Query.states" options="states">
+          <help short="Filter triggers based on a comma separated list of states."/>
+          <enum>
+            <item name="Active" value="&quot;Active&quot;"/>
+            <item name="Completed" value="&quot;Completed&quot;"/>
+            <item name="Disabled" value="&quot;Disabled&quot;"/>
+            <item name="Paused" value="&quot;Paused&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$Query.testIds" options="test-ids">
+          <help short="Search based on triggers associated with the provided test ids."/>
+        </arg>
+      </argGroup>
+      <operation operationId="TriggerAdministration_ListTrigger">
+        <http path="/triggers">
+          <request method="get">
+            <query>
+              <param type="dateTime" name="lastModifiedEndTime" arg="$Query.lastModifiedEndTime"/>
+              <param type="dateTime" name="lastModifiedStartTime" arg="$Query.lastModifiedStartTime"/>
+              <param type="integer32" name="maxpagesize" arg="$Query.maxpagesize">
+                <default value="50"/>
+              </param>
+              <param type="string" name="states" arg="$Query.states">
+                <enum>
+                  <item value="&quot;Active&quot;"/>
+                  <item value="&quot;Completed&quot;"/>
+                  <item value="&quot;Disabled&quot;"/>
+                  <item value="&quot;Paused&quot;"/>
+                </enum>
+              </param>
+              <param type="string" name="testIds" arg="$Query.testIds"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-12-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop readOnly="True" type="string" name="createdBy"/>
+                      <prop readOnly="True" type="dateTime" name="createdDateTime"/>
+                      <prop type="string" name="description">
+                        <format maxLength="100"/>
+                      </prop>
+                      <prop type="string" name="displayName" required="True">
+                        <format maxLength="50" minLength="2"/>
+                      </prop>
+                      <prop type="string" name="kind" required="True">
+                        <enum>
+                          <item value="&quot;ScheduleTestsTrigger&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="string" name="lastModifiedBy"/>
+                      <prop readOnly="True" type="dateTime" name="lastModifiedDateTime"/>
+                      <prop type="string" name="state">
+                        <enum>
+                          <item value="&quot;Active&quot;"/>
+                          <item value="&quot;Completed&quot;"/>
+                          <item value="&quot;Disabled&quot;"/>
+                          <item value="&quot;Paused&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="object" name="stateDetails">
+                        <prop type="string" name="message"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="triggerId">
+                        <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+                      </prop>
+                      <discriminator property="kind" value="ScheduleTestsTrigger">
+                        <prop type="object" name="recurrence">
+                          <prop type="string" name="frequency" required="True">
+                            <enum>
+                              <item value="&quot;Cron&quot;"/>
+                              <item value="&quot;Daily&quot;"/>
+                              <item value="&quot;Hourly&quot;"/>
+                              <item value="&quot;MonthlyByDates&quot;"/>
+                              <item value="&quot;MonthlyByDays&quot;"/>
+                              <item value="&quot;Weekly&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="object" name="recurrenceEnd">
+                            <prop type="dateTime" name="endDateTime"/>
+                            <prop type="integer32" name="numberOfOccurrences"/>
+                          </prop>
+                          <discriminator property="frequency" value="Cron">
+                            <prop type="string" name="cronExpression" required="True"/>
+                          </discriminator>
+                          <discriminator property="frequency" value="Daily">
+                            <prop type="integer32" name="interval" required="True"/>
+                          </discriminator>
+                          <discriminator property="frequency" value="Hourly">
+                            <prop type="integer32" name="interval" required="True"/>
+                          </discriminator>
+                          <discriminator property="frequency" value="MonthlyByDates">
+                            <prop type="array<integer32>" name="datesInMonth">
+                              <item type="integer32"/>
+                            </prop>
+                            <prop type="integer32" name="interval"/>
+                          </discriminator>
+                          <discriminator property="frequency" value="MonthlyByDays">
+                            <prop type="integer32" name="index" required="True">
+                              <format maximum="5" minimum="1"/>
+                            </prop>
+                            <prop type="integer32" name="interval" required="True"/>
+                            <prop type="array<string>" name="weekDaysInMonth">
+                              <item type="string">
+                                <enum>
+                                  <item value="&quot;Friday&quot;"/>
+                                  <item value="&quot;Monday&quot;"/>
+                                  <item value="&quot;Saturday&quot;"/>
+                                  <item value="&quot;Sunday&quot;"/>
+                                  <item value="&quot;Thursday&quot;"/>
+                                  <item value="&quot;Tuesday&quot;"/>
+                                  <item value="&quot;Wednesday&quot;"/>
+                                </enum>
+                              </item>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="frequency" value="Weekly">
+                            <prop type="array<string>" name="daysOfWeek">
+                              <item type="string">
+                                <enum>
+                                  <item value="&quot;Friday&quot;"/>
+                                  <item value="&quot;Monday&quot;"/>
+                                  <item value="&quot;Saturday&quot;"/>
+                                  <item value="&quot;Sunday&quot;"/>
+                                  <item value="&quot;Thursday&quot;"/>
+                                  <item value="&quot;Tuesday&quot;"/>
+                                  <item value="&quot;Wednesday&quot;"/>
+                                </enum>
+                              </item>
+                            </prop>
+                            <prop type="integer32" name="interval"/>
+                          </discriminator>
+                        </prop>
+                        <prop readOnly="True" type="object" name="recurrenceStatus">
+                          <prop type="array<dateTime>" name="nextScheduledDateTimes">
+                            <item type="dateTime"/>
+                          </prop>
+                          <prop type="integer32" name="remainingOccurrences"/>
+                        </prop>
+                        <prop type="dateTime" name="startDateTime"/>
+                        <prop type="array<string>" name="testIds" required="True">
+                          <item type="string"/>
+                        </prop>
+                      </discriminator>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema readOnly="True" type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

@@ -1,0 +1,427 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.loadtestservice">
+  <resource id="/notification-rules/{}" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L25vdGlmaWNhdGlvbi1ydWxlcy97bm90aWZpY2F0aW9uUnVsZUlkfQ==/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+  <commandGroup name="load-test-service notification-rule">
+    <command name="show" version="2024-12-01-preview">
+      <resource id="/notification-rules/{}" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L25vdGlmaWNhdGlvbi1ydWxlcy97bm90aWZpY2F0aW9uUnVsZUlkfQ==/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.notificationRuleId" options="notification-rule-id" required="True">
+          <help short="The unique identifier of the notification rule."/>
+          <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+        </arg>
+      </argGroup>
+      <operation operationId="NotificationRuleAdministration_GetNotificationRule">
+        <http path="/notification-rules/{notificationRuleId}">
+          <request method="get">
+            <path>
+              <param type="string" name="notificationRuleId" arg="$Path.notificationRuleId" required="True">
+                <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-12-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="array<string>" name="actionGroupIds" required="True">
+                    <item type="string"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="createdBy"/>
+                  <prop readOnly="True" type="dateTime" name="createdDateTime"/>
+                  <prop type="string" name="displayName" required="True">
+                    <format maxLength="50" minLength="2"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="lastModifiedBy"/>
+                  <prop readOnly="True" type="dateTime" name="lastModifiedDateTime"/>
+                  <prop readOnly="True" type="string" name="notificationRuleId">
+                    <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+                  </prop>
+                  <prop type="string" name="scope" required="True">
+                    <enum>
+                      <item value="&quot;Tests&quot;"/>
+                    </enum>
+                  </prop>
+                  <discriminator property="scope" value="Tests">
+                    <prop type="object" name="eventFilters" required="True">
+                      <additionalProp>
+                        <item type="object">
+                          <prop type="string" name="kind" required="True">
+                            <enum>
+                              <item value="&quot;TestRunEnded&quot;"/>
+                              <item value="&quot;TestRunStarted&quot;"/>
+                              <item value="&quot;TriggerCompleted&quot;"/>
+                              <item value="&quot;TriggerDisabled&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="kind" value="TestRunEnded">
+                            <prop type="object" name="condition">
+                              <prop type="array<string>" name="testRunResults">
+                                <item type="string">
+                                  <enum>
+                                    <item value="&quot;FAILED&quot;"/>
+                                    <item value="&quot;NOT_APPLICABLE&quot;"/>
+                                    <item value="&quot;PASSED&quot;"/>
+                                  </enum>
+                                </item>
+                              </prop>
+                              <prop type="array<string>" name="testRunStatuses">
+                                <item type="string">
+                                  <enum>
+                                    <item value="&quot;ACCEPTED&quot;"/>
+                                    <item value="&quot;CANCELLED&quot;"/>
+                                    <item value="&quot;CANCELLING&quot;"/>
+                                    <item value="&quot;CONFIGURED&quot;"/>
+                                    <item value="&quot;CONFIGURING&quot;"/>
+                                    <item value="&quot;DEPROVISIONED&quot;"/>
+                                    <item value="&quot;DEPROVISIONING&quot;"/>
+                                    <item value="&quot;DONE&quot;"/>
+                                    <item value="&quot;EXECUTED&quot;"/>
+                                    <item value="&quot;EXECUTING&quot;"/>
+                                    <item value="&quot;FAILED&quot;"/>
+                                    <item value="&quot;NOTSTARTED&quot;"/>
+                                    <item value="&quot;PROVISIONED&quot;"/>
+                                    <item value="&quot;PROVISIONING&quot;"/>
+                                    <item value="&quot;VALIDATION_FAILURE&quot;"/>
+                                    <item value="&quot;VALIDATION_SUCCESS&quot;"/>
+                                  </enum>
+                                </item>
+                              </prop>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="kind" value="TestRunStarted"/>
+                          <discriminator property="kind" value="TriggerCompleted"/>
+                          <discriminator property="kind" value="TriggerDisabled"/>
+                        </item>
+                      </additionalProp>
+                    </prop>
+                    <prop type="array<string>" name="testIds">
+                      <item type="string"/>
+                    </prop>
+                  </discriminator>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema readOnly="True" type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="delete" version="2024-12-01-preview" confirmation="Are you sure you want to perform this operation?">
+      <resource id="/notification-rules/{}" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L25vdGlmaWNhdGlvbi1ydWxlcy97bm90aWZpY2F0aW9uUnVsZUlkfQ==/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.notificationRuleId" options="notification-rule-id" required="True">
+          <help short="The unique identifier of the notification rule."/>
+          <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+        </arg>
+      </argGroup>
+      <operation operationId="NotificationRuleAdministration_DeleteNotificationRule">
+        <http path="/notification-rules/{notificationRuleId}">
+          <request method="delete">
+            <path>
+              <param type="string" name="notificationRuleId" arg="$Path.notificationRuleId" required="True">
+                <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-12-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="204"/>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema readOnly="True" type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+    <command name="update" version="2024-12-01-preview">
+      <resource id="/notification-rules/{}" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L25vdGlmaWNhdGlvbi1ydWxlcy97bm90aWZpY2F0aW9uUnVsZUlkfQ==/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.notificationRuleId" options="notification-rule-id" required="True">
+          <help short="The unique identifier of the notification rule."/>
+          <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="object" var="$body.Tests" options="tests" group="Body">
+          <arg type="object" var="$body.Tests.eventFilters" options="event-filters" required="True">
+            <help short="The event to receive notifications for along with filtering conditions. Key is a user-assigned identifier for the event filter."/>
+            <additionalProp>
+              <item type="object">
+                <arg type="object" var="$body.Tests.eventFilters{}.TestRunEnded" options="test-run-ended">
+                  <arg type="object" var="$body.Tests.eventFilters{}.TestRunEnded.condition" options="condition">
+                    <help short="Event filtering condition."/>
+                    <arg type="array<string>" var="$body.Tests.eventFilters{}.TestRunEnded.condition.testRunResults" options="test-run-results">
+                      <help short="The test run results to send notification for."/>
+                      <item type="string">
+                        <enum>
+                          <item name="FAILED" value="&quot;FAILED&quot;"/>
+                          <item name="NOT_APPLICABLE" value="&quot;NOT_APPLICABLE&quot;"/>
+                          <item name="PASSED" value="&quot;PASSED&quot;"/>
+                        </enum>
+                      </item>
+                    </arg>
+                    <arg type="array<string>" var="$body.Tests.eventFilters{}.TestRunEnded.condition.testRunStatuses" options="test-run-statuses">
+                      <help short="The test run statuses to send notification for."/>
+                      <item type="string">
+                        <enum>
+                          <item name="ACCEPTED" value="&quot;ACCEPTED&quot;"/>
+                          <item name="CANCELLED" value="&quot;CANCELLED&quot;"/>
+                          <item name="CANCELLING" value="&quot;CANCELLING&quot;"/>
+                          <item name="CONFIGURED" value="&quot;CONFIGURED&quot;"/>
+                          <item name="CONFIGURING" value="&quot;CONFIGURING&quot;"/>
+                          <item name="DEPROVISIONED" value="&quot;DEPROVISIONED&quot;"/>
+                          <item name="DEPROVISIONING" value="&quot;DEPROVISIONING&quot;"/>
+                          <item name="DONE" value="&quot;DONE&quot;"/>
+                          <item name="EXECUTED" value="&quot;EXECUTED&quot;"/>
+                          <item name="EXECUTING" value="&quot;EXECUTING&quot;"/>
+                          <item name="FAILED" value="&quot;FAILED&quot;"/>
+                          <item name="NOTSTARTED" value="&quot;NOTSTARTED&quot;"/>
+                          <item name="PROVISIONED" value="&quot;PROVISIONED&quot;"/>
+                          <item name="PROVISIONING" value="&quot;PROVISIONING&quot;"/>
+                          <item name="VALIDATION_FAILURE" value="&quot;VALIDATION_FAILURE&quot;"/>
+                          <item name="VALIDATION_SUCCESS" value="&quot;VALIDATION_SUCCESS&quot;"/>
+                        </enum>
+                      </item>
+                    </arg>
+                  </arg>
+                </arg>
+                <arg type="object" var="$body.Tests.eventFilters{}.TestRunStarted" options="test-run-started">
+                  <blank value="{}"/>
+                </arg>
+                <arg type="object" var="$body.Tests.eventFilters{}.TriggerCompleted" options="trigger-completed">
+                  <blank value="{}"/>
+                </arg>
+                <arg type="object" var="$body.Tests.eventFilters{}.TriggerDisabled" options="trigger-disabled">
+                  <blank value="{}"/>
+                </arg>
+              </item>
+            </additionalProp>
+          </arg>
+          <arg type="array<string>" var="$body.Tests.testIds" options="test-ids">
+            <help short="The test ids to include. If not provided, notification will be sent for all testIds."/>
+            <item type="string"/>
+          </arg>
+        </arg>
+        <arg type="array<string>" var="$body.actionGroupIds" options="action-group-ids" required="True" group="Body">
+          <help short="The action groups to notify."/>
+          <item type="string"/>
+        </arg>
+        <arg type="string" var="$body.displayName" options="display-name" required="True" group="Body">
+          <help short="The name of the notification rule."/>
+          <format maxLength="50" minLength="2"/>
+        </arg>
+      </argGroup>
+      <operation operationId="NotificationRuleAdministration_CreateOrUpdateNotificationRule">
+        <http path="/notification-rules/{notificationRuleId}">
+          <request method="patch">
+            <path>
+              <param type="string" name="notificationRuleId" arg="$Path.notificationRuleId" required="True">
+                <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-12-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="array<string>" name="actionGroupIds" arg="$body.actionGroupIds" required="True">
+                    <item type="string"/>
+                  </prop>
+                  <prop type="string" name="displayName" arg="$body.displayName" required="True">
+                    <format maxLength="50" minLength="2"/>
+                  </prop>
+                  <prop type="string" name="scope" required="True">
+                    <enum>
+                      <item arg="$body.Tests" value="&quot;Tests&quot;"/>
+                    </enum>
+                  </prop>
+                  <discriminator property="scope" value="Tests">
+                    <prop type="object" name="eventFilters" arg="$body.Tests.eventFilters" required="True">
+                      <additionalProp>
+                        <item type="object">
+                          <prop type="string" name="kind" required="True">
+                            <enum>
+                              <item arg="$body.Tests.eventFilters{}.TestRunEnded" value="&quot;TestRunEnded&quot;"/>
+                              <item arg="$body.Tests.eventFilters{}.TestRunStarted" value="&quot;TestRunStarted&quot;"/>
+                              <item arg="$body.Tests.eventFilters{}.TriggerCompleted" value="&quot;TriggerCompleted&quot;"/>
+                              <item arg="$body.Tests.eventFilters{}.TriggerDisabled" value="&quot;TriggerDisabled&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="kind" value="TestRunEnded">
+                            <prop type="object" name="condition" arg="$body.Tests.eventFilters{}.TestRunEnded.condition">
+                              <prop type="array<string>" name="testRunResults" arg="$body.Tests.eventFilters{}.TestRunEnded.condition.testRunResults">
+                                <item type="string">
+                                  <enum>
+                                    <item value="&quot;FAILED&quot;"/>
+                                    <item value="&quot;NOT_APPLICABLE&quot;"/>
+                                    <item value="&quot;PASSED&quot;"/>
+                                  </enum>
+                                </item>
+                              </prop>
+                              <prop type="array<string>" name="testRunStatuses" arg="$body.Tests.eventFilters{}.TestRunEnded.condition.testRunStatuses">
+                                <item type="string">
+                                  <enum>
+                                    <item value="&quot;ACCEPTED&quot;"/>
+                                    <item value="&quot;CANCELLED&quot;"/>
+                                    <item value="&quot;CANCELLING&quot;"/>
+                                    <item value="&quot;CONFIGURED&quot;"/>
+                                    <item value="&quot;CONFIGURING&quot;"/>
+                                    <item value="&quot;DEPROVISIONED&quot;"/>
+                                    <item value="&quot;DEPROVISIONING&quot;"/>
+                                    <item value="&quot;DONE&quot;"/>
+                                    <item value="&quot;EXECUTED&quot;"/>
+                                    <item value="&quot;EXECUTING&quot;"/>
+                                    <item value="&quot;FAILED&quot;"/>
+                                    <item value="&quot;NOTSTARTED&quot;"/>
+                                    <item value="&quot;PROVISIONED&quot;"/>
+                                    <item value="&quot;PROVISIONING&quot;"/>
+                                    <item value="&quot;VALIDATION_FAILURE&quot;"/>
+                                    <item value="&quot;VALIDATION_SUCCESS&quot;"/>
+                                  </enum>
+                                </item>
+                              </prop>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="kind" value="TestRunStarted"/>
+                          <discriminator property="kind" value="TriggerCompleted"/>
+                          <discriminator property="kind" value="TriggerDisabled"/>
+                        </item>
+                      </additionalProp>
+                    </prop>
+                    <prop type="array<string>" name="testIds" arg="$body.Tests.testIds">
+                      <item type="string"/>
+                    </prop>
+                  </discriminator>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="201 200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="array<string>" name="actionGroupIds" required="True">
+                    <item type="string"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="createdBy"/>
+                  <prop readOnly="True" type="dateTime" name="createdDateTime"/>
+                  <prop type="string" name="displayName" required="True">
+                    <format maxLength="50" minLength="2"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="lastModifiedBy"/>
+                  <prop readOnly="True" type="dateTime" name="lastModifiedDateTime"/>
+                  <prop readOnly="True" type="string" name="notificationRuleId">
+                    <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+                  </prop>
+                  <prop type="string" name="scope" required="True">
+                    <enum>
+                      <item value="&quot;Tests&quot;"/>
+                    </enum>
+                  </prop>
+                  <discriminator property="scope" value="Tests">
+                    <prop type="object" name="eventFilters" required="True">
+                      <additionalProp>
+                        <item type="object">
+                          <prop type="string" name="kind" required="True">
+                            <enum>
+                              <item value="&quot;TestRunEnded&quot;"/>
+                              <item value="&quot;TestRunStarted&quot;"/>
+                              <item value="&quot;TriggerCompleted&quot;"/>
+                              <item value="&quot;TriggerDisabled&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="kind" value="TestRunEnded">
+                            <prop type="object" name="condition">
+                              <prop type="array<string>" name="testRunResults">
+                                <item type="string">
+                                  <enum>
+                                    <item value="&quot;FAILED&quot;"/>
+                                    <item value="&quot;NOT_APPLICABLE&quot;"/>
+                                    <item value="&quot;PASSED&quot;"/>
+                                  </enum>
+                                </item>
+                              </prop>
+                              <prop type="array<string>" name="testRunStatuses">
+                                <item type="string">
+                                  <enum>
+                                    <item value="&quot;ACCEPTED&quot;"/>
+                                    <item value="&quot;CANCELLED&quot;"/>
+                                    <item value="&quot;CANCELLING&quot;"/>
+                                    <item value="&quot;CONFIGURED&quot;"/>
+                                    <item value="&quot;CONFIGURING&quot;"/>
+                                    <item value="&quot;DEPROVISIONED&quot;"/>
+                                    <item value="&quot;DEPROVISIONING&quot;"/>
+                                    <item value="&quot;DONE&quot;"/>
+                                    <item value="&quot;EXECUTED&quot;"/>
+                                    <item value="&quot;EXECUTING&quot;"/>
+                                    <item value="&quot;FAILED&quot;"/>
+                                    <item value="&quot;NOTSTARTED&quot;"/>
+                                    <item value="&quot;PROVISIONED&quot;"/>
+                                    <item value="&quot;PROVISIONING&quot;"/>
+                                    <item value="&quot;VALIDATION_FAILURE&quot;"/>
+                                    <item value="&quot;VALIDATION_SUCCESS&quot;"/>
+                                  </enum>
+                                </item>
+                              </prop>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="kind" value="TestRunStarted"/>
+                          <discriminator property="kind" value="TriggerCompleted"/>
+                          <discriminator property="kind" value="TriggerDisabled"/>
+                        </item>
+                      </additionalProp>
+                    </prop>
+                    <prop type="array<string>" name="testIds">
+                      <item type="string"/>
+                    </prop>
+                  </discriminator>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema readOnly="True" type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.loadtestservice">
+  <resource id="/test-runs/{}/files/{}" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L3Rlc3QtcnVucy97dGVzdFJ1bklkfS9maWxlcy97ZmlsZU5hbWV9/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+  <commandGroup name="load-test-service test-run file">
+    <command name="show" version="2024-12-01-preview">
+      <resource id="/test-runs/{}/files/{}" version="2024-12-01-preview" swagger="data-plane:microsoft.loadtestservice/loadtestservice/ResourceProviders/Microsoft.LoadTestService/Paths/L3Rlc3QtcnVucy97dGVzdFJ1bklkfS9maWxlcy97ZmlsZU5hbWV9/V/MjAyNC0xMi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.fileName" options="file-name" required="True">
+          <help short="Name of the file."/>
+        </arg>
+        <arg type="string" var="$Path.testRunId" options="test-run-id" required="True">
+          <help short="Unique test run identifier for the load test run, must contain only lower-case alphabetic, numeric, underscore or hyphen characters."/>
+          <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+        </arg>
+      </argGroup>
+      <operation operationId="LoadTestRun_GetTestRunFile">
+        <http path="/test-runs/{testRunId}/files/{fileName}">
+          <request method="get">
+            <path>
+              <param type="string" name="fileName" arg="$Path.fileName" required="True"/>
+              <param type="string" name="testRunId" arg="$Path.testRunId" required="True">
+                <format pattern="^[a-z0-9_-]*$" maxLength="50" minLength="2"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-12-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="dateTime" name="expireDateTime"/>
+                  <prop type="string" name="fileName" required="True"/>
+                  <prop readOnly="True" type="string" name="fileType">
+                    <enum>
+                      <item value="&quot;ADDITIONAL_ARTIFACTS&quot;"/>
+                      <item value="&quot;JMX_FILE&quot;"/>
+                      <item value="&quot;TEST_SCRIPT&quot;"/>
+                      <item value="&quot;URL_TEST_CONFIG&quot;"/>
+                      <item value="&quot;USER_PROPERTIES&quot;"/>
+                      <item value="&quot;ZIPPED_ARTIFACTS&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop readOnly="True" type="string" name="url"/>
+                  <prop readOnly="True" type="string" name="validationFailureDetails"/>
+                  <prop readOnly="True" type="string" name="validationStatus">
+                    <enum>
+                      <item value="&quot;NOT_VALIDATED&quot;"/>
+                      <item value="&quot;VALIDATION_FAILURE&quot;"/>
+                      <item value="&quot;VALIDATION_INITIATED&quot;"/>
+                      <item value="&quot;VALIDATION_NOT_REQUIRED&quot;"/>
+                      <item value="&quot;VALIDATION_SUCCESS&quot;"/>
+                    </enum>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema readOnly="True" type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
